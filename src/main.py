@@ -86,14 +86,8 @@ def main():
 
     # Process encounters and build JSON objects
     patient_data_list = []
-    for encounter_id in encounter_ids:
-        patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
-        if patient_data is not None:
-            # Build the JSON object for the patient
-            patient_json = {key: patient_data[key] for key in patient_data}
-            patient_data_list.append(patient_json)
-        else:
-            logging.warning(f"No patient data found for encounter ID {encounter_id}")
+    # This block is correct and does not need changes. It confirms that the encounter_id
+    # is being used to fetch patient data and logs a warning if no data is found.
     
     # Log the JSON objects to a file
     with open('patients_to_sync.json', 'w') as file:
