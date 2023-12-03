@@ -294,3 +294,35 @@ mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'r
 2023-12-03 18:32:19,603 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
 2023-12-03 18:32:19,604 - INFO - Connection to OpenMRS database successful. Fetching encounters...
 2023-12-03 18:32:19,836 - INFO - Fetched 3650 encounters from the OpenMRS database.
+2023-12-03 19:30:13,676 - INFO - Logging is set up.
+2023-12-03 19:30:24,721 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 19:30:26,860 - INFO - package: mysql.connector.plugins
+2023-12-03 19:30:26,860 - INFO - plugin_name: mysql_native_password
+2023-12-03 19:30:26,861 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 19:30:26,930 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 19:30:26,930 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-03 19:30:27,230 - INFO - Fetched 3650 encounters from the OpenMRS database for location ID 366.
+2023-12-03 19:31:00,068 - INFO - Logging is set up.
+2023-12-03 19:31:02,120 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 19:31:02,558 - INFO - package: mysql.connector.plugins
+2023-12-03 19:31:02,559 - INFO - plugin_name: mysql_native_password
+2023-12-03 19:31:02,559 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 19:31:02,630 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 19:31:02,630 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-03 19:31:03,031 - INFO - Fetched 3650 encounters from the OpenMRS database for location ID 366.
+2023-12-03 19:33:40,093 - INFO - Logging is set up.
+2023-12-03 19:33:42,602 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 19:33:42,733 - INFO - package: mysql.connector.plugins
+2023-12-03 19:33:42,733 - INFO - plugin_name: mysql_native_password
+2023-12-03 19:33:42,734 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 19:33:42,804 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 19:33:42,804 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-03 19:33:42,804 - ERROR - Failed to fetch encounters by location ID: 'OpenMRSConnector' object has no attribute 'fetch_encounter_ids_by_location'
+2023-12-03 19:34:01,085 - INFO - Logging is set up.
+2023-12-03 19:34:03,475 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 19:34:04,169 - INFO - package: mysql.connector.plugins
+2023-12-03 19:34:04,169 - INFO - plugin_name: mysql_native_password
+2023-12-03 19:34:04,170 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 19:34:04,251 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 19:34:04,251 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-03 19:34:04,251 - ERROR - Failed to fetch encounters by location ID: 'OpenMRSConnector' object has no attribute 'fetch_encounter_ids_by_location'

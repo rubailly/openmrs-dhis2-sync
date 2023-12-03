@@ -32,24 +32,6 @@ class OpenMRSConnector:
     def fetch_patient_data(self, encounter_id):
         """Fetch patient data for a given encounter ID."""
         query = """
-        SELECT p.patient_id, pn.given_name, pn.family_name, p.gender, p.birthdate
-        FROM patient p
-        JOIN person_name pn ON p.patient_id = pn.person_id
-        JOIN encounter e ON p.patient_id = e.patient_id
-        WHERE e.encounter_id = %s;
-        """
-        try:
-            cursor = self.connection.cursor(dictionary=True)
-            cursor.execute(query, (encounter_id,))
-            result = cursor.fetchone()
-            return result if result else None
-        except mysql.connector.Error as err:
-            logging.error(f"Error fetching patient data: {err}")
-            raise
-        finally:
-            if cursor:
-                cursor.close()
-        query = """
         SELECT p.patient_id, pn.given_name AS First_Name, pn.middle_name AS Middle_Name, pn.family_name AS Family_Name, nat.identifier AS National_ID,
         (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '8b908adf-c964-4959-ad43-e2c7aeaa9c67')) AS Phone_Number, -- UUID for Phone Number
         (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '678b3499-81cd-4a26-9577-4dc1efcf0510')) AS Citizenship, -- UUID for Citizenship
