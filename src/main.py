@@ -23,15 +23,15 @@ def main():
     progress_tracker = ProgressTracker('logs/progress.json')
 
     # Check if the location has been handled before
-    handled_locations = progress_tracker.get_progress('handled_locations') or {}
-    if location_id in handled_locations:
+    handled_encounters = progress_tracker.get_progress(location_id) or []
+    if handled_encounters:
         print(f"Location {location_id} has been handled before.")
         choice = input("Do you want to resume or start from scratch? (resume/scratch): ").strip().lower()
         if choice not in ['resume', 'scratch']:
             print("Invalid choice. Exiting.")
             sys.exit(1)
         elif choice == 'scratch':
-            handled_locations[location_id] = []
+            progress_tracker.reset_progress(location_id)
 
     # Configuration for OpenMRS and DHIS2 connectors
     openmrs_config = {
