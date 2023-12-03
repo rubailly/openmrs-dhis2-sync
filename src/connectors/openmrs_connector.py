@@ -29,14 +29,22 @@ class OpenMRSConnector:
             self.connection.close()
             logging.info("OpenMRS database connection closed.")
 
-    def execute_query(self, query, params=None):
-        """Execute a given SQL query on the OpenMRS database."""
+    def fetch_patient_data(self, encounter_id):
+        """Fetch patient data for a given encounter ID."""
+        query = """
+        SELECT p.patient_id, pn.given_name AS First_Name, pn.middle_name AS Middle_Name, pn.family_name AS Family_Name, nat.identifier AS National_ID, 
+        -- Additional fields and joins here
+        FROM patient p
+        INNER JOIN person per ON p.patient_id = per.person_id
+        -- Additional joins here
+        WHERE p.encounter_id = %s
+        """
         try:
-            cursor = self.connection.cursor()
-            cursor.execute(query, params or ())
-            return cursor.fetchall()
+            cursor = self.connection.cursor(dictionary=True)
+            cursor.execute(query, (encounter_id,))
+            return cursor.fetchone()
         except mysql.connector.Error as err:
-            logging.error(f"Error executing query: {err}")
+            logging.error(f"Error fetching patient data: {err}")
             raise
         finally:
             cursor.close()

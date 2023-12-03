@@ -85,13 +85,22 @@ def main():
     if choice == 'resume':
         encounter_ids = [eid for eid in encounter_ids if eid not in handled_encounters]
 
-    # Update the progress tracker and log file with up to 20 encounters to process
-    encounters_to_log = encounter_ids[:20]
-    progress_tracker.update_progress(location_id, encounters_to_log)
-    with open('encounters_to_process.json', 'w') as file:
-        json.dump(encounters_to_log, file, indent=4)
-    print(f"Logged {len(encounters_to_log)} encounters to process.")
-    sys.exit(0)
+    # Process encounters and build JSON objects
+    patient_data_list = []
+    for encounter_id in encounter_ids:
+        patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
+        # Build the JSON object for the patient
+        patient_json = {
+            "patient_id": patient_data["patient_id"],
+            "First_Name": patient_data["First_Name"],
+            # Add other fields here
+        }
+        patient_data_list.append(patient_json)
+    
+    # Log the JSON objects to a file
+    with open('patients_to_sync.json', 'w') as file:
+        json.dump(patient_data_list, file, indent=4)
+    print(f"Logged {len(patient_data_list)} patient JSON objects to process.")
 
     # Start the synchronization process
     sync_service.sync(location_id, encounter_ids, choice)
