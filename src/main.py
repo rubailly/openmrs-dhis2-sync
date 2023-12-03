@@ -90,11 +90,7 @@ def main():
     for encounter_id in encounter_ids:
         patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
         # Build the JSON object for the patient
-        patient_json = {
-            "patient_id": patient_data["patient_id"],
-            "First_Name": patient_data["First_Name"],
-            # Add other fields here
-        }
+        patient_json = {key: patient_data[key] for key in patient_data}
         patient_data_list.append(patient_json)
     
     # Log the JSON objects to a file

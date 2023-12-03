@@ -32,11 +32,13 @@ class OpenMRSConnector:
     def fetch_patient_data(self, encounter_id):
         """Fetch patient data for a given encounter ID."""
         query = """
-        SELECT p.patient_id, pn.given_name AS First_Name, pn.middle_name AS Middle_Name, pn.family_name AS Family_Name, nat.identifier AS National_ID, 
-        -- Additional fields and joins here
+        SELECT p.patient_id, pn.given_name AS First_Name, pn.middle_name AS Middle_Name, pn.family_name AS Family_Name, nat.identifier AS National_ID,
+        p.gender, p.birthdate, p.dead, p.death_date, p.cause_of_death, p.creator, p.date_created, p.changed_by, p.date_changed, p.voided,
+        p.voided_by, p.date_voided, p.void_reason, p.uuid, p.deathdate_estimated, p.birthtime
         FROM patient p
         INNER JOIN person per ON p.patient_id = per.person_id
-        -- Additional joins here
+        INNER JOIN person_name pn ON per.person_id = pn.person_id
+        INNER JOIN patient_identifier nat ON per.person_id = nat.patient_id
         WHERE p.encounter_id = %s
         """
         try:
