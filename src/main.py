@@ -1,3 +1,4 @@
+import logging
 import json
 import sys
 from dotenv import load_dotenv
