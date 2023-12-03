@@ -87,7 +87,7 @@ def main():
     except Exception as e:
         logging.error(f"Failed to fetch encounters: {e}")
         sys.exit(1)
-    encounter_ids = [encounter['encounter_id'] for encounter in encounters]
+    encounter_ids = [encounter[0] for encounter in encounters]
 
     # Exclude already handled encounters if resuming
     if choice == 'resume':
