@@ -1,0 +1,296 @@
+2023-12-03 16:58:20,180 - INFO - Logging is set up.
+2023-12-03 16:58:56,634 - INFO - Logging is set up.
+2023-12-03 17:15:14,632 - INFO - Logging is set up.
+2023-12-03 17:16:18,706 - INFO - package: mysql.connector.plugins
+2023-12-03 17:16:18,707 - INFO - plugin_name: mysql_native_password
+2023-12-03 17:16:18,708 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 17:16:18,710 - ERROR - Error connecting to the OpenMRS database: 1045 (28000): Access denied for user ''@'localhost' (using password: NO)
+2023-12-03 17:16:50,869 - INFO - Logging is set up.
+2023-12-03 17:17:14,966 - INFO - package: mysql.connector.plugins
+2023-12-03 17:17:14,966 - INFO - plugin_name: mysql_native_password
+2023-12-03 17:17:14,967 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 17:17:14,967 - ERROR - Error connecting to the OpenMRS database: 1045 (28000): Access denied for user ''@'localhost' (using password: NO)
+2023-12-03 17:19:51,988 - INFO - Logging is set up.
+2023-12-03 17:19:56,811 - INFO - package: mysql.connector.plugins
+2023-12-03 17:19:56,812 - INFO - plugin_name: mysql_native_password
+2023-12-03 17:19:56,812 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 17:19:56,853 - ERROR - Error connecting to the OpenMRS database: 1045 (28000): Access denied for user 'root'@'105.178.32.124' (using password: YES)
+2023-12-03 17:25:45,138 - INFO - Logging is set up.
+2023-12-03 17:25:45,139 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 17:25:45,139 - INFO - OPENMRS_DB_USER: root
+2023-12-03 17:25:45,139 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 17:25:45,139 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 17:25:45,139 - INFO - Logging is set up.
+2023-12-03 17:25:49,097 - INFO - package: mysql.connector.plugins
+2023-12-03 17:25:49,097 - INFO - plugin_name: mysql_native_password
+2023-12-03 17:25:49,098 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 17:25:49,120 - ERROR - Error connecting to the OpenMRS database: 1045 (28000): Access denied for user 'root'@'105.178.32.124' (using password: YES)
+2023-12-03 17:27:47,804 - INFO - Logging is set up.
+2023-12-03 17:27:47,805 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 17:27:47,805 - INFO - OPENMRS_DB_USER: openmrs-user
+2023-12-03 17:27:47,805 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 17:27:47,805 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 17:27:47,805 - INFO - Logging is set up.
+2023-12-03 17:27:51,620 - INFO - package: mysql.connector.plugins
+2023-12-03 17:27:51,620 - INFO - plugin_name: mysql_native_password
+2023-12-03 17:27:51,621 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 17:27:51,652 - ERROR - Error connecting to the OpenMRS database: 1045 (28000): Access denied for user 'openmrs-user'@'105.178.32.124' (using password: YES)
+2023-12-03 17:30:36,064 - INFO - Logging is set up.
+2023-12-03 17:30:36,065 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 17:30:36,065 - INFO - OPENMRS_DB_USER: openmrs-user
+2023-12-03 17:30:36,065 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 17:30:36,065 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 17:30:36,065 - INFO - Logging is set up.
+2023-12-03 17:30:40,089 - INFO - package: mysql.connector.plugins
+2023-12-03 17:30:40,090 - INFO - plugin_name: mysql_native_password
+2023-12-03 17:30:40,091 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 17:30:40,442 - ERROR - Error connecting to the OpenMRS database: 1045 (28000): Access denied for user 'openmrs-user'@'105.178.32.124' (using password: YES)
+2023-12-03 17:56:03,654 - INFO - Logging is set up.
+2023-12-03 17:56:03,654 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 17:56:03,654 - INFO - OPENMRS_DB_USER: root
+2023-12-03 17:56:03,654 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 17:56:03,654 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 17:56:03,654 - INFO - Logging is set up.
+2023-12-03 17:56:09,274 - INFO - package: mysql.connector.plugins
+2023-12-03 17:56:09,275 - INFO - plugin_name: mysql_native_password
+2023-12-03 17:56:09,276 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 17:56:09,298 - ERROR - Error connecting to the OpenMRS database: 1045 (28000): Access denied for user 'root'@'105.178.32.124' (using password: YES)
+2023-12-03 17:56:50,222 - INFO - Logging is set up.
+2023-12-03 17:56:50,223 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 17:56:50,223 - INFO - OPENMRS_DB_USER: root
+2023-12-03 17:56:50,223 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 17:56:50,223 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 17:56:50,223 - INFO - Logging is set up.
+2023-12-03 17:59:51,100 - INFO - Logging is set up.
+2023-12-03 17:59:51,101 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 17:59:51,101 - INFO - OPENMRS_DB_USER: root
+2023-12-03 17:59:51,101 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 17:59:51,101 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 17:59:51,101 - INFO - Logging is set up.
+2023-12-03 18:03:12,915 - INFO - Logging is set up.
+2023-12-03 18:03:12,916 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:03:12,916 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:03:12,916 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:03:12,916 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:03:12,916 - INFO - Logging is set up.
+2023-12-03 18:03:15,540 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:04:44,220 - INFO - Logging is set up.
+2023-12-03 18:04:44,221 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:04:44,221 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:04:44,221 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:04:44,221 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:04:44,221 - INFO - Logging is set up.
+2023-12-03 18:04:46,764 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:04:46,764 - INFO - Attempting to connect to OpenMRS database at 41.74.172.73 with user root.
+2023-12-03 18:06:29,029 - INFO - Logging is set up.
+2023-12-03 18:06:29,030 - INFO - OPENMRS_DB_HOST: 5.189.157.101
+2023-12-03 18:06:29,030 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:06:29,030 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:06:29,031 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:06:29,031 - INFO - Logging is set up.
+2023-12-03 18:06:31,883 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:06:31,883 - INFO - Attempting to connect to OpenMRS database at 5.189.157.101 with user root.
+2023-12-03 18:06:33,414 - INFO - package: mysql.connector.plugins
+2023-12-03 18:06:33,415 - INFO - plugin_name: caching_sha2_password
+2023-12-03 18:06:33,415 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2023-12-03 18:06:34,007 - INFO - package: mysql.connector.plugins
+2023-12-03 18:06:34,008 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:06:34,008 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:06:34,336 - ERROR - Failed to connect to the OpenMRS database.
+Traceback (most recent call last):
+  File "/home/rbailly/eclipse-workspace/medtronic/openmrsdhis2sync/openmrs-dhis2-sync/src/connectors/openmrs_connector.py", line 16, in connect
+    self.connection = mysql.connector.connect(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/pooling.py", line 294, in connect
+    return MySQLConnection(*args, **kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 169, in __init__
+    self.connect(**kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 355, in _open_connection
+    self._do_auth(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 288, in _do_auth
+    ok_pkt = self._authenticator.authenticate(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 378, in authenticate
+    ok_pkt = self._handle_server_response(sock, pkt)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 292, in _handle_server_response
+    raise get_exception(pkt)
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'root'@'41.186.78.4' (using password: YES)
+2023-12-03 18:07:56,768 - INFO - Logging is set up.
+2023-12-03 18:07:56,769 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:07:56,769 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:07:56,769 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:07:56,769 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:07:56,769 - INFO - Logging is set up.
+2023-12-03 18:07:59,838 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:07:59,838 - INFO - Attempting to connect to OpenMRS database at 41.74.172.73 with user root.
+2023-12-03 18:10:09,728 - ERROR - Failed to connect to the OpenMRS database.
+Traceback (most recent call last):
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/network.py", line 750, in open_connection
+    self.sock.connect(sockaddr)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rbailly/eclipse-workspace/medtronic/openmrsdhis2sync/openmrs-dhis2-sync/src/connectors/openmrs_connector.py", line 16, in connect
+    self.connection = mysql.connector.connect(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/pooling.py", line 294, in connect
+    return MySQLConnection(*args, **kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 169, in __init__
+    self.connect(**kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 349, in _open_connection
+    self._socket.open_connection()
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/network.py", line 752, in open_connection
+    raise InterfaceError(
+mysql.connector.errors.InterfaceError: 2003: Can't connect to MySQL server on '41.74.172.73:3306' (110 Connection timed out)
+2023-12-03 18:10:53,531 - INFO - Logging is set up.
+2023-12-03 18:10:53,532 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:10:53,532 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:10:53,532 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:10:53,532 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:10:53,532 - INFO - Logging is set up.
+2023-12-03 18:10:56,092 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:10:56,092 - INFO - Attempting to connect to OpenMRS database at 41.74.172.73 with user root.
+2023-12-03 18:10:56,253 - INFO - package: mysql.connector.plugins
+2023-12-03 18:10:56,254 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:10:56,254 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:10:56,278 - ERROR - Failed to connect to the OpenMRS database.
+Traceback (most recent call last):
+  File "/home/rbailly/eclipse-workspace/medtronic/openmrsdhis2sync/openmrs-dhis2-sync/src/connectors/openmrs_connector.py", line 16, in connect
+    self.connection = mysql.connector.connect(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/pooling.py", line 294, in connect
+    return MySQLConnection(*args, **kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 169, in __init__
+    self.connect(**kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 355, in _open_connection
+    self._do_auth(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 288, in _do_auth
+    ok_pkt = self._authenticator.authenticate(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 378, in authenticate
+    ok_pkt = self._handle_server_response(sock, pkt)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 292, in _handle_server_response
+    raise get_exception(pkt)
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'root'@'105.178.32.124' (using password: YES)
+2023-12-03 18:11:21,240 - INFO - Logging is set up.
+2023-12-03 18:11:21,242 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:11:21,242 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:11:21,242 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:11:21,242 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:11:21,242 - INFO - Logging is set up.
+2023-12-03 18:11:37,243 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:11:37,243 - INFO - Attempting to connect to OpenMRS database at 41.74.172.73 with user root.
+2023-12-03 18:11:37,400 - INFO - package: mysql.connector.plugins
+2023-12-03 18:11:37,400 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:11:37,400 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:11:37,431 - ERROR - Failed to connect to the OpenMRS database.
+Traceback (most recent call last):
+  File "/home/rbailly/eclipse-workspace/medtronic/openmrsdhis2sync/openmrs-dhis2-sync/src/connectors/openmrs_connector.py", line 16, in connect
+    self.connection = mysql.connector.connect(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/pooling.py", line 294, in connect
+    return MySQLConnection(*args, **kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 169, in __init__
+    self.connect(**kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 355, in _open_connection
+    self._do_auth(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 288, in _do_auth
+    ok_pkt = self._authenticator.authenticate(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 378, in authenticate
+    ok_pkt = self._handle_server_response(sock, pkt)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 292, in _handle_server_response
+    raise get_exception(pkt)
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'root'@'105.178.32.124' (using password: YES)
+2023-12-03 18:15:47,509 - INFO - Logging is set up.
+2023-12-03 18:15:47,510 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:15:47,510 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:15:47,510 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:15:47,510 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:15:47,510 - INFO - Logging is set up.
+2023-12-03 18:15:49,781 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:15:49,781 - INFO - Attempting to connect to OpenMRS database at 41.74.172.73 with user root and password P@ssw0rd.
+2023-12-03 18:15:50,180 - INFO - package: mysql.connector.plugins
+2023-12-03 18:15:50,180 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:15:50,181 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:15:50,213 - ERROR - Failed to connect to the OpenMRS database.
+Traceback (most recent call last):
+  File "/home/rbailly/eclipse-workspace/medtronic/openmrsdhis2sync/openmrs-dhis2-sync/src/connectors/openmrs_connector.py", line 16, in connect
+    self.connection = mysql.connector.connect(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/pooling.py", line 294, in connect
+    return MySQLConnection(*args, **kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 169, in __init__
+    self.connect(**kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 355, in _open_connection
+    self._do_auth(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 288, in _do_auth
+    ok_pkt = self._authenticator.authenticate(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 378, in authenticate
+    ok_pkt = self._handle_server_response(sock, pkt)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 292, in _handle_server_response
+    raise get_exception(pkt)
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'root'@'105.178.32.124' (using password: YES)
+2023-12-03 18:19:40,882 - INFO - Logging is set up.
+2023-12-03 18:19:40,883 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:19:40,883 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:19:40,883 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:19:40,883 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:19:40,883 - INFO - Logging is set up.
+2023-12-03 18:19:43,687 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:19:43,687 - INFO - Attempting to connect to OpenMRS database at 41.74.172.73 with user root and password P@ssw0rd.
+2023-12-03 18:19:43,928 - INFO - package: mysql.connector.plugins
+2023-12-03 18:19:43,929 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:19:43,930 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:19:44,134 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 18:19:44,134 - INFO - Connection to OpenMRS database successful. Fetching encounters...
+2023-12-03 18:19:46,478 - INFO - Fetched 3650 encounters from the OpenMRS database.
+2023-12-03 18:23:58,881 - INFO - Logging is set up.
+2023-12-03 18:23:58,882 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:23:58,882 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:23:58,882 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:23:58,882 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:23:58,882 - INFO - Logging is set up.
+2023-12-03 18:24:01,778 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:24:01,927 - INFO - package: mysql.connector.plugins
+2023-12-03 18:24:01,927 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:24:01,928 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:24:01,994 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 18:24:01,994 - INFO - Connection to OpenMRS database successful. Fetching encounters...
+2023-12-03 18:24:02,233 - INFO - Fetched 3650 encounters from the OpenMRS database.
+2023-12-03 18:24:51,525 - INFO - Logging is set up.
+2023-12-03 18:24:51,526 - INFO - OPENMRS_DB_HOST: 41.74.172.73
+2023-12-03 18:24:51,526 - INFO - OPENMRS_DB_USER: root
+2023-12-03 18:24:51,526 - INFO - OPENMRS_DB_PASSWORD: P@ssw0rd
+2023-12-03 18:24:51,526 - INFO - OPENMRS_DB_NAME: openmrs
+2023-12-03 18:24:51,526 - INFO - Logging is set up.
+2023-12-03 18:25:02,883 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:25:04,132 - INFO - package: mysql.connector.plugins
+2023-12-03 18:25:04,132 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:25:04,133 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:25:05,220 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 18:25:05,220 - INFO - Connection to OpenMRS database successful. Fetching encounters...
+2023-12-03 18:25:07,320 - INFO - Fetched 3650 encounters from the OpenMRS database.
+2023-12-03 18:29:48,924 - INFO - Logging is set up.
+2023-12-03 18:30:16,344 - INFO - Logging is set up.
+2023-12-03 18:30:33,713 - INFO - Logging is set up.
+2023-12-03 18:31:09,525 - INFO - Logging is set up.
+2023-12-03 18:31:12,136 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:31:12,303 - INFO - package: mysql.connector.plugins
+2023-12-03 18:31:12,304 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:31:12,305 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:31:12,401 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 18:31:12,401 - INFO - Connection to OpenMRS database successful. Fetching encounters...
+2023-12-03 18:31:12,676 - INFO - Fetched 3650 encounters from the OpenMRS database.
+2023-12-03 18:32:10,493 - INFO - Logging is set up.
+2023-12-03 18:32:18,063 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-03 18:32:19,243 - INFO - package: mysql.connector.plugins
+2023-12-03 18:32:19,244 - INFO - plugin_name: mysql_native_password
+2023-12-03 18:32:19,245 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-03 18:32:19,603 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-03 18:32:19,604 - INFO - Connection to OpenMRS database successful. Fetching encounters...
+2023-12-03 18:32:19,836 - INFO - Fetched 3650 encounters from the OpenMRS database.
