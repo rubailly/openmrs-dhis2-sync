@@ -11,10 +11,14 @@ class SyncService:
         self.mapping_files = mapping_files
         self.mappings = {key: load_mappings(file) for key, file in mapping_files.items()}
 
-    def sync(self):
+    def sync(self, location_id, handled_encounters, choice):
+        # Check if we need to reset progress
+        if choice == 'scratch':
+            self.progress_tracker.reset_progress(location_id)
         # Implement the synchronization logic here
         # This might include fetching data from OpenMRS, transforming it, 
         # and then sending it to DHIS2, or vice versa.
+        # Use `handled_encounters` to determine what has already been processed.
 
     def _transform_openmrs_to_dhis2(self, openmrs_data):
         # Transform OpenMRS data to the format required by DHIS2
