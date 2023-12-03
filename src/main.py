@@ -2,9 +2,15 @@ from dotenv import load_dotenv
 from services.sync_service import SyncService
 from utils.logger import setup_logger
 from utils.progress_tracker import ProgressTracker
-# Load environment variables
+# Load environment variables and print them for debugging
 load_dotenv()
 from config.settings import OPENMRS_DB_HOST, OPENMRS_DB_USER, OPENMRS_DB_PASSWORD, OPENMRS_DB_NAME, DHIS2_BASE_URL, DHIS2_USERNAME, DHIS2_PASSWORD
+
+# Debug logging for environment variables
+logging.info(f"OPENMRS_DB_HOST: {OPENMRS_DB_HOST}")
+logging.info(f"OPENMRS_DB_USER: {OPENMRS_DB_USER}")
+logging.info(f"OPENMRS_DB_PASSWORD: {OPENMRS_DB_PASSWORD}")
+logging.info(f"OPENMRS_DB_NAME: {OPENMRS_DB_NAME}")
 
 import sys
 
