@@ -1,2 +1,3 @@
-# Add dotenv to the requirements
+# Dependencies for the project
 python-dotenv>=0.19.0
+mysql-connector-python>=8.0.23
