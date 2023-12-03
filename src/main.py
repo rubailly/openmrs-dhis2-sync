@@ -75,11 +75,18 @@ def main():
     })
 
     # Connect to OpenMRS and fetch encounters
+    logging.info("Attempting to connect to the OpenMRS database...")
     sync_service.openmrs_connector.connect()
-    encounters = sync_service.openmrs_connector.execute_query(
-        "SELECT encounter_id FROM encounter WHERE location_id = %s",
-        (location_id,)
-    )
+    logging.info("Connection to OpenMRS database successful. Fetching encounters...")
+    try:
+        encounters = sync_service.openmrs_connector.execute_query(
+            "SELECT encounter_id FROM encounter WHERE location_id = %s",
+            (location_id,)
+        )
+        logging.info(f"Fetched {len(encounters)} encounters from the OpenMRS database.")
+    except Exception as e:
+        logging.error(f"Failed to fetch encounters: {e}")
+        sys.exit(1)
     encounter_ids = [encounter['encounter_id'] for encounter in encounters]
 
     # Exclude already handled encounters if resuming
