@@ -9,6 +9,25 @@ class OpenMRSConnector:
         self.database = database.strip()
         self.connection = None
 
+    def fetch_encounter_ids_by_location(self, location_id):
+        """Fetch encounter IDs for a given location ID."""
+        query = """
+        SELECT encounter_id
+        FROM encounter
+        WHERE location_id = %s;
+        """
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(query, (location_id,))
+            result = cursor.fetchall()
+            return [row[0] for row in result] if result else []
+        except mysql.connector.Error as err:
+            logging.error(f"Error fetching encounter IDs: {err}")
+            raise
+        finally:
+            if cursor:
+                cursor.close()
+
     def connect(self):
         """Establish a connection to the OpenMRS database."""
         try:
