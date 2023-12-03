@@ -2,7 +2,7 @@ from connectors.openmrs_connector import OpenMRSConnector
 from connectors.dhis2_connector import DHIS2Connector
 from models.dhis2_models import DHIS2TrackedEntity, DHIS2DataElement
 from models.openmrs_models import OpenMRSPatient, OpenMRSObservation
-from utils.mappings import load_mappings
+from config.mappings import load_mappings
 
 class SyncService:
     def __init__(self, openmrs_config, dhis2_config, mapping_files):
