@@ -53,8 +53,25 @@ def main():
         "observation": 'mappings/observation_mappings.json'
     })
 
+    # Connect to OpenMRS and fetch encounters
+    sync_service.openmrs_connector.connect()
+    encounters = sync_service.openmrs_connector.execute_query(
+        "SELECT encounter_id FROM encounter WHERE location_id = %s",
+        (location_id,)
+    )
+    encounter_ids = [encounter['encounter_id'] for encounter in encounters]
+
+    # Exclude already handled encounters if resuming
+    if choice == 'resume':
+        encounter_ids = [eid for eid in encounter_ids if eid not in handled_encounters]
+
+    # Update the progress tracker and log file with encounters to process
+    progress_tracker.update_progress(location_id, encounter_ids)
+    with open('encounters_to_process.json', 'w') as file:
+        json.dump(encounter_ids, file, indent=4)
+
     # Start the synchronization process
-    sync_service.sync(location_id, handled_locations.get(location_id), choice)
+    sync_service.sync(location_id, encounter_ids, choice)
 
 if __name__ == "__main__":
     main()
