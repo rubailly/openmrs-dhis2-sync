@@ -64,7 +64,7 @@ def main():
         "location": 'mappings/location_mappings.json',
         "attribute": 'mappings/attribute_mappings.json',
         "observation": 'mappings/observation_mappings.json'
-    })
+    }, 'logs/progress.json')
 
     # Connect to OpenMRS and fetch encounters by location ID
     logging.info("Attempting to connect to the OpenMRS database...")

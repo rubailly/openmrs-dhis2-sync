@@ -4,12 +4,15 @@ from models.dhis2_models import DHIS2TrackedEntity, DHIS2DataElement
 from models.openmrs_models import OpenMRSPatient, OpenMRSObservation
 from config.mappings import load_mappings
 
+from utils.progress_tracker import ProgressTracker
+
 class SyncService:
-    def __init__(self, openmrs_config, dhis2_config, mapping_files):
+    def __init__(self, openmrs_config, dhis2_config, mapping_files, progress_tracker_file):
         self.openmrs_connector = OpenMRSConnector(**openmrs_config)
         self.dhis2_connector = DHIS2Connector(**dhis2_config)
         self.mapping_files = mapping_files
         self.mappings = {key: load_mappings(file) for key, file in mapping_files.items()}
+        self.progress_tracker = ProgressTracker(progress_tracker_file)
 
     def sync(self, location_id, handled_encounters, choice):
         # Check if we need to reset progress
