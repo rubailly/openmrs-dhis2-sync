@@ -3,10 +3,10 @@ import logging
 
 class OpenMRSConnector:
     def __init__(self, host, user, password, database):
-        self.host = "41.74.172.73"
-        self.user = "root"
-        self.password = "P@ssw0rd"
-        self.database = "openmrs"
+        self.host = host.strip()
+        self.user = user.strip()
+        self.password = password.strip()
+        self.database = database.strip()
         self.connection = None
 
     def connect(self):
@@ -19,6 +19,7 @@ class OpenMRSConnector:
                 database=self.database
             )
             logging.info("Connected to the OpenMRS database.")
+            print("Successfully connected to the OpenMRS database.")
         except mysql.connector.Error as err:
             logging.error(f"Error connecting to the OpenMRS database: {err}")
             raise
