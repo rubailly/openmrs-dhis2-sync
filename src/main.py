@@ -70,10 +70,13 @@ def main():
     if choice == 'resume':
         encounter_ids = [eid for eid in encounter_ids if eid not in handled_encounters]
 
-    # Update the progress tracker and log file with encounters to process
-    progress_tracker.update_progress(location_id, encounter_ids)
+    # Update the progress tracker and log file with up to 20 encounters to process
+    encounters_to_log = encounter_ids[:20]
+    progress_tracker.update_progress(location_id, encounters_to_log)
     with open('encounters_to_process.json', 'w') as file:
-        json.dump(encounter_ids, file, indent=4)
+        json.dump(encounters_to_log, file, indent=4)
+    print(f"Logged {len(encounters_to_log)} encounters to process.")
+    sys.exit(0)
 
     # Start the synchronization process
     sync_service.sync(location_id, encounter_ids, choice)
