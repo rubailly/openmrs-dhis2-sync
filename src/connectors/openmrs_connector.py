@@ -3,10 +3,10 @@ import logging
 
 class OpenMRSConnector:
     def __init__(self, host, user, password, database):
-        self.host = host.strip()
-        self.user = user.strip()
-        self.password = password.strip()
-        self.database = database.strip()
+        self.host = "41.74.172.73"
+        self.user = "root"
+        self.password = "P@ssw0rd"
+        self.database = "openmrs"
         self.connection = None
 
     def connect(self):
