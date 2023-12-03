@@ -11,7 +11,6 @@ class OpenMRSConnector:
 
     def connect(self):
         """Establish a connection to the OpenMRS database."""
-        logging.info(f"Attempting to connect to OpenMRS database at {self.host} with user {self.user} and password {self.password}.")
         try:
             self.connection = mysql.connector.connect(
                 host=self.host,
