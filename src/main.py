@@ -1,16 +1,11 @@
 import json
+import sys
 from dotenv import load_dotenv
 from services.sync_service import SyncService
 from utils.logger import setup_logger
 from utils.progress_tracker import ProgressTracker
-from dotenv import load_dotenv
-import logging
-from utils.logger import setup_logger
 
-# Set up logging
-setup_logger('logs/sync.log')
-
-# Load environment variables and print them for debugging
+# Load environment variables
 load_dotenv()
 from config.settings import OPENMRS_DB_HOST, OPENMRS_DB_USER, OPENMRS_DB_PASSWORD, OPENMRS_DB_NAME, DHIS2_BASE_URL, DHIS2_USERNAME, DHIS2_PASSWORD
 
