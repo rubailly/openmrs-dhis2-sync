@@ -33,13 +33,18 @@ class OpenMRSConnector:
         """Fetch patient data for a given encounter ID."""
         query = """
         SELECT p.patient_id, pn.given_name AS First_Name, pn.middle_name AS Middle_Name, pn.family_name AS Family_Name, nat.identifier AS National_ID,
-        p.gender, p.birthdate, p.dead, p.death_date, p.cause_of_death, p.creator, p.date_created, p.changed_by, p.date_changed, p.voided,
-        p.voided_by, p.date_voided, p.void_reason, p.uuid, p.deathdate_estimated, p.birthtime
+        (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '8b908adf-c964-4959-ad43-e2c7aeaa9c67')) AS Phone_Number, -- UUID for Phone Number
+        (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '678b3499-81cd-4a26-9577-4dc1efcf0510')) AS Citizenship, -- UUID for Citizenship
+        (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = 'UUID_for_Ubudehe')) AS Ubudehe, -- Replace with actual UUID for Ubudehe
+        (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '8d87236c-c2cc-11de-8d13-0010c6dffd0f')) AS Health_Facility, -- UUID for Health Facility
+        addr.country, addr.state_province AS Province, addr.county_district AS District, addr.city_village AS Sector, addr.address3 AS Cell, addr.address1 AS Village,
+        per.gender AS Sex, per.birthdate AS Birth_Date, per.birthdate_estimated AS Birthdate_Estimate, FLOOR(DATEDIFF(CURRENT_DATE, per.birthdate) / 365) AS Age_in_Years
         FROM patient p
         INNER JOIN person per ON p.patient_id = per.person_id
-        INNER JOIN person_name pn ON per.person_id = pn.person_id
-        INNER JOIN patient_identifier nat ON per.person_id = nat.patient_id
-        WHERE p.encounter_id = %s
+        LEFT JOIN person_name pn ON per.person_id = pn.person_id
+        LEFT JOIN patient_identifier nat ON p.patient_id = nat.patient_id AND nat.identifier_type = '85c63542-587f-476c-9e69-c733bd285a57' -- UUID for National ID
+        LEFT JOIN person_address addr ON per.person_id = addr.person_id
+        LIMIT 10;
         """
         try:
             cursor = self.connection.cursor(dictionary=True)
