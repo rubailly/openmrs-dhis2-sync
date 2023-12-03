@@ -29,8 +29,24 @@ class OpenMRSConnector:
             self.connection.close()
             logging.info("OpenMRS database connection closed.")
 
-    def fetch_patient_data(self, encounter_id):
-        """Fetch patient data for a given patient ID."""
+    def fetch_encounter_ids_by_location(self, location_id):
+        """Fetch encounter IDs for a given location ID."""
+        query = """
+        SELECT encounter_id
+        FROM encounter
+        WHERE location_id = %s;
+        """
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(query, (location_id,))
+            result = cursor.fetchall()
+            return [row[0] for row in result] if result else []
+        except mysql.connector.Error as err:
+            logging.error(f"Error fetching encounter IDs by location ID: {err}")
+            raise
+        finally:
+            if cursor:
+                cursor.close()
         query = """
         SELECT p.patient_id, pn.given_name AS First_Name, pn.middle_name AS Middle_Name, pn.family_name AS Family_Name, nat.identifier AS National_ID,
         (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '8b908adf-c964-4959-ad43-e2c7aeaa9c67')) AS Phone_Number, -- UUID for Phone Number

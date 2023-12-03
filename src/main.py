@@ -66,20 +66,19 @@ def main():
         "observation": 'mappings/observation_mappings.json'
     })
 
-    # Connect to OpenMRS and fetch encounters
+    # Connect to OpenMRS and fetch encounters by location ID
     logging.info("Attempting to connect to the OpenMRS database...")
     sync_service.openmrs_connector.connect()
-    logging.info("Connection to OpenMRS database successful. Fetching encounters...")
+    logging.info("Connection to OpenMRS database successful. Fetching encounters by location ID...")
     try:
-        encounters = sync_service.openmrs_connector.execute_query(
-            "SELECT encounter_id FROM encounter WHERE location_id = %s",
-            (location_id,)
-        )
-        logging.info(f"Fetched {len(encounters)} encounters from the OpenMRS database.")
+        encounter_ids = sync_service.openmrs_connector.fetch_encounter_ids_by_location(location_id)
+        logging.info(f"Fetched {len(encounter_ids)} encounters from the OpenMRS database for location ID {location_id}.")
+        
+        # Log the fetched encounter IDs to the progress.json file
+        progress_tracker.update_progress(location_id, encounter_ids, reset=True)
     except Exception as e:
-        logging.error(f"Failed to fetch encounters: {e}")
+        logging.error(f"Failed to fetch encounters by location ID: {e}")
         sys.exit(1)
-    encounter_ids = [encounter[0] for encounter in encounters]
 
     # Exclude already handled encounters if resuming
     if choice == 'resume':
