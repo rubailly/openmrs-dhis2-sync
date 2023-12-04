@@ -2,7 +2,6 @@ from connectors.openmrs_connector import OpenMRSConnector
 from connectors.dhis2_connector import DHIS2Connector
 from models.dhis2_models import DHIS2TrackedEntity, DHIS2DataElement
 from models.openmrs_models import OpenMRSPatient, OpenMRSObservation
-from config.mappings import load_mappings
 
 from utils.progress_tracker import ProgressTracker
 
@@ -11,7 +10,11 @@ class SyncService:
         self.openmrs_connector = OpenMRSConnector(**openmrs_config)
         self.dhis2_connector = DHIS2Connector(**dhis2_config)
         self.mapping_files = mapping_files
-        self.mappings = {key: load_mappings(file) for key, file in mapping_files.items()}
+        self.mappings = {
+            "location": load_mappings(mapping_files["location"]),
+            "attribute": load_mappings(mapping_files["attribute"]),
+            # Load form mappings as needed based on form ID during processing
+        }
         self.progress_tracker = ProgressTracker(progress_tracker_file)
 
     def sync(self, location_id, handled_encounters, choice):
@@ -24,22 +27,21 @@ class SyncService:
         # Use `handled_encounters` to determine what has already been processed.
 
     def _transform_openmrs_to_dhis2(self, openmrs_data, form_id):
-        # Load the form-specific mappings based on the form_id
-        form_mappings = self.mappings.get("forms", {}).get(form_id, {})
-        if not form_mappings:
-            raise ValueError(f"No mappings found for form ID: {form_id}")
+        # Load the form-specific mappings based on the form_id dynamically
+        form_mappings_file = f"mappings/forms/form_{form_id}_mappings.json"
+        form_mappings = load_mappings(form_mappings_file)
 
         # Initialize the DHIS2 event structure
         dhis2_event = {
             "program": form_mappings.get("dhis2_program_id"),
-            "orgUnit": self.mappings["location"].get(openmrs_data["Health_Facility"]),
+            "orgUnit": self.mappings["location"].get(openmrs_data["location_uuid"]),
             "eventDate": openmrs_data["encounter_datetime"].split("T")[0],  # Assuming encounter_datetime is in ISO format
             "status": "COMPLETED",
             "programStage": form_mappings.get("dhis2_program_stage_id"),
             "dataValues": []
         }
 
-        # Map OpenMRS observations to DHIS2 data elements
+        # Map OpenMRS observations to DHIS2 data elements using the form-specific mappings
         for obs_uuid, value in openmrs_data.get("observations", {}).items():
             dhis2_data_element_id = form_mappings["observations"].get(obs_uuid)
             if dhis2_data_element_id:
@@ -48,12 +50,12 @@ class SyncService:
                     "value": value
                 })
 
-        # Map OpenMRS patient attributes to DHIS2 tracked entity attributes
+        # Map OpenMRS patient attributes to DHIS2 tracked entity attributes using the attribute mappings
         for attr, attr_value in openmrs_data.items():
             dhis2_attribute_id = self.mappings["attribute"].get(attr)
             if dhis2_attribute_id:
                 dhis2_event["dataValues"].append({
-                    "dataElement": dhis2_attribute_id,
+                    "attribute": dhis2_attribute_id,
                     "value": attr_value
                 })
 
