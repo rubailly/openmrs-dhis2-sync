@@ -1,6 +1,19 @@
 {
-  "openmrs_attribute_1": "dhis2_attribute_1",
-  "openmrs_attribute_2": "dhis2_attribute_2",
-  "openmrs_attribute_3": "dhis2_attribute_3"
+  "First_Name": "U52G0TY1Idf",
+  "Middle_Name": "openmrs_attribute_for_middle_name_if_exists",
+  "Family_Name": "TxbYMcqsQYQ",
+  "National_ID": "bVXK3FxmU1L",
+  "Phone_Number": "CW3Ai3BrfVy",
+  "Citizenship": "Yto0ghm8kOE",
+  "Health_Facility": "gXgScKZxpxQ",
+  "country": "openmrs_attribute_for_country_if_exists",
+  "Province": "evKaBQs0q8D",
+  "District": "xDNgZTmKeo5",
+  "Sector": "boAQ2CHQffk",
+  "Cell": "tbbHVit787h",
+  "Village": "zmeNpGxK2ca",
+  "Sex": "oCAIvI4WqJK",
+  "Birth_Date": "Kb3an6eYPBb",
+  "Birthdate_Estimate": "openmrs_attribute_for_birthdate_estimate_if_exists",
+  "Age_in_Years": "L4EqOsk6Xk8"
 }
-
