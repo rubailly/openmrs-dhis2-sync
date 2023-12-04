@@ -74,10 +74,24 @@ def main():
         encounter_ids = sync_service.openmrs_connector.fetch_encounter_ids_by_location(location_id)
         logging.info(f"Fetched {len(encounter_ids)} encounters from the OpenMRS database for location ID {location_id}.")
     
-        # Log the fetched encounter IDs to the encounters_to_process.json file
+        # Log the fetched encounter IDs to the encounters_to_process.json file and process each encounter
         with open('encounters_to_process.json', 'w') as file:
             json.dump(encounter_ids, file, indent=4)
         logging.info(f"Logged {len(encounter_ids)} encounter IDs to encounters_to_process.json.")
+
+        # Process encounters and build JSON objects
+        patient_data_list = []
+        for encounter_id in encounter_ids:
+            patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
+            if patient_data:
+                patient_data_list.append(patient_data)
+            else:
+                logging.warning(f"No patient data found for encounter ID {encounter_id}")
+    
+        # Log the JSON objects to a file
+        with open('patients_to_sync.json', 'w') as file:
+            json.dump(patient_data_list, file, indent=4)
+        logging.info(f"Logged {len(patient_data_list)} patient JSON objects to patients_to_sync.json.")
 
         # Log the fetched encounter IDs to the progress.json file
         progress_tracker.update_progress(location_id, encounter_ids, reset=True)
