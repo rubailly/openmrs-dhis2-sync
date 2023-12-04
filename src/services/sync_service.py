@@ -23,30 +23,37 @@ class SyncService:
         # and then sending it to DHIS2, or vice versa.
         # Use `handled_encounters` to determine what has already been processed.
 
-    def _transform_openmrs_to_dhis2(self, openmrs_data, form_mappings):
+    def _transform_openmrs_to_dhis2(self, openmrs_data, form_id):
+        # Load the form-specific mappings based on the form_id
+        form_mappings = self.mappings.get("forms", {}).get(form_id, {})
+        if not form_mappings:
+            raise ValueError(f"No mappings found for form ID: {form_id}")
+
         # Initialize the DHIS2 event structure
         dhis2_event = {
-            "program": form_mappings["dhis2_program_id"],
-            "orgUnit": self.mappings["location"][openmrs_data["Health_Facility"]],
+            "program": form_mappings.get("dhis2_program_id"),
+            "orgUnit": self.mappings["location"].get(openmrs_data["Health_Facility"]),
             "eventDate": openmrs_data["encounter_datetime"].split("T")[0],  # Assuming encounter_datetime is in ISO format
             "status": "COMPLETED",
-            "programStage": form_mappings["dhis2_program_stage_id"],
+            "programStage": form_mappings.get("dhis2_program_stage_id"),
             "dataValues": []
         }
 
         # Map OpenMRS observations to DHIS2 data elements
-        for obs_uuid, value in openmrs_data["observations"].items():
-            if obs_uuid in form_mappings["observations"]:
+        for obs_uuid, value in openmrs_data.get("observations", {}).items():
+            dhis2_data_element_id = form_mappings["observations"].get(obs_uuid)
+            if dhis2_data_element_id:
                 dhis2_event["dataValues"].append({
-                    "dataElement": form_mappings["observations"][obs_uuid],
+                    "dataElement": dhis2_data_element_id,
                     "value": value
                 })
 
         # Map OpenMRS patient attributes to DHIS2 tracked entity attributes
         for attr, attr_value in openmrs_data.items():
-            if attr in self.mappings["attribute"]:
+            dhis2_attribute_id = self.mappings["attribute"].get(attr)
+            if dhis2_attribute_id:
                 dhis2_event["dataValues"].append({
-                    "dataElement": self.mappings["attribute"][attr],
+                    "dataElement": dhis2_attribute_id,
                     "value": attr_value
                 })
 
