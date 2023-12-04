@@ -57,12 +57,13 @@ class OpenMRSConnector:
         (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '8d87236c-c2cc-11de-8d13-0010c6dffd0f')) AS Health_Facility, -- UUID for Health Facility
         addr.country, addr.state_province AS Province, addr.county_district AS District, addr.city_village AS Sector, addr.address3 AS Cell, addr.address1 AS Village,
         per.gender AS Sex, per.birthdate AS Birth_Date, per.birthdate_estimated AS Birthdate_Estimate, FLOOR(DATEDIFF(CURRENT_DATE, per.birthdate) / 365) AS Age_in_Years
-        FROM patient p
+        FROM encounter e
+        INNER JOIN patient p ON e.patient_id = p.patient_id
         INNER JOIN person per ON p.patient_id = per.person_id
         LEFT JOIN person_name pn ON per.person_id = pn.person_id
         LEFT JOIN patient_identifier nat ON p.patient_id = nat.patient_id AND nat.identifier_type = '85c63542-587f-476c-9e69-c733bd285a57' -- UUID for National ID
         LEFT JOIN person_address addr ON per.person_id = addr.person_id
-        WHERE p.patient_id = %s;
+        WHERE e.encounter_id = %s;
         """
         try:
             cursor = self.connection.cursor(dictionary=True)
