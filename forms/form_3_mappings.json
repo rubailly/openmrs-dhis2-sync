@@ -1,0 +1,7 @@
+{
+  "dhis2_program_stage_id": "dhis2_program_stage_id_for_form_3",
+  "observations": {
+    "openmrs_concept_uuid_5": "dhis2_data_element_id_5",
+    "openmrs_concept_uuid_6": "dhis2_data_element_id_6"
+  }
+}
