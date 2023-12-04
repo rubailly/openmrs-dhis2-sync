@@ -66,12 +66,17 @@ def main():
         "observation": 'mappings/observation_mappings.json'
     }, 'logs/progress.json')
 
-    # Connect to OpenMRS and fetch encounters by location ID
+    # Prompt user for encounter type IDs
+    print("Please enter the encounter type IDs you are interested in (comma separated):")
+    encounter_type_ids_input = input("Encounter Type IDs: ").strip()
+    encounter_type_ids = encounter_type_ids_input.split(',') if encounter_type_ids_input else []
+
+    # Connect to OpenMRS and fetch encounters by location ID and encounter type IDs
     logging.info("Attempting to connect to the OpenMRS database...")
     sync_service.openmrs_connector.connect()
-    logging.info("Connection to OpenMRS database successful. Fetching encounters by location ID...")
+    logging.info("Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...")
     try:
-        encounter_ids = sync_service.openmrs_connector.fetch_encounter_ids_by_location(location_id)
+        encounter_ids = sync_service.openmrs_connector.fetch_encounter_ids_by_location(location_id, encounter_type_ids)
         logging.info(f"Fetched {len(encounter_ids)} encounters from the OpenMRS database for location ID {location_id}.")
     
         # Log the fetched encounter IDs to the encounters_to_process.json file and process each encounter

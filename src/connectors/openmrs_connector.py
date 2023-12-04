@@ -9,13 +9,17 @@ class OpenMRSConnector:
         self.database = database.strip()
         self.connection = None
 
-    def fetch_encounter_ids_by_location(self, location_id):
-        """Fetch encounter IDs for a given location ID."""
+    def fetch_encounter_ids_by_location(self, location_id, encounter_type_ids=None):
+        """Fetch encounter IDs for a given location ID and optional encounter type IDs."""
         query = """
         SELECT encounter_id
         FROM encounter
-        WHERE location_id = %s;
+        WHERE location_id = %s
         """
+        query_params = [location_id]
+        if encounter_type_ids:
+            query += "AND encounter_type IN (%s)" % ', '.join(['%s'] * len(encounter_type_ids))
+            query_params.extend(encounter_type_ids)
         try:
             cursor = self.connection.cursor()
             cursor.execute(query, (location_id,))
