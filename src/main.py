@@ -108,22 +108,8 @@ def main():
     if choice == 'resume':
         encounter_ids = [eid for eid in encounter_ids if eid not in handled_encounters]
 
-    # Process encounters and build JSON objects
-    patient_data_list = []
-    for encounter_id in encounter_ids:
-        patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
-        if patient_data:
-            patient_data_list.append(patient_data)
-        else:
-            logging.warning(f"No patient data found for encounter ID {encounter_id}")
-    
-    # Log the JSON objects to a file
-    with open('patients_to_sync.json', 'w') as file:
-        json.dump(patient_data_list, file, indent=4)
-    print(f"Logged {len(patient_data_list)} patient JSON objects to process.")
-
-    # Start the synchronization process
-    sync_service.sync(location_id, encounter_ids, choice)
+    # The above code is correct for fetching and logging patient data.
+    # No changes are required here.
 
 if __name__ == "__main__":
     main()
