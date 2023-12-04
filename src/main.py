@@ -81,19 +81,17 @@ def main():
 
         # Process encounters and build JSON objects
         patient_data_list = []
-        for encounter_id in encounter_ids:
-            logging.info(f"Processing encounter ID: {encounter_id}")
-            patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
-            if patient_data:
-                patient_data_list.append(patient_data)
-                logging.info(f"Finished processing encounter ID: {encounter_id}")
-            else:
-                logging.warning(f"No patient data found for encounter ID {encounter_id}")
-    
-        # Log the JSON objects to a file
         with open('patients_to_sync.json', 'w') as file:
-            json.dump(patient_data_list, file, indent=4)
-        logging.info(f"Logged {len(patient_data_list)} patient JSON objects to patients_to_sync.json.")
+            for encounter_id in encounter_ids:
+                logging.info(f"Processing encounter ID: {encounter_id}")
+                patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
+                if patient_data:
+                    patient_data_list.append(patient_data)
+                    json.dump(patient_data_list, file, indent=4)
+                    logging.info(f"Finished processing encounter ID: {encounter_id}")
+                    logging.info(f"Logged patient data for encounter ID: {encounter_id} to patients_to_sync.json")
+                else:
+                    logging.warning(f"No patient data found for encounter ID {encounter_id}")
 
         # Log the fetched encounter IDs to the progress.json file
         progress_tracker.update_progress(location_id, encounter_ids, reset=True)
