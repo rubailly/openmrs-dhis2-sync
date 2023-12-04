@@ -82,9 +82,11 @@ def main():
         # Process encounters and build JSON objects
         patient_data_list = []
         for encounter_id in encounter_ids:
+            logging.info(f"Processing encounter ID: {encounter_id}")
             patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
             if patient_data:
                 patient_data_list.append(patient_data)
+                logging.info(f"Finished processing encounter ID: {encounter_id}")
             else:
                 logging.warning(f"No patient data found for encounter ID {encounter_id}")
     

@@ -67,9 +67,11 @@ class OpenMRSConnector:
         """
         try:
             cursor = self.connection.cursor(dictionary=True)
+            logging.info(f"Executing query for encounter ID: {encounter_id}")
             cursor.execute(query, (encounter_id,))
             result = cursor.fetchone()
             cursor.fetchall()  # Fetch the remaining results to avoid the "Unread result found" error
+            logging.info(f"Query executed for encounter ID: {encounter_id}")
             return result
         except mysql.connector.Error as err:
             logging.error(f"Error fetching patient data: {err}")
