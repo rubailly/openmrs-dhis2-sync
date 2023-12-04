@@ -22,7 +22,7 @@ class OpenMRSConnector:
             query_params.extend(encounter_type_ids)
         try:
             cursor = self.connection.cursor()
-            cursor.execute(query, (location_id,))
+            cursor.execute(query, query_params)
             result = cursor.fetchall()
             return [row[0] for row in result] if result else []
         except mysql.connector.Error as err:
