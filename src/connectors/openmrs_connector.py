@@ -72,6 +72,9 @@ class OpenMRSConnector:
             result = cursor.fetchone()
             cursor.fetchall()  # Fetch the remaining results to avoid the "Unread result found" error
             logging.info(f"Query executed for encounter ID: {encounter_id}")
+            # Convert date objects to strings in ISO format
+            if result and 'Birth_Date' in result and result['Birth_Date']:
+                result['Birth_Date'] = result['Birth_Date'].isoformat()
             return result
         except mysql.connector.Error as err:
             logging.error(f"Error fetching patient data: {err}")
