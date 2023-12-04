@@ -9,17 +9,18 @@ class OpenMRSConnector:
         self.database = database.strip()
         self.connection = None
 
-    def fetch_encounter_ids_by_location(self, location_id, encounter_type_ids=None):
-        """Fetch encounter IDs for a given location ID and optional encounter type IDs."""
+    def fetch_encounter_ids_by_location(self, location_id, form_id=None):
+        """Fetch encounter IDs for a given location ID and optional form ID."""
         query = """
         SELECT encounter_id
         FROM encounter
         WHERE location_id = %s
         """
         query_params = [location_id]
-        if encounter_type_ids:
-            query += "AND encounter_type IN (%s)" % ', '.join(['%s'] * len(encounter_type_ids))
-            query_params.extend(encounter_type_ids)
+        if form_id:
+            encounter_type_id = self.get_encounter_type_id_by_form_id(form_id)
+            query += " AND encounter_type = %s"
+            query_params.append(encounter_type_id)
         try:
             cursor = self.connection.cursor()
             cursor.execute(query, query_params)
@@ -86,3 +87,21 @@ class OpenMRSConnector:
         finally:
             cursor.close()
 
+    def get_encounter_type_id_by_form_id(self, form_id):
+        """Fetch the encounter type ID for a given form ID."""
+        query = """
+        SELECT encounter_type_id
+        FROM encounter_type
+        WHERE uuid = %s
+        """
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(query, (form_id,))
+            result = cursor.fetchone()
+            return result[0] if result else None
+        except mysql.connector.Error as err:
+            logging.error(f"Error fetching encounter type ID: {err}")
+            raise
+        finally:
+            if cursor:
+                cursor.close()
