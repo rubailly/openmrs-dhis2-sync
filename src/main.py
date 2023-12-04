@@ -73,7 +73,12 @@ def main():
     try:
         encounter_ids = sync_service.openmrs_connector.fetch_encounter_ids_by_location(location_id)
         logging.info(f"Fetched {len(encounter_ids)} encounters from the OpenMRS database for location ID {location_id}.")
-        
+    
+        # Log the fetched encounter IDs to the encounters_to_process.json file
+        with open('encounters_to_process.json', 'w') as file:
+            json.dump(encounter_ids, file, indent=4)
+        logging.info(f"Logged {len(encounter_ids)} encounter IDs to encounters_to_process.json.")
+
         # Log the fetched encounter IDs to the progress.json file
         progress_tracker.update_progress(location_id, encounter_ids, reset=True)
     except Exception as e:
