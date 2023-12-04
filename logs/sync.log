@@ -972,3 +972,739 @@ mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'r
 2023-12-03 20:06:38,440 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
 2023-12-03 20:06:38,440 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
 2023-12-03 20:06:38,739 - INFO - Fetched 3650 encounters from the OpenMRS database for location ID 366.
+2023-12-04 10:11:42,500 - INFO - Logging is set up.
+2023-12-04 10:11:46,041 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-04 10:11:46,428 - INFO - package: mysql.connector.plugins
+2023-12-04 10:11:46,428 - INFO - plugin_name: mysql_native_password
+2023-12-04 10:11:46,438 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-04 10:11:46,483 - ERROR - Failed to connect to the OpenMRS database.
+Traceback (most recent call last):
+  File "/home/rbailly/eclipse-workspace/medtronic/openmrsdhis2sync/openmrs-dhis2-sync/src/connectors/openmrs_connector.py", line 34, in connect
+    self.connection = mysql.connector.connect(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/pooling.py", line 294, in connect
+    return MySQLConnection(*args, **kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 169, in __init__
+    self.connect(**kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 355, in _open_connection
+    self._do_auth(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 288, in _do_auth
+    ok_pkt = self._authenticator.authenticate(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 378, in authenticate
+    ok_pkt = self._handle_server_response(sock, pkt)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 292, in _handle_server_response
+    raise get_exception(pkt)
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'root'@'105.178.104.63' (using password: YES)
+2023-12-04 10:14:21,680 - INFO - Logging is set up.
+2023-12-04 10:14:24,018 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-04 10:14:24,191 - INFO - package: mysql.connector.plugins
+2023-12-04 10:14:24,192 - INFO - plugin_name: mysql_native_password
+2023-12-04 10:14:24,192 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-04 10:14:24,315 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-04 10:14:24,316 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-04 10:14:24,787 - INFO - Fetched 3650 encounters from the OpenMRS database for location ID 366.
+2023-12-04 10:15:05,219 - WARNING - No patient data found for encounter ID 513902
+2023-12-04 10:15:05,336 - WARNING - No patient data found for encounter ID 513903
+2023-12-04 10:15:05,435 - WARNING - No patient data found for encounter ID 513904
+2023-12-04 10:15:05,524 - WARNING - No patient data found for encounter ID 513905
+2023-12-04 10:15:05,636 - WARNING - No patient data found for encounter ID 513906
+2023-12-04 10:15:05,799 - WARNING - No patient data found for encounter ID 513907
+2023-12-04 10:15:05,935 - WARNING - No patient data found for encounter ID 513948
+2023-12-04 10:15:06,091 - WARNING - No patient data found for encounter ID 513949
+2023-12-04 10:15:06,572 - WARNING - No patient data found for encounter ID 513950
+2023-12-04 10:15:07,295 - WARNING - No patient data found for encounter ID 513951
+2023-12-04 10:15:07,622 - WARNING - No patient data found for encounter ID 513952
+2023-12-04 10:15:07,719 - WARNING - No patient data found for encounter ID 513953
+2023-12-04 10:15:07,818 - WARNING - No patient data found for encounter ID 514043
+2023-12-04 10:15:08,035 - WARNING - No patient data found for encounter ID 514044
+2023-12-04 10:15:08,250 - WARNING - No patient data found for encounter ID 514045
+2023-12-04 10:15:08,400 - WARNING - No patient data found for encounter ID 514046
+2023-12-04 10:15:08,504 - WARNING - No patient data found for encounter ID 514047
+2023-12-04 10:15:08,665 - WARNING - No patient data found for encounter ID 579364
+2023-12-04 10:15:08,828 - WARNING - No patient data found for encounter ID 698570
+2023-12-04 10:15:08,981 - WARNING - No patient data found for encounter ID 698585
+2023-12-04 10:15:09,105 - WARNING - No patient data found for encounter ID 698599
+2023-12-04 10:15:09,845 - WARNING - No patient data found for encounter ID 698613
+2023-12-04 10:15:10,457 - WARNING - No patient data found for encounter ID 698630
+2023-12-04 10:15:10,558 - WARNING - No patient data found for encounter ID 698647
+2023-12-04 10:15:10,634 - WARNING - No patient data found for encounter ID 698658
+2023-12-04 10:15:10,721 - WARNING - No patient data found for encounter ID 698676
+2023-12-04 10:15:10,794 - WARNING - No patient data found for encounter ID 698701
+2023-12-04 10:15:10,901 - WARNING - No patient data found for encounter ID 698717
+2023-12-04 10:15:11,002 - WARNING - No patient data found for encounter ID 712639
+2023-12-04 10:15:11,124 - WARNING - No patient data found for encounter ID 712640
+2023-12-04 10:15:11,247 - WARNING - No patient data found for encounter ID 712641
+2023-12-04 10:15:11,363 - WARNING - No patient data found for encounter ID 712642
+2023-12-04 10:15:11,486 - WARNING - No patient data found for encounter ID 712643
+2023-12-04 10:15:11,583 - WARNING - No patient data found for encounter ID 712644
+2023-12-04 10:15:11,669 - WARNING - No patient data found for encounter ID 712645
+2023-12-04 10:15:11,807 - WARNING - No patient data found for encounter ID 712646
+2023-12-04 10:15:11,995 - WARNING - No patient data found for encounter ID 712647
+2023-12-04 10:15:12,279 - WARNING - No patient data found for encounter ID 712648
+2023-12-04 10:15:12,411 - WARNING - No patient data found for encounter ID 712649
+2023-12-04 10:15:12,592 - WARNING - No patient data found for encounter ID 712650
+2023-12-04 10:15:12,770 - WARNING - No patient data found for encounter ID 712651
+2023-12-04 10:15:12,899 - WARNING - No patient data found for encounter ID 712652
+2023-12-04 10:15:13,002 - WARNING - No patient data found for encounter ID 712653
+2023-12-04 10:15:13,158 - WARNING - No patient data found for encounter ID 712654
+2023-12-04 10:15:13,264 - WARNING - No patient data found for encounter ID 712655
+2023-12-04 10:15:13,401 - WARNING - No patient data found for encounter ID 712656
+2023-12-04 10:15:13,648 - WARNING - No patient data found for encounter ID 714593
+2023-12-04 10:15:13,883 - WARNING - No patient data found for encounter ID 714594
+2023-12-04 10:15:14,380 - WARNING - No patient data found for encounter ID 714595
+2023-12-04 10:15:14,659 - WARNING - No patient data found for encounter ID 714596
+2023-12-04 10:15:14,782 - WARNING - No patient data found for encounter ID 714597
+2023-12-04 10:15:14,945 - WARNING - No patient data found for encounter ID 714598
+2023-12-04 10:15:15,459 - WARNING - No patient data found for encounter ID 714599
+2023-12-04 10:15:15,575 - WARNING - No patient data found for encounter ID 714600
+2023-12-04 10:15:15,675 - WARNING - No patient data found for encounter ID 714601
+2023-12-04 10:15:15,889 - WARNING - No patient data found for encounter ID 714602
+2023-12-04 10:15:16,068 - WARNING - No patient data found for encounter ID 714603
+2023-12-04 10:15:16,182 - WARNING - No patient data found for encounter ID 714604
+2023-12-04 10:15:16,296 - WARNING - No patient data found for encounter ID 714605
+2023-12-04 10:15:16,496 - WARNING - No patient data found for encounter ID 714606
+2023-12-04 10:15:16,639 - WARNING - No patient data found for encounter ID 714607
+2023-12-04 10:15:16,785 - WARNING - No patient data found for encounter ID 714608
+2023-12-04 10:15:16,884 - WARNING - No patient data found for encounter ID 714609
+2023-12-04 10:15:16,998 - WARNING - No patient data found for encounter ID 714610
+2023-12-04 10:15:17,165 - WARNING - No patient data found for encounter ID 714611
+2023-12-04 10:15:17,326 - WARNING - No patient data found for encounter ID 714612
+2023-12-04 10:15:17,522 - WARNING - No patient data found for encounter ID 714613
+2023-12-04 10:15:17,621 - WARNING - No patient data found for encounter ID 714614
+2023-12-04 10:15:17,738 - WARNING - No patient data found for encounter ID 714615
+2023-12-04 10:15:17,845 - WARNING - No patient data found for encounter ID 714616
+2023-12-04 10:15:17,973 - WARNING - No patient data found for encounter ID 714617
+2023-12-04 10:15:18,077 - WARNING - No patient data found for encounter ID 714620
+2023-12-04 10:15:18,210 - WARNING - No patient data found for encounter ID 714623
+2023-12-04 10:15:18,306 - WARNING - No patient data found for encounter ID 714624
+2023-12-04 10:15:18,483 - WARNING - No patient data found for encounter ID 714625
+2023-12-04 10:15:18,649 - WARNING - No patient data found for encounter ID 714626
+2023-12-04 10:15:18,843 - WARNING - No patient data found for encounter ID 714627
+2023-12-04 10:15:18,979 - WARNING - No patient data found for encounter ID 714628
+2023-12-04 10:15:19,230 - WARNING - No patient data found for encounter ID 714629
+2023-12-04 10:15:19,507 - WARNING - No patient data found for encounter ID 716429
+2023-12-04 10:15:19,765 - WARNING - No patient data found for encounter ID 716430
+2023-12-04 10:15:19,898 - WARNING - No patient data found for encounter ID 716431
+2023-12-04 10:15:20,020 - WARNING - No patient data found for encounter ID 716432
+2023-12-04 10:15:20,186 - WARNING - No patient data found for encounter ID 716433
+2023-12-04 10:15:20,406 - WARNING - No patient data found for encounter ID 716434
+2023-12-04 10:15:20,565 - WARNING - No patient data found for encounter ID 716435
+2023-12-04 10:15:20,641 - WARNING - No patient data found for encounter ID 716436
+2023-12-04 10:15:20,728 - WARNING - No patient data found for encounter ID 716437
+2023-12-04 10:15:20,810 - WARNING - No patient data found for encounter ID 716438
+2023-12-04 10:15:20,899 - WARNING - No patient data found for encounter ID 716439
+2023-12-04 10:15:21,006 - WARNING - No patient data found for encounter ID 716440
+2023-12-04 10:15:21,143 - WARNING - No patient data found for encounter ID 716441
+2023-12-04 10:15:21,373 - WARNING - No patient data found for encounter ID 716442
+2023-12-04 10:15:21,717 - WARNING - No patient data found for encounter ID 716443
+2023-12-04 10:15:21,824 - WARNING - No patient data found for encounter ID 716444
+2023-12-04 10:15:21,963 - WARNING - No patient data found for encounter ID 716445
+2023-12-04 10:15:22,076 - WARNING - No patient data found for encounter ID 716446
+2023-12-04 10:15:22,228 - WARNING - No patient data found for encounter ID 716447
+2023-12-04 10:15:22,519 - WARNING - No patient data found for encounter ID 716448
+2023-12-04 10:15:22,617 - WARNING - No patient data found for encounter ID 716449
+2023-12-04 10:15:22,735 - WARNING - No patient data found for encounter ID 716450
+2023-12-04 10:15:22,913 - WARNING - No patient data found for encounter ID 716451
+2023-12-04 10:15:23,049 - WARNING - No patient data found for encounter ID 716452
+2023-12-04 10:15:23,198 - WARNING - No patient data found for encounter ID 716453
+2023-12-04 10:15:23,344 - WARNING - No patient data found for encounter ID 716454
+2023-12-04 10:15:23,471 - WARNING - No patient data found for encounter ID 716455
+2023-12-04 10:15:23,569 - WARNING - No patient data found for encounter ID 716460
+2023-12-04 10:15:24,343 - WARNING - No patient data found for encounter ID 716461
+2023-12-04 10:15:24,925 - WARNING - No patient data found for encounter ID 716462
+2023-12-04 10:15:25,052 - WARNING - No patient data found for encounter ID 716463
+2023-12-04 10:15:25,218 - WARNING - No patient data found for encounter ID 716464
+2023-12-04 10:15:25,467 - WARNING - No patient data found for encounter ID 716465
+2023-12-04 10:15:25,710 - WARNING - No patient data found for encounter ID 716466
+2023-12-04 10:15:25,852 - WARNING - No patient data found for encounter ID 716467
+2023-12-04 10:15:26,027 - WARNING - No patient data found for encounter ID 716468
+2023-12-04 10:15:26,139 - WARNING - No patient data found for encounter ID 716469
+2023-12-04 10:15:26,357 - WARNING - No patient data found for encounter ID 716470
+2023-12-04 10:15:26,498 - WARNING - No patient data found for encounter ID 716471
+2023-12-04 10:15:26,619 - WARNING - No patient data found for encounter ID 716472
+2023-12-04 10:15:26,703 - WARNING - No patient data found for encounter ID 716473
+2023-12-04 10:15:26,879 - WARNING - No patient data found for encounter ID 716474
+2023-12-04 10:15:27,344 - WARNING - No patient data found for encounter ID 716475
+2023-12-04 10:15:27,439 - WARNING - No patient data found for encounter ID 716476
+2023-12-04 10:15:27,660 - WARNING - No patient data found for encounter ID 716477
+2023-12-04 10:15:28,089 - WARNING - No patient data found for encounter ID 716478
+2023-12-04 10:15:28,287 - WARNING - No patient data found for encounter ID 716479
+2023-12-04 10:15:28,606 - WARNING - No patient data found for encounter ID 716480
+2023-12-04 10:15:28,801 - WARNING - No patient data found for encounter ID 716481
+2023-12-04 10:15:28,932 - WARNING - No patient data found for encounter ID 716482
+2023-12-04 10:15:29,138 - WARNING - No patient data found for encounter ID 716483
+2023-12-04 10:15:29,298 - WARNING - No patient data found for encounter ID 716484
+2023-12-04 10:15:29,809 - WARNING - No patient data found for encounter ID 716485
+2023-12-04 10:15:30,128 - WARNING - No patient data found for encounter ID 719158
+2023-12-04 10:15:30,351 - WARNING - No patient data found for encounter ID 719201
+2023-12-04 10:15:30,499 - WARNING - No patient data found for encounter ID 719223
+2023-12-04 10:15:30,737 - WARNING - No patient data found for encounter ID 734080
+2023-12-04 10:15:31,134 - WARNING - No patient data found for encounter ID 734081
+2023-12-04 10:15:31,277 - WARNING - No patient data found for encounter ID 734082
+2023-12-04 10:15:31,512 - WARNING - No patient data found for encounter ID 734083
+2023-12-04 10:15:31,667 - WARNING - No patient data found for encounter ID 734084
+2023-12-04 10:15:31,821 - WARNING - No patient data found for encounter ID 734085
+2023-12-04 10:15:31,959 - WARNING - No patient data found for encounter ID 734086
+2023-12-04 10:15:32,215 - WARNING - No patient data found for encounter ID 734087
+2023-12-04 10:15:32,367 - WARNING - No patient data found for encounter ID 734088
+2023-12-04 10:15:32,480 - WARNING - No patient data found for encounter ID 734089
+2023-12-04 10:15:32,632 - WARNING - No patient data found for encounter ID 734090
+2023-12-04 10:15:32,825 - WARNING - No patient data found for encounter ID 734091
+2023-12-04 10:15:32,960 - WARNING - No patient data found for encounter ID 734092
+2023-12-04 10:15:33,100 - WARNING - No patient data found for encounter ID 734093
+2023-12-04 10:15:33,227 - WARNING - No patient data found for encounter ID 734094
+2023-12-04 10:15:33,350 - WARNING - No patient data found for encounter ID 734095
+2023-12-04 10:15:33,470 - WARNING - No patient data found for encounter ID 734096
+2023-12-04 10:15:33,604 - WARNING - No patient data found for encounter ID 734097
+2023-12-04 10:15:33,715 - WARNING - No patient data found for encounter ID 734098
+2023-12-04 10:15:33,855 - WARNING - No patient data found for encounter ID 734101
+2023-12-04 10:15:33,983 - WARNING - No patient data found for encounter ID 734102
+2023-12-04 10:15:34,118 - WARNING - No patient data found for encounter ID 734103
+2023-12-04 10:15:34,258 - WARNING - No patient data found for encounter ID 734104
+2023-12-04 10:15:34,383 - WARNING - No patient data found for encounter ID 734105
+2023-12-04 10:15:35,074 - WARNING - No patient data found for encounter ID 734106
+2023-12-04 10:15:35,348 - WARNING - No patient data found for encounter ID 734107
+2023-12-04 10:15:35,528 - WARNING - No patient data found for encounter ID 734108
+2023-12-04 10:15:35,713 - WARNING - No patient data found for encounter ID 734109
+2023-12-04 10:15:35,952 - WARNING - No patient data found for encounter ID 734110
+2023-12-04 10:15:36,338 - WARNING - No patient data found for encounter ID 734111
+2023-12-04 10:15:36,510 - WARNING - No patient data found for encounter ID 734112
+2023-12-04 10:15:36,741 - WARNING - No patient data found for encounter ID 734113
+2023-12-04 10:15:37,171 - WARNING - No patient data found for encounter ID 734114
+2023-12-04 10:15:37,332 - WARNING - No patient data found for encounter ID 734115
+2023-12-04 10:15:37,449 - WARNING - No patient data found for encounter ID 734116
+2023-12-04 10:15:37,554 - WARNING - No patient data found for encounter ID 734117
+2023-12-04 10:15:37,688 - WARNING - No patient data found for encounter ID 734118
+2023-12-04 10:15:37,817 - WARNING - No patient data found for encounter ID 734119
+2023-12-04 10:15:37,946 - WARNING - No patient data found for encounter ID 734213
+2023-12-04 10:15:38,107 - WARNING - No patient data found for encounter ID 734214
+2023-12-04 10:15:38,243 - WARNING - No patient data found for encounter ID 734215
+2023-12-04 10:15:38,847 - WARNING - No patient data found for encounter ID 734216
+2023-12-04 10:15:39,453 - WARNING - No patient data found for encounter ID 734217
+2023-12-04 10:15:39,616 - WARNING - No patient data found for encounter ID 734218
+2023-12-04 10:15:41,317 - WARNING - No patient data found for encounter ID 734219
+2023-12-04 10:15:41,461 - WARNING - No patient data found for encounter ID 734220
+2023-12-04 10:15:41,588 - WARNING - No patient data found for encounter ID 734221
+2023-12-04 10:15:41,724 - WARNING - No patient data found for encounter ID 734222
+2023-12-04 10:15:41,859 - WARNING - No patient data found for encounter ID 734223
+2023-12-04 10:15:41,993 - WARNING - No patient data found for encounter ID 734224
+2023-12-04 10:15:42,516 - WARNING - No patient data found for encounter ID 734225
+2023-12-04 10:15:42,963 - WARNING - No patient data found for encounter ID 734226
+2023-12-04 10:15:43,108 - WARNING - No patient data found for encounter ID 734227
+2023-12-04 10:15:43,283 - WARNING - No patient data found for encounter ID 734228
+2023-12-04 10:15:43,645 - WARNING - No patient data found for encounter ID 734229
+2023-12-04 10:15:43,804 - WARNING - No patient data found for encounter ID 734230
+2023-12-04 10:15:43,950 - WARNING - No patient data found for encounter ID 734231
+2023-12-04 10:15:44,129 - WARNING - No patient data found for encounter ID 734232
+2023-12-04 10:15:44,280 - WARNING - No patient data found for encounter ID 739440
+2023-12-04 10:15:44,407 - WARNING - No patient data found for encounter ID 739441
+2023-12-04 10:15:44,558 - WARNING - No patient data found for encounter ID 739442
+2023-12-04 10:15:44,689 - WARNING - No patient data found for encounter ID 739443
+2023-12-04 10:15:44,831 - WARNING - No patient data found for encounter ID 739444
+2023-12-04 10:15:44,964 - WARNING - No patient data found for encounter ID 739445
+2023-12-04 10:15:45,474 - WARNING - No patient data found for encounter ID 739446
+2023-12-04 10:15:45,991 - WARNING - No patient data found for encounter ID 739447
+2023-12-04 10:15:46,674 - WARNING - No patient data found for encounter ID 739448
+2023-12-04 10:15:47,036 - WARNING - No patient data found for encounter ID 739449
+2023-12-04 10:15:47,226 - WARNING - No patient data found for encounter ID 739450
+2023-12-04 10:15:47,780 - WARNING - No patient data found for encounter ID 739451
+2023-12-04 10:15:47,953 - WARNING - No patient data found for encounter ID 739452
+2023-12-04 10:15:48,111 - WARNING - No patient data found for encounter ID 739453
+2023-12-04 10:15:48,255 - WARNING - No patient data found for encounter ID 739454
+2023-12-04 10:15:48,484 - WARNING - No patient data found for encounter ID 739455
+2023-12-04 10:15:48,628 - WARNING - No patient data found for encounter ID 739456
+2023-12-04 10:15:48,758 - WARNING - No patient data found for encounter ID 739457
+2023-12-04 10:15:48,880 - WARNING - No patient data found for encounter ID 739459
+2023-12-04 10:15:49,014 - WARNING - No patient data found for encounter ID 739460
+2023-12-04 10:15:49,176 - WARNING - No patient data found for encounter ID 739461
+2023-12-04 10:15:49,879 - WARNING - No patient data found for encounter ID 739462
+2023-12-04 10:15:50,014 - WARNING - No patient data found for encounter ID 739463
+2023-12-04 10:15:50,129 - WARNING - No patient data found for encounter ID 739464
+2023-12-04 10:15:50,551 - WARNING - No patient data found for encounter ID 739465
+2023-12-04 10:15:51,206 - WARNING - No patient data found for encounter ID 739466
+2023-12-04 10:15:51,346 - WARNING - No patient data found for encounter ID 739467
+2023-12-04 10:15:51,456 - WARNING - No patient data found for encounter ID 739468
+2023-12-04 10:15:51,578 - WARNING - No patient data found for encounter ID 739469
+2023-12-04 10:15:51,719 - WARNING - No patient data found for encounter ID 739470
+2023-12-04 10:15:51,860 - WARNING - No patient data found for encounter ID 739471
+2023-12-04 10:15:52,001 - WARNING - No patient data found for encounter ID 739472
+2023-12-04 10:15:52,127 - WARNING - No patient data found for encounter ID 739473
+2023-12-04 10:15:52,255 - WARNING - No patient data found for encounter ID 739474
+2023-12-04 10:15:52,366 - WARNING - No patient data found for encounter ID 739475
+2023-12-04 10:15:52,474 - WARNING - No patient data found for encounter ID 740361
+2023-12-04 10:15:52,623 - WARNING - No patient data found for encounter ID 740362
+2023-12-04 10:15:52,850 - WARNING - No patient data found for encounter ID 740363
+2023-12-04 10:15:52,975 - WARNING - No patient data found for encounter ID 740365
+2023-12-04 10:15:53,104 - WARNING - No patient data found for encounter ID 740366
+2023-12-04 10:15:53,571 - WARNING - No patient data found for encounter ID 740367
+2023-12-04 10:15:54,000 - WARNING - No patient data found for encounter ID 743597
+2023-12-04 10:15:54,126 - WARNING - No patient data found for encounter ID 743598
+2023-12-04 10:15:54,266 - WARNING - No patient data found for encounter ID 743599
+2023-12-04 10:15:54,517 - WARNING - No patient data found for encounter ID 743600
+2023-12-04 10:15:54,833 - WARNING - No patient data found for encounter ID 743601
+2023-12-04 10:15:55,030 - WARNING - No patient data found for encounter ID 743602
+2023-12-04 10:15:55,160 - WARNING - No patient data found for encounter ID 743603
+2023-12-04 10:15:55,318 - WARNING - No patient data found for encounter ID 743605
+2023-12-04 10:15:55,442 - WARNING - No patient data found for encounter ID 743606
+2023-12-04 10:15:55,618 - WARNING - No patient data found for encounter ID 743607
+2023-12-04 10:15:55,750 - WARNING - No patient data found for encounter ID 743608
+2023-12-04 10:15:55,855 - WARNING - No patient data found for encounter ID 743609
+2023-12-04 10:15:56,017 - WARNING - No patient data found for encounter ID 743610
+2023-12-04 10:15:56,152 - WARNING - No patient data found for encounter ID 743653
+2023-12-04 10:15:56,467 - WARNING - No patient data found for encounter ID 743654
+2023-12-04 10:15:56,900 - WARNING - No patient data found for encounter ID 743655
+2023-12-04 10:15:57,060 - WARNING - No patient data found for encounter ID 743656
+2023-12-04 10:15:57,209 - WARNING - No patient data found for encounter ID 743657
+2023-12-04 10:15:57,343 - WARNING - No patient data found for encounter ID 743658
+2023-12-04 10:15:57,560 - WARNING - No patient data found for encounter ID 743659
+2023-12-04 10:15:57,706 - WARNING - No patient data found for encounter ID 743660
+2023-12-04 10:15:58,170 - WARNING - No patient data found for encounter ID 743661
+2023-12-04 10:15:58,323 - WARNING - No patient data found for encounter ID 743662
+2023-12-04 10:15:58,500 - WARNING - No patient data found for encounter ID 743663
+2023-12-04 10:15:58,659 - WARNING - No patient data found for encounter ID 743664
+2023-12-04 10:15:59,109 - WARNING - No patient data found for encounter ID 743665
+2023-12-04 10:15:59,237 - WARNING - No patient data found for encounter ID 743996
+2023-12-04 10:15:59,354 - WARNING - No patient data found for encounter ID 743997
+2023-12-04 10:15:59,490 - WARNING - No patient data found for encounter ID 743998
+2023-12-04 10:15:59,731 - WARNING - No patient data found for encounter ID 744010
+2023-12-04 10:15:59,987 - WARNING - No patient data found for encounter ID 744011
+2023-12-04 10:16:00,172 - WARNING - No patient data found for encounter ID 744012
+2023-12-04 10:16:00,292 - WARNING - No patient data found for encounter ID 746145
+2023-12-04 10:16:00,412 - WARNING - No patient data found for encounter ID 746150
+2023-12-04 10:16:00,516 - WARNING - No patient data found for encounter ID 746385
+2023-12-04 10:16:00,630 - WARNING - No patient data found for encounter ID 746386
+2023-12-04 10:16:00,725 - WARNING - No patient data found for encounter ID 746387
+2023-12-04 10:16:00,812 - WARNING - No patient data found for encounter ID 746388
+2023-12-04 10:16:00,994 - WARNING - No patient data found for encounter ID 746389
+2023-12-04 10:16:01,291 - WARNING - No patient data found for encounter ID 746392
+2023-12-04 10:16:01,459 - WARNING - No patient data found for encounter ID 746393
+2023-12-04 10:16:01,603 - WARNING - No patient data found for encounter ID 746394
+2023-12-04 10:16:01,779 - WARNING - No patient data found for encounter ID 746395
+2023-12-04 10:16:01,908 - WARNING - No patient data found for encounter ID 746396
+2023-12-04 10:16:02,025 - WARNING - No patient data found for encounter ID 746397
+2023-12-04 10:16:02,127 - WARNING - No patient data found for encounter ID 746398
+2023-12-04 10:16:02,247 - WARNING - No patient data found for encounter ID 746399
+2023-12-04 10:16:02,407 - WARNING - No patient data found for encounter ID 746401
+2023-12-04 10:16:02,678 - WARNING - No patient data found for encounter ID 746402
+2023-12-04 10:16:02,771 - WARNING - No patient data found for encounter ID 746403
+2023-12-04 10:16:02,877 - WARNING - No patient data found for encounter ID 746404
+2023-12-04 10:16:02,991 - WARNING - No patient data found for encounter ID 746405
+2023-12-04 10:16:03,110 - WARNING - No patient data found for encounter ID 746406
+2023-12-04 10:16:03,237 - WARNING - No patient data found for encounter ID 746407
+2023-12-04 10:16:03,377 - WARNING - No patient data found for encounter ID 746408
+2023-12-04 10:16:03,476 - WARNING - No patient data found for encounter ID 746409
+2023-12-04 10:16:03,604 - WARNING - No patient data found for encounter ID 746410
+2023-12-04 10:16:03,702 - WARNING - No patient data found for encounter ID 746411
+2023-12-04 10:16:03,805 - WARNING - No patient data found for encounter ID 746412
+2023-12-04 10:16:03,909 - WARNING - No patient data found for encounter ID 746413
+2023-12-04 10:16:04,151 - WARNING - No patient data found for encounter ID 746414
+2023-12-04 10:16:04,330 - WARNING - No patient data found for encounter ID 746415
+2023-12-04 10:16:04,482 - WARNING - No patient data found for encounter ID 746416
+2023-12-04 10:16:04,671 - WARNING - No patient data found for encounter ID 746417
+2023-12-04 10:16:04,875 - WARNING - No patient data found for encounter ID 746418
+2023-12-04 10:16:05,058 - WARNING - No patient data found for encounter ID 746419
+2023-12-04 10:16:05,184 - WARNING - No patient data found for encounter ID 746420
+2023-12-04 10:16:05,291 - WARNING - No patient data found for encounter ID 746421
+2023-12-04 10:16:05,451 - WARNING - No patient data found for encounter ID 746422
+2023-12-04 10:16:05,750 - WARNING - No patient data found for encounter ID 746423
+2023-12-04 10:16:06,442 - WARNING - No patient data found for encounter ID 746424
+2023-12-04 10:16:06,723 - WARNING - No patient data found for encounter ID 746425
+2023-12-04 10:16:06,969 - WARNING - No patient data found for encounter ID 746426
+2023-12-04 10:16:07,206 - WARNING - No patient data found for encounter ID 746427
+2023-12-04 10:16:07,286 - WARNING - No patient data found for encounter ID 746428
+2023-12-04 10:16:07,379 - WARNING - No patient data found for encounter ID 746429
+2023-12-04 10:16:07,471 - WARNING - No patient data found for encounter ID 746430
+2023-12-04 10:16:07,572 - WARNING - No patient data found for encounter ID 746431
+2023-12-04 10:16:07,674 - WARNING - No patient data found for encounter ID 746906
+2023-12-04 10:16:07,791 - WARNING - No patient data found for encounter ID 746907
+2023-12-04 10:16:07,902 - WARNING - No patient data found for encounter ID 746908
+2023-12-04 10:16:08,008 - WARNING - No patient data found for encounter ID 746909
+2023-12-04 10:16:08,114 - WARNING - No patient data found for encounter ID 746910
+2023-12-04 10:16:08,224 - WARNING - No patient data found for encounter ID 746911
+2023-12-04 10:16:08,356 - WARNING - No patient data found for encounter ID 746912
+2023-12-04 10:16:08,504 - WARNING - No patient data found for encounter ID 746913
+2023-12-04 10:16:08,839 - WARNING - No patient data found for encounter ID 746914
+2023-12-04 10:16:08,982 - WARNING - No patient data found for encounter ID 746915
+2023-12-04 10:16:09,089 - WARNING - No patient data found for encounter ID 746916
+2023-12-04 10:16:09,243 - WARNING - No patient data found for encounter ID 746917
+2023-12-04 10:16:09,625 - WARNING - No patient data found for encounter ID 746918
+2023-12-04 10:16:10,119 - WARNING - No patient data found for encounter ID 746919
+2023-12-04 10:16:10,249 - WARNING - No patient data found for encounter ID 746920
+2023-12-04 10:16:10,372 - WARNING - No patient data found for encounter ID 746921
+2023-12-04 10:16:10,465 - WARNING - No patient data found for encounter ID 746922
+2023-12-04 10:16:10,599 - WARNING - No patient data found for encounter ID 746923
+2023-12-04 10:16:10,691 - WARNING - No patient data found for encounter ID 746924
+2023-12-04 10:16:10,824 - WARNING - No patient data found for encounter ID 746925
+2023-12-04 10:16:10,901 - WARNING - No patient data found for encounter ID 746926
+2023-12-04 10:16:11,004 - WARNING - No patient data found for encounter ID 746927
+2023-12-04 10:16:11,093 - WARNING - No patient data found for encounter ID 746928
+2023-12-04 10:16:11,179 - WARNING - No patient data found for encounter ID 746929
+2023-12-04 10:16:11,326 - WARNING - No patient data found for encounter ID 746930
+2023-12-04 10:16:11,481 - WARNING - No patient data found for encounter ID 746931
+2023-12-04 10:16:11,588 - WARNING - No patient data found for encounter ID 746932
+2023-12-04 10:16:11,797 - WARNING - No patient data found for encounter ID 746933
+2023-12-04 10:16:12,000 - WARNING - No patient data found for encounter ID 746934
+2023-12-04 10:16:12,111 - WARNING - No patient data found for encounter ID 746935
+2023-12-04 10:16:12,246 - WARNING - No patient data found for encounter ID 746936
+2023-12-04 10:16:12,611 - WARNING - No patient data found for encounter ID 746937
+2023-12-04 10:16:12,711 - WARNING - No patient data found for encounter ID 746938
+2023-12-04 10:16:12,846 - WARNING - No patient data found for encounter ID 746939
+2023-12-04 10:16:13,351 - WARNING - No patient data found for encounter ID 749946
+2023-12-04 10:16:13,544 - WARNING - No patient data found for encounter ID 749947
+2023-12-04 10:16:13,971 - WARNING - No patient data found for encounter ID 749948
+2023-12-04 10:16:14,788 - WARNING - No patient data found for encounter ID 749949
+2023-12-04 10:16:15,034 - WARNING - No patient data found for encounter ID 749950
+2023-12-04 10:16:15,143 - WARNING - No patient data found for encounter ID 749951
+2023-12-04 10:24:01,653 - INFO - Logging is set up.
+2023-12-04 10:24:04,248 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-04 10:24:04,467 - INFO - package: mysql.connector.plugins
+2023-12-04 10:24:04,467 - INFO - plugin_name: mysql_native_password
+2023-12-04 10:24:04,468 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-04 10:24:04,544 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-04 10:24:04,544 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-04 10:24:04,785 - INFO - Fetched 3650 encounters from the OpenMRS database for location ID 366.
+2023-12-04 10:24:04,786 - INFO - Logged 3650 encounter IDs to encounters_to_process.json.
+2023-12-04 11:02:42,601 - INFO - Logging is set up.
+2023-12-04 11:02:44,807 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-04 11:02:44,936 - INFO - package: mysql.connector.plugins
+2023-12-04 11:02:44,936 - INFO - plugin_name: mysql_native_password
+2023-12-04 11:02:44,937 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-04 11:02:45,016 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-04 11:02:45,016 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-04 11:02:45,270 - INFO - Fetched 3650 encounters from the OpenMRS database for location ID 366.
+2023-12-04 11:02:45,271 - INFO - Logged 3650 encounter IDs to encounters_to_process.json.
+2023-12-04 11:03:17,963 - ERROR - Failed to fetch encounters by location ID: Unread result found
+2023-12-04 11:05:06,704 - INFO - Logging is set up.
+2023-12-04 11:05:10,216 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-04 11:05:10,359 - INFO - package: mysql.connector.plugins
+2023-12-04 11:05:10,359 - INFO - plugin_name: mysql_native_password
+2023-12-04 11:05:10,360 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-04 11:05:10,459 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-04 11:05:10,459 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-04 11:05:10,729 - INFO - Fetched 3661 encounters from the OpenMRS database for location ID 366.
+2023-12-04 11:05:10,730 - INFO - Logged 3661 encounter IDs to encounters_to_process.json.
+2023-12-04 11:10:01,043 - INFO - Logging is set up.
+2023-12-04 11:10:03,443 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-04 11:10:03,600 - INFO - package: mysql.connector.plugins
+2023-12-04 11:10:03,600 - INFO - plugin_name: mysql_native_password
+2023-12-04 11:10:03,601 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-04 11:10:03,707 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-04 11:10:03,707 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-04 11:10:04,029 - INFO - Fetched 3670 encounters from the OpenMRS database for location ID 366.
+2023-12-04 11:10:04,031 - INFO - Logged 3670 encounter IDs to encounters_to_process.json.
+2023-12-04 11:10:04,031 - INFO - Processing encounter ID: 292597
+2023-12-04 11:10:04,103 - INFO - Executing query for encounter ID: 292597
+2023-12-04 11:10:04,201 - INFO - Query executed for encounter ID: 292597
+2023-12-04 11:10:04,201 - INFO - Finished processing encounter ID: 292597
+2023-12-04 11:10:04,201 - INFO - Processing encounter ID: 292598
+2023-12-04 11:10:04,253 - INFO - Executing query for encounter ID: 292598
+2023-12-04 11:10:04,336 - INFO - Query executed for encounter ID: 292598
+2023-12-04 11:10:04,336 - INFO - Finished processing encounter ID: 292598
+2023-12-04 11:10:04,336 - INFO - Processing encounter ID: 292599
+2023-12-04 11:10:04,406 - INFO - Executing query for encounter ID: 292599
+2023-12-04 11:10:04,471 - INFO - Query executed for encounter ID: 292599
+2023-12-04 11:10:04,472 - INFO - Finished processing encounter ID: 292599
+2023-12-04 11:10:04,472 - INFO - Processing encounter ID: 292600
+2023-12-04 11:10:04,518 - INFO - Executing query for encounter ID: 292600
+2023-12-04 11:10:04,603 - INFO - Query executed for encounter ID: 292600
+2023-12-04 11:10:04,604 - INFO - Finished processing encounter ID: 292600
+2023-12-04 11:10:04,604 - INFO - Processing encounter ID: 292601
+2023-12-04 11:10:04,685 - INFO - Executing query for encounter ID: 292601
+2023-12-04 11:10:04,753 - INFO - Query executed for encounter ID: 292601
+2023-12-04 11:10:04,753 - INFO - Finished processing encounter ID: 292601
+2023-12-04 11:10:04,753 - INFO - Processing encounter ID: 292602
+2023-12-04 11:10:04,799 - INFO - Executing query for encounter ID: 292602
+2023-12-04 11:10:04,919 - INFO - Query executed for encounter ID: 292602
+2023-12-04 11:10:04,919 - INFO - Finished processing encounter ID: 292602
+2023-12-04 11:10:04,919 - INFO - Processing encounter ID: 292603
+2023-12-04 11:10:04,991 - INFO - Executing query for encounter ID: 292603
+2023-12-04 11:10:05,045 - INFO - Query executed for encounter ID: 292603
+2023-12-04 11:10:05,045 - INFO - Finished processing encounter ID: 292603
+2023-12-04 11:10:05,045 - INFO - Processing encounter ID: 292604
+2023-12-04 11:10:05,083 - INFO - Executing query for encounter ID: 292604
+2023-12-04 11:10:05,143 - INFO - Query executed for encounter ID: 292604
+2023-12-04 11:10:05,144 - INFO - Finished processing encounter ID: 292604
+2023-12-04 11:10:05,144 - INFO - Processing encounter ID: 292605
+2023-12-04 11:10:05,205 - INFO - Executing query for encounter ID: 292605
+2023-12-04 11:10:05,340 - INFO - Query executed for encounter ID: 292605
+2023-12-04 11:10:05,340 - INFO - Finished processing encounter ID: 292605
+2023-12-04 11:10:05,340 - INFO - Processing encounter ID: 292606
+2023-12-04 11:10:05,388 - INFO - Executing query for encounter ID: 292606
+2023-12-04 11:10:05,447 - INFO - Query executed for encounter ID: 292606
+2023-12-04 11:10:05,447 - INFO - Finished processing encounter ID: 292606
+2023-12-04 11:10:05,448 - INFO - Processing encounter ID: 292607
+2023-12-04 11:10:05,512 - INFO - Executing query for encounter ID: 292607
+2023-12-04 11:10:05,581 - INFO - Query executed for encounter ID: 292607
+2023-12-04 11:10:05,581 - INFO - Finished processing encounter ID: 292607
+2023-12-04 11:10:05,581 - INFO - Processing encounter ID: 292608
+2023-12-04 11:10:05,637 - INFO - Executing query for encounter ID: 292608
+2023-12-04 11:10:05,708 - INFO - Query executed for encounter ID: 292608
+2023-12-04 11:10:05,708 - INFO - Finished processing encounter ID: 292608
+2023-12-04 11:10:05,708 - INFO - Processing encounter ID: 292609
+2023-12-04 11:10:05,750 - INFO - Executing query for encounter ID: 292609
+2023-12-04 11:10:05,808 - INFO - Query executed for encounter ID: 292609
+2023-12-04 11:10:05,808 - INFO - Finished processing encounter ID: 292609
+2023-12-04 11:10:05,808 - INFO - Processing encounter ID: 292610
+2023-12-04 11:10:05,857 - INFO - Executing query for encounter ID: 292610
+2023-12-04 11:10:05,995 - INFO - Query executed for encounter ID: 292610
+2023-12-04 11:10:05,995 - INFO - Finished processing encounter ID: 292610
+2023-12-04 11:10:05,995 - INFO - Processing encounter ID: 292611
+2023-12-04 11:10:06,067 - INFO - Executing query for encounter ID: 292611
+2023-12-04 11:10:06,153 - INFO - Query executed for encounter ID: 292611
+2023-12-04 11:10:06,154 - INFO - Finished processing encounter ID: 292611
+2023-12-04 11:10:06,154 - INFO - Processing encounter ID: 292612
+2023-12-04 11:10:06,223 - INFO - Executing query for encounter ID: 292612
+2023-12-04 11:10:06,329 - INFO - Query executed for encounter ID: 292612
+2023-12-04 11:10:06,329 - INFO - Finished processing encounter ID: 292612
+2023-12-04 11:10:06,329 - INFO - Processing encounter ID: 292613
+2023-12-04 11:10:06,386 - INFO - Executing query for encounter ID: 292613
+2023-12-04 11:10:06,473 - INFO - Query executed for encounter ID: 292613
+2023-12-04 11:10:06,473 - INFO - Finished processing encounter ID: 292613
+2023-12-04 11:10:06,473 - INFO - Processing encounter ID: 292614
+2023-12-04 11:10:06,578 - INFO - Executing query for encounter ID: 292614
+2023-12-04 11:10:06,630 - INFO - Query executed for encounter ID: 292614
+2023-12-04 11:10:06,630 - INFO - Finished processing encounter ID: 292614
+2023-12-04 11:10:06,630 - INFO - Processing encounter ID: 292615
+2023-12-04 11:10:06,672 - INFO - Executing query for encounter ID: 292615
+2023-12-04 11:10:06,843 - INFO - Query executed for encounter ID: 292615
+2023-12-04 11:10:06,843 - INFO - Finished processing encounter ID: 292615
+2023-12-04 11:10:06,843 - INFO - Processing encounter ID: 292616
+2023-12-04 11:10:06,976 - INFO - Executing query for encounter ID: 292616
+2023-12-04 11:10:07,205 - INFO - Query executed for encounter ID: 292616
+2023-12-04 11:10:07,205 - INFO - Finished processing encounter ID: 292616
+2023-12-04 11:10:07,205 - INFO - Processing encounter ID: 292617
+2023-12-04 11:10:07,274 - INFO - Executing query for encounter ID: 292617
+2023-12-04 11:10:07,437 - INFO - Query executed for encounter ID: 292617
+2023-12-04 11:10:07,438 - INFO - Finished processing encounter ID: 292617
+2023-12-04 11:10:07,438 - INFO - Processing encounter ID: 292618
+2023-12-04 11:10:07,531 - INFO - Executing query for encounter ID: 292618
+2023-12-04 11:10:07,605 - INFO - Query executed for encounter ID: 292618
+2023-12-04 11:10:07,606 - INFO - Finished processing encounter ID: 292618
+2023-12-04 11:10:07,606 - INFO - Processing encounter ID: 292619
+2023-12-04 11:10:07,657 - INFO - Executing query for encounter ID: 292619
+2023-12-04 11:10:07,851 - INFO - Query executed for encounter ID: 292619
+2023-12-04 11:10:07,851 - INFO - Finished processing encounter ID: 292619
+2023-12-04 11:10:07,851 - INFO - Processing encounter ID: 292620
+2023-12-04 11:10:07,935 - INFO - Executing query for encounter ID: 292620
+2023-12-04 11:10:08,102 - INFO - Query executed for encounter ID: 292620
+2023-12-04 11:10:08,103 - INFO - Finished processing encounter ID: 292620
+2023-12-04 11:10:08,103 - INFO - Processing encounter ID: 292621
+2023-12-04 11:10:08,159 - INFO - Executing query for encounter ID: 292621
+2023-12-04 11:10:08,245 - INFO - Query executed for encounter ID: 292621
+2023-12-04 11:10:08,245 - INFO - Finished processing encounter ID: 292621
+2023-12-04 11:10:08,245 - INFO - Processing encounter ID: 292622
+2023-12-04 11:10:08,293 - INFO - Executing query for encounter ID: 292622
+2023-12-04 11:10:08,390 - INFO - Query executed for encounter ID: 292622
+2023-12-04 11:10:08,390 - INFO - Finished processing encounter ID: 292622
+2023-12-04 11:10:08,390 - INFO - Processing encounter ID: 292623
+2023-12-04 11:10:08,430 - INFO - Executing query for encounter ID: 292623
+2023-12-04 11:10:08,487 - INFO - Query executed for encounter ID: 292623
+2023-12-04 11:10:08,487 - INFO - Finished processing encounter ID: 292623
+2023-12-04 11:10:08,487 - INFO - Processing encounter ID: 292624
+2023-12-04 11:10:08,540 - INFO - Executing query for encounter ID: 292624
+2023-12-04 11:10:08,603 - INFO - Query executed for encounter ID: 292624
+2023-12-04 11:10:08,603 - INFO - Finished processing encounter ID: 292624
+2023-12-04 11:10:08,603 - INFO - Processing encounter ID: 292625
+2023-12-04 11:10:08,654 - INFO - Executing query for encounter ID: 292625
+2023-12-04 11:10:08,729 - INFO - Query executed for encounter ID: 292625
+2023-12-04 11:10:08,730 - INFO - Finished processing encounter ID: 292625
+2023-12-04 11:10:08,730 - INFO - Processing encounter ID: 292626
+2023-12-04 11:10:08,804 - INFO - Executing query for encounter ID: 292626
+2023-12-04 11:10:08,894 - INFO - Query executed for encounter ID: 292626
+2023-12-04 11:10:08,894 - INFO - Finished processing encounter ID: 292626
+2023-12-04 11:10:08,894 - INFO - Processing encounter ID: 292627
+2023-12-04 11:10:08,960 - INFO - Executing query for encounter ID: 292627
+2023-12-04 11:10:09,004 - INFO - Query executed for encounter ID: 292627
+2023-12-04 11:10:09,005 - INFO - Finished processing encounter ID: 292627
+2023-12-04 11:10:09,005 - INFO - Processing encounter ID: 292628
+2023-12-04 11:10:09,079 - INFO - Executing query for encounter ID: 292628
+2023-12-04 11:10:09,164 - INFO - Query executed for encounter ID: 292628
+2023-12-04 11:10:09,164 - INFO - Finished processing encounter ID: 292628
+2023-12-04 11:10:09,164 - INFO - Processing encounter ID: 292629
+2023-12-04 11:10:09,239 - INFO - Executing query for encounter ID: 292629
+2023-12-04 11:10:09,598 - INFO - Query executed for encounter ID: 292629
+2023-12-04 11:10:09,598 - INFO - Finished processing encounter ID: 292629
+2023-12-04 11:10:09,598 - INFO - Processing encounter ID: 292630
+2023-12-04 11:10:09,733 - INFO - Executing query for encounter ID: 292630
+2023-12-04 11:10:09,803 - INFO - Query executed for encounter ID: 292630
+2023-12-04 11:10:09,804 - INFO - Finished processing encounter ID: 292630
+2023-12-04 11:10:09,804 - INFO - Processing encounter ID: 292631
+2023-12-04 11:10:09,861 - INFO - Executing query for encounter ID: 292631
+2023-12-04 11:10:09,935 - INFO - Query executed for encounter ID: 292631
+2023-12-04 11:10:09,935 - INFO - Finished processing encounter ID: 292631
+2023-12-04 11:10:09,935 - INFO - Processing encounter ID: 292632
+2023-12-04 11:10:09,984 - INFO - Executing query for encounter ID: 292632
+2023-12-04 11:10:10,069 - INFO - Query executed for encounter ID: 292632
+2023-12-04 11:10:10,069 - INFO - Finished processing encounter ID: 292632
+2023-12-04 11:10:10,069 - INFO - Processing encounter ID: 292633
+2023-12-04 11:10:10,142 - INFO - Executing query for encounter ID: 292633
+2023-12-04 11:10:10,291 - INFO - Query executed for encounter ID: 292633
+2023-12-04 11:10:10,291 - INFO - Finished processing encounter ID: 292633
+2023-12-04 11:10:10,291 - INFO - Processing encounter ID: 292634
+2023-12-04 11:10:10,354 - INFO - Executing query for encounter ID: 292634
+2023-12-04 11:10:10,415 - INFO - Query executed for encounter ID: 292634
+2023-12-04 11:10:10,415 - INFO - Finished processing encounter ID: 292634
+2023-12-04 11:10:10,415 - INFO - Processing encounter ID: 292635
+2023-12-04 11:10:10,459 - INFO - Executing query for encounter ID: 292635
+2023-12-04 11:10:10,627 - INFO - Query executed for encounter ID: 292635
+2023-12-04 11:10:10,627 - INFO - Finished processing encounter ID: 292635
+2023-12-04 11:10:10,627 - INFO - Processing encounter ID: 292636
+2023-12-04 11:10:10,855 - INFO - Executing query for encounter ID: 292636
+2023-12-04 11:10:10,960 - INFO - Query executed for encounter ID: 292636
+2023-12-04 11:10:10,961 - INFO - Finished processing encounter ID: 292636
+2023-12-04 11:10:10,961 - INFO - Processing encounter ID: 292637
+2023-12-04 11:10:11,026 - INFO - Executing query for encounter ID: 292637
+2023-12-04 11:10:11,106 - INFO - Query executed for encounter ID: 292637
+2023-12-04 11:10:11,107 - INFO - Finished processing encounter ID: 292637
+2023-12-04 11:10:11,107 - INFO - Processing encounter ID: 292638
+2023-12-04 11:10:11,169 - INFO - Executing query for encounter ID: 292638
+2023-12-04 11:10:11,262 - INFO - Query executed for encounter ID: 292638
+2023-12-04 11:10:11,263 - INFO - Finished processing encounter ID: 292638
+2023-12-04 11:10:11,263 - INFO - Processing encounter ID: 292639
+2023-12-04 11:10:11,321 - INFO - Executing query for encounter ID: 292639
+2023-12-04 11:10:11,395 - INFO - Query executed for encounter ID: 292639
+2023-12-04 11:10:11,395 - INFO - Finished processing encounter ID: 292639
+2023-12-04 11:10:11,395 - INFO - Processing encounter ID: 292640
+2023-12-04 11:10:11,460 - INFO - Executing query for encounter ID: 292640
+2023-12-04 11:10:11,520 - INFO - Query executed for encounter ID: 292640
+2023-12-04 11:10:11,520 - INFO - Finished processing encounter ID: 292640
+2023-12-04 11:10:11,520 - INFO - Processing encounter ID: 292641
+2023-12-04 11:10:11,586 - INFO - Executing query for encounter ID: 292641
+2023-12-04 11:10:11,768 - INFO - Query executed for encounter ID: 292641
+2023-12-04 11:10:11,769 - INFO - Finished processing encounter ID: 292641
+2023-12-04 11:10:11,769 - INFO - Processing encounter ID: 292642
+2023-12-04 11:10:11,857 - INFO - Executing query for encounter ID: 292642
+2023-12-04 11:10:11,930 - INFO - Query executed for encounter ID: 292642
+2023-12-04 11:10:11,930 - INFO - Finished processing encounter ID: 292642
+2023-12-04 11:10:11,930 - INFO - Processing encounter ID: 292643
+2023-12-04 11:10:12,000 - INFO - Executing query for encounter ID: 292643
+2023-12-04 11:10:12,184 - INFO - Query executed for encounter ID: 292643
+2023-12-04 11:10:12,184 - INFO - Finished processing encounter ID: 292643
+2023-12-04 11:10:12,184 - INFO - Processing encounter ID: 292644
+2023-12-04 11:10:12,267 - INFO - Executing query for encounter ID: 292644
+2023-12-04 11:10:12,664 - INFO - Query executed for encounter ID: 292644
+2023-12-04 11:10:12,664 - INFO - Finished processing encounter ID: 292644
+2023-12-04 11:10:12,665 - INFO - Processing encounter ID: 292645
+2023-12-04 11:10:12,731 - INFO - Executing query for encounter ID: 292645
+2023-12-04 11:10:12,779 - INFO - Query executed for encounter ID: 292645
+2023-12-04 11:10:12,780 - INFO - Finished processing encounter ID: 292645
+2023-12-04 11:10:12,780 - INFO - Processing encounter ID: 292646
+2023-12-04 11:10:12,842 - INFO - Executing query for encounter ID: 292646
+2023-12-04 11:10:12,898 - INFO - Query executed for encounter ID: 292646
+2023-12-04 11:10:12,899 - INFO - Finished processing encounter ID: 292646
+2023-12-04 11:10:12,899 - INFO - Processing encounter ID: 292647
+2023-12-04 11:10:12,971 - INFO - Executing query for encounter ID: 292647
+2023-12-04 11:10:13,039 - INFO - Query executed for encounter ID: 292647
+2023-12-04 11:10:13,039 - INFO - Finished processing encounter ID: 292647
+2023-12-04 11:10:13,039 - INFO - Processing encounter ID: 292648
+2023-12-04 11:10:13,114 - INFO - Executing query for encounter ID: 292648
+2023-12-04 11:10:13,188 - INFO - Query executed for encounter ID: 292648
+2023-12-04 11:10:13,188 - INFO - Finished processing encounter ID: 292648
+2023-12-04 11:10:13,188 - INFO - Processing encounter ID: 292649
+2023-12-04 11:10:13,266 - INFO - Executing query for encounter ID: 292649
+2023-12-04 11:10:13,355 - INFO - Query executed for encounter ID: 292649
+2023-12-04 11:10:13,355 - INFO - Finished processing encounter ID: 292649
+2023-12-04 11:10:13,355 - INFO - Processing encounter ID: 292650
+2023-12-04 11:10:13,433 - INFO - Executing query for encounter ID: 292650
+2023-12-04 11:10:13,512 - INFO - Query executed for encounter ID: 292650
+2023-12-04 11:10:13,513 - INFO - Finished processing encounter ID: 292650
+2023-12-04 11:10:13,513 - INFO - Processing encounter ID: 292651
+2023-12-04 11:10:13,605 - INFO - Executing query for encounter ID: 292651
+2023-12-04 11:10:13,675 - INFO - Query executed for encounter ID: 292651
+2023-12-04 11:10:13,676 - INFO - Finished processing encounter ID: 292651
+2023-12-04 11:10:13,676 - INFO - Processing encounter ID: 292652
+2023-12-04 11:10:13,736 - INFO - Executing query for encounter ID: 292652
+2023-12-04 11:10:13,802 - INFO - Query executed for encounter ID: 292652
+2023-12-04 11:10:13,802 - INFO - Finished processing encounter ID: 292652
+2023-12-04 11:10:13,802 - INFO - Processing encounter ID: 292653
+2023-12-04 11:10:13,876 - INFO - Executing query for encounter ID: 292653
+2023-12-04 11:10:13,992 - INFO - Query executed for encounter ID: 292653
+2023-12-04 11:10:13,992 - INFO - Finished processing encounter ID: 292653
+2023-12-04 11:10:13,992 - INFO - Processing encounter ID: 292654
+2023-12-04 11:10:14,071 - INFO - Executing query for encounter ID: 292654
+2023-12-04 11:10:14,199 - INFO - Query executed for encounter ID: 292654
+2023-12-04 11:10:14,199 - INFO - Finished processing encounter ID: 292654
+2023-12-04 11:10:14,200 - INFO - Processing encounter ID: 292655
+2023-12-04 11:10:14,282 - INFO - Executing query for encounter ID: 292655
+2023-12-04 11:10:14,450 - INFO - Query executed for encounter ID: 292655
+2023-12-04 11:10:14,451 - INFO - Finished processing encounter ID: 292655
+2023-12-04 11:10:14,451 - INFO - Processing encounter ID: 292656
+2023-12-04 11:10:14,727 - INFO - Executing query for encounter ID: 292656
+2023-12-04 11:10:14,799 - INFO - Query executed for encounter ID: 292656
+2023-12-04 11:10:14,800 - INFO - Finished processing encounter ID: 292656
+2023-12-04 11:10:14,800 - INFO - Processing encounter ID: 292657
+2023-12-04 11:10:14,861 - INFO - Executing query for encounter ID: 292657
+2023-12-04 11:10:14,930 - INFO - Query executed for encounter ID: 292657
+2023-12-04 11:10:14,930 - INFO - Finished processing encounter ID: 292657
+2023-12-04 11:10:14,930 - INFO - Processing encounter ID: 292658
+2023-12-04 11:10:15,004 - INFO - Executing query for encounter ID: 292658
+2023-12-04 11:10:15,174 - INFO - Query executed for encounter ID: 292658
+2023-12-04 11:10:15,174 - INFO - Finished processing encounter ID: 292658
+2023-12-04 11:10:15,174 - INFO - Processing encounter ID: 292659
+2023-12-04 11:10:15,260 - INFO - Executing query for encounter ID: 292659
+2023-12-04 11:10:15,344 - INFO - Query executed for encounter ID: 292659
+2023-12-04 11:10:15,344 - INFO - Finished processing encounter ID: 292659
+2023-12-04 11:10:15,344 - INFO - Processing encounter ID: 292660
+2023-12-04 11:10:15,413 - INFO - Executing query for encounter ID: 292660
+2023-12-04 11:10:15,581 - INFO - Query executed for encounter ID: 292660
+2023-12-04 11:10:15,581 - INFO - Finished processing encounter ID: 292660
+2023-12-04 11:10:15,581 - INFO - Processing encounter ID: 292661
+2023-12-04 11:10:15,661 - INFO - Executing query for encounter ID: 292661
+2023-12-04 11:10:15,732 - INFO - Query executed for encounter ID: 292661
+2023-12-04 11:10:15,732 - INFO - Finished processing encounter ID: 292661
+2023-12-04 11:10:15,732 - INFO - Processing encounter ID: 292662
+2023-12-04 11:10:15,793 - INFO - Executing query for encounter ID: 292662
+2023-12-04 11:10:15,850 - INFO - Query executed for encounter ID: 292662
+2023-12-04 11:10:15,850 - INFO - Finished processing encounter ID: 292662
+2023-12-04 11:10:15,850 - INFO - Processing encounter ID: 292663
+2023-12-04 11:10:15,912 - INFO - Executing query for encounter ID: 292663
+2023-12-04 11:10:16,076 - INFO - Query executed for encounter ID: 292663
+2023-12-04 11:10:16,076 - INFO - Finished processing encounter ID: 292663
+2023-12-04 11:10:16,077 - INFO - Processing encounter ID: 292664
+2023-12-04 11:10:16,144 - INFO - Executing query for encounter ID: 292664
+2023-12-04 11:10:16,337 - INFO - Query executed for encounter ID: 292664
+2023-12-04 11:10:16,337 - INFO - Finished processing encounter ID: 292664
+2023-12-04 11:10:16,338 - INFO - Processing encounter ID: 292665
+2023-12-04 11:10:16,520 - INFO - Executing query for encounter ID: 292665
+2023-12-04 11:10:16,581 - INFO - Query executed for encounter ID: 292665
+2023-12-04 11:10:16,581 - INFO - Finished processing encounter ID: 292665
+2023-12-04 11:10:16,581 - INFO - Processing encounter ID: 292666
+2023-12-04 11:10:16,643 - INFO - Executing query for encounter ID: 292666
+2023-12-04 11:10:16,690 - INFO - Query executed for encounter ID: 292666
+2023-12-04 11:10:16,690 - INFO - Finished processing encounter ID: 292666
+2023-12-04 11:10:16,690 - INFO - Processing encounter ID: 292667
+2023-12-04 11:10:16,772 - INFO - Executing query for encounter ID: 292667
+2023-12-04 11:10:16,844 - INFO - Query executed for encounter ID: 292667
+2023-12-04 11:10:16,844 - INFO - Finished processing encounter ID: 292667
+2023-12-04 11:10:16,844 - INFO - Processing encounter ID: 292668
+2023-12-04 11:10:16,945 - INFO - Executing query for encounter ID: 292668
+2023-12-04 11:10:17,014 - INFO - Query executed for encounter ID: 292668
+2023-12-04 11:10:17,015 - INFO - Finished processing encounter ID: 292668
+2023-12-04 11:10:17,015 - INFO - Processing encounter ID: 292669
+2023-12-04 11:10:17,078 - INFO - Executing query for encounter ID: 292669
+2023-12-04 11:10:17,155 - INFO - Query executed for encounter ID: 292669
+2023-12-04 11:10:17,155 - INFO - Finished processing encounter ID: 292669
+2023-12-04 11:10:17,155 - INFO - Processing encounter ID: 292670
+2023-12-04 11:10:17,218 - INFO - Executing query for encounter ID: 292670
+2023-12-04 11:10:17,276 - INFO - Query executed for encounter ID: 292670
+2023-12-04 11:10:17,276 - INFO - Finished processing encounter ID: 292670
+2023-12-04 11:10:17,276 - INFO - Processing encounter ID: 292671
+2023-12-04 11:10:17,346 - INFO - Executing query for encounter ID: 292671
+2023-12-04 11:10:17,416 - INFO - Query executed for encounter ID: 292671
+2023-12-04 11:10:17,417 - INFO - Finished processing encounter ID: 292671
+2023-12-04 11:10:17,417 - INFO - Processing encounter ID: 292672
+2023-12-04 11:10:17,422 - ERROR - Failed to fetch encounters by location ID: local variable 'cursor' referenced before assignment
+2023-12-04 11:13:11,971 - INFO - Logging is set up.
+2023-12-04 11:13:15,362 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-04 11:13:15,561 - INFO - package: mysql.connector.plugins
+2023-12-04 11:13:15,561 - INFO - plugin_name: mysql_native_password
+2023-12-04 11:13:15,562 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-04 11:13:15,741 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-04 11:13:15,741 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID...
+2023-12-04 11:13:16,109 - INFO - Fetched 3670 encounters from the OpenMRS database for location ID 366.
+2023-12-04 11:13:16,111 - INFO - Logged 3670 encounter IDs to encounters_to_process.json.
+2023-12-04 11:13:16,111 - INFO - Processing encounter ID: 292597
+2023-12-04 11:13:16,159 - INFO - Executing query for encounter ID: 292597
+2023-12-04 11:13:16,206 - INFO - Query executed for encounter ID: 292597
+2023-12-04 11:13:16,206 - ERROR - Failed to fetch encounters by location ID: Object of type date is not JSON serializable
