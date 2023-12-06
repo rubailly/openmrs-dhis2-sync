@@ -86,12 +86,7 @@ class OpenMRSConnector:
         except mysql.connector.Error as err:
             logging.exception(f"Error fetching observations for encounter ID {encounter_id}: {err}")
             raise
-        finally:
-            if cursor:
-                cursor.close()
-        finally:
-            if cursor:
-                cursor.close()
+        # The second finally block is redundant and should be removed.
 
     def fetch_patient_data(self, encounter_id):
         """Fetch patient data for a given encounter ID."""
