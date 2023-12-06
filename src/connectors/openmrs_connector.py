@@ -62,12 +62,15 @@ class OpenMRSConnector:
         FROM obs
         WHERE encounter_id = %s AND voided = 0;
         """
+        logging.info(f"Fetching observations for encounter ID: {encounter_id}")
         try:
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, (encounter_id,))
             results = cursor.fetchall()
+            logging.info(f"Fetched {len(results)} observations for encounter ID: {encounter_id}")
             observations = []
             for result in results:
+                logging.debug(f"Processing observation: {result}")
                 # Create an OpenMRSObservation object for each observation
                 observation = OpenMRSObservation(
                     obs_id=result['obs_id'],
@@ -81,8 +84,11 @@ class OpenMRSConnector:
                 observations.append(observation)
             return observations
         except mysql.connector.Error as err:
-            logging.error(f"Error fetching observations for encounter ID {encounter_id}: {err}")
+            logging.exception(f"Error fetching observations for encounter ID {encounter_id}: {err}")
             raise
+        finally:
+            if cursor:
+                cursor.close()
         finally:
             if cursor:
                 cursor.close()
