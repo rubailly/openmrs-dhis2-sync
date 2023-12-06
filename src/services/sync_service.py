@@ -45,9 +45,9 @@ class SyncService:
 
     def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data):
         """Transform OpenMRS patient data to the format required by DHIS2."""
-        # Map the OpenMRS location UUID to the DHIS2 organization unit ID
-        location_uuid = openmrs_patient_data.get('location_uuid')
-        dhis2_org_unit_id = self.mappings['location'].get(location_uuid)
+        # Map the OpenMRS location ID to the DHIS2 organization unit ID
+        location_id = openmrs_patient_data.get('location_id')
+        dhis2_org_unit_id = self.mappings['location'].get(location_id)
         # Add other patient transformations as needed
         # ...
         return {
