@@ -92,15 +92,25 @@ def main():
         with open('patients_to_sync.json', 'w') as file:
             for patient_id, encounter_ids in patient_encounters.items():
                 logging.info(f"Processing encounters for patient ID: {patient_id}")
-                patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_ids[0])  # Fetch patient data using the first encounter ID
+                # Fetch patient data using the first encounter ID
+                patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_ids[0])
                 if patient_data:
-                    # Apply patient mappings to patient_data here (not shown for brevity)
-                    patient_data['encounters'] = []
+                    # Transform OpenMRS patient data to DHIS2 format
+                    transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
+                    # Initialize encounters list in the transformed patient data
+                    transformed_patient_data['encounters'] = []
                     for encounter_id in encounter_ids:
+                        # Fetch encounter data
                         encounter_data = sync_service.openmrs_connector.fetch_encounter_data(encounter_id)
-                        # Apply encounter mappings to encounter_data here (not shown for brevity)
-                        patient_data['encounters'].append(encounter_data)
-                    json.dump([patient_data], file, indent=4)  # Wrap patient_data in a list to maintain JSON array format
+                        if encounter_data:
+                            # Get form ID from encounter data (assuming it's part of the data)
+                            form_id = encounter_data.get('form_id')
+                            # Transform OpenMRS encounter data to DHIS2 format
+                            transformed_encounter_data = sync_service._transform_openmrs_to_dhis2_encounter(encounter_data, form_id)
+                            # Append transformed encounter data to encounters list
+                            transformed_patient_data['encounters'].append(transformed_encounter_data)
+                    # Write the transformed patient data to the file
+                    json.dump([transformed_patient_data], file, indent=4)  # Wrap patient_data in a list to maintain JSON array format
                     logging.info(f"Finished processing patient ID: {patient_id}")
                     logging.info(f"Logged patient data with encounters for patient ID: {patient_id} to patients_to_sync.json")
                 else:
