@@ -58,9 +58,10 @@ class OpenMRSConnector:
     def fetch_observations_for_encounter(self, encounter_id):
         """Fetch all observations for a given encounter ID."""
         query = """
-        SELECT obs_id, concept_id, value_numeric, value_coded, value_text, value_datetime
+        SELECT obs.obs_id, concept.uuid AS concept_uuid, obs.value_numeric, obs.value_coded, obs.value_text, obs.value_datetime
         FROM obs
-        WHERE encounter_id = %s AND voided = 0;
+        JOIN concept ON obs.concept_id = concept.concept_id
+        WHERE obs.encounter_id = %s AND obs.voided = 0;
         """
         logging.info(f"Fetching observations for encounter ID: {encounter_id}")
         try:
