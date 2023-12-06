@@ -3,6 +3,7 @@ import json
 import sys
 from dotenv import load_dotenv
 from services.sync_service import SyncService
+from models.openmrs_models import OpenMRSPatient, OpenMRSObservation
 from utils.logger import setup_logger
 from utils.progress_tracker import ProgressTracker
 
@@ -97,14 +98,18 @@ def main():
                 # Initialize a list to hold all transformed encounters
                 transformed_encounters = []
                 for encounter_id in encounter_ids:
-                    # Fetch observations for the encounter
-                    observations = sync_service.openmrs_connector.fetch_observations_for_encounter(encounter_id)
-                    # Fetch all observations for the encounter
-                    observations = sync_service.openmrs_connector.fetch_observations_for_encounter(encounter_id)
-                    # Transform encounter data and observations to DHIS2 format
-                    transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(encounter_data, observations)
-                    # Append transformed encounter data to the list
-                    transformed_encounters.append(transformed_encounter)
+                    logging.info(f"Fetching observations for encounter ID: {encounter_id}")
+                    try:
+                        # Fetch all observations for the encounter
+                        observations = sync_service.fetch_observations_for_encounter(encounter_id)
+                        logging.info(f"Fetched {len(observations)} observations for encounter ID: {encounter_id}")
+                        # Transform encounter data and observations to DHIS2 format
+                        transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(encounter_data, observations)
+                        logging.info(f"Transformed encounter data for encounter ID: {encounter_id}")
+                        # Append transformed encounter data to the list
+                        transformed_encounters.append(transformed_encounter)
+                    except Exception as e:
+                        logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
                 # Combine patient data with their encounters
                 transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, transformed_encounters)
                 if patient_data and encounter_data:
