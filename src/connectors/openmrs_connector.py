@@ -9,22 +9,25 @@ class OpenMRSConnector:
         self.database = database.strip()
         self.connection = None
 
-    def fetch_encounter_ids_by_location(self, location_id, form_ids=None):
-        """Fetch encounter IDs for a given location ID and list of form IDs."""
+    def fetch_patient_encounters_by_location(self, location_id, form_ids=None):
+        """Fetch patient encounters for a given location ID and list of form IDs, grouped by patient ID."""
         form_ids = form_ids or [197]  # Default form ID is 197 for mUzima NCD Screening Form
         form_ids_placeholder = ', '.join(['%s'] * len(form_ids))
         query = f"""
-        SELECT encounter_id
+        SELECT patient_id, GROUP_CONCAT(encounter_id) as encounter_ids
         FROM encounter
         WHERE location_id = %s AND form_id IN ({form_ids_placeholder})
-        LIMIT 5
+        GROUP BY patient_id
         """
         query_params = [location_id] + form_ids
         try:
-            cursor = self.connection.cursor()
+            cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, query_params)
             result = cursor.fetchall()
-            return [row[0] for row in result] if result else []
+            patient_encounters = {}
+            for row in result:
+                patient_encounters[row['patient_id']] = [int(eid) for eid in row['encounter_ids'].split(',')]
+            return patient_encounters
         except mysql.connector.Error as err:
             logging.error(f"Error fetching encounter IDs: {err}")
             raise
