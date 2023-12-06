@@ -84,9 +84,13 @@ def main():
             json.dump(encounter_ids, file, indent=4)
         logging.info(f"Logged {len(encounter_ids)} encounter IDs to encounters_to_process.json.")
 
+        # Clear patients_to_sync.json and encounters_to_process.json files
+        open('patients_to_sync.json', 'w').close()
+        open('encounters_to_process.json', 'w').close()
+
         # Process encounters and build JSON objects
         patient_data_list = []
-        with open('patients_to_sync.json', 'w') as file:
+        with open('patients_to_sync.json', 'a') as file:  # Change mode to 'a' to append to the file
             for encounter_id in encounter_ids:
                 logging.info(f"Processing encounter ID: {encounter_id}")
                 patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
