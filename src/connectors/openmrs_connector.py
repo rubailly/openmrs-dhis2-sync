@@ -55,6 +55,26 @@ class OpenMRSConnector:
             self.connection.close()
             logging.info("OpenMRS database connection closed.")
 
+    def fetch_encounter_data(self, encounter_id):
+        """Fetch encounter data for a given encounter ID, including the form ID."""
+        query = """
+        SELECT e.encounter_id, e.encounter_type, e.form_id, e.encounter_datetime, e.location_id, e.patient_id
+        FROM encounter e
+        WHERE e.encounter_id = %s;
+        """
+        try:
+            cursor = self.connection.cursor(dictionary=True)
+            cursor.execute(query, (encounter_id,))
+            result = cursor.fetchone()
+            cursor.fetchall()  # Fetch the remaining results to avoid the "Unread result found" error
+            return result
+        except mysql.connector.Error as err:
+            logging.error(f"Error fetching encounter data: {err}")
+            raise
+        finally:
+            if cursor:
+                cursor.close()
+
     def fetch_patient_data(self, encounter_id):
         """Fetch patient data for a given encounter ID."""
         query = """
