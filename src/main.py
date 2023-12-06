@@ -109,8 +109,15 @@ def main():
                             transformed_encounter_data = sync_service._transform_openmrs_to_dhis2_encounter(encounter_data, form_id)
                             # Append transformed encounter data to encounters list
                             transformed_patient_data['encounters'].append(transformed_encounter_data)
+                    # Print the transformed patient data to the console
+                    print(json.dumps([transformed_patient_data], indent=4))  # Wrap patient_data in a list to maintain JSON array format
+                    # Ask the user whether to proceed to the next patient
+                    proceed = input("Proceed to the next patient? (y/n): ").strip().lower()
+                    if proceed != 'y':
+                        print("Process canceled by the user.")
+                        break
                     # Write the transformed patient data to the file
-                    json.dump([transformed_patient_data], file, indent=4)  # Wrap patient_data in a list to maintain JSON array format
+                    json.dump([transformed_patient_data], file, indent=4)
                     logging.info(f"Finished processing patient ID: {patient_id}")
                     logging.info(f"Logged patient data with encounters for patient ID: {patient_id} to patients_to_sync.json")
                 else:
