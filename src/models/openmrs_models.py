@@ -6,8 +6,9 @@ class OpenMRSPatient:
     # Additional methods as needed for handling OpenMRS patient data
 
 class OpenMRSObservation:
-    def __init__(self, obs_id, value):
+    def __init__(self, obs_id, concept_uuid, value):
         self.obs_id = obs_id
+        self.concept_uuid = concept_uuid
         self.value = value
 
     # Additional methods for OpenMRS observations

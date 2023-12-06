@@ -74,6 +74,7 @@ class OpenMRSConnector:
                 # Create an OpenMRSObservation object for each observation
                 observation = OpenMRSObservation(
                     obs_id=result['obs_id'],
+                    concept_uuid=result['concept_id'],
                     value={
                         'numeric': result['value_numeric'],
                         'coded': result['value_coded'],
