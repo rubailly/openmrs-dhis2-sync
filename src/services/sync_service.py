@@ -13,8 +13,7 @@ class SyncService:
         self.mappings = {
             "location": load_mappings(mapping_files["location"]),
             "attribute": load_mappings(mapping_files["attribute"]),
-            "encounter": load_mappings(mapping_files["encounter"]),
-            # Load form mappings as needed based on form ID during processing
+            # Encounter mappings will be loaded dynamically based on form ID
         }
         self.progress_tracker = ProgressTracker(progress_tracker_file)
 
@@ -44,11 +43,11 @@ class SyncService:
 
     def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, form_id):
         # Transform OpenMRS encounter data to DHIS2 format using the encounter mappings
-        if form_id not in self.mappings:
-            form_mappings_path = f'mappings/forms/form_{form_id}_mappings.json'
-            self.mappings[form_id] = load_mappings(form_mappings_path)
+        # Load form mappings based on form ID
+        form_mappings_path = f'mappings/forms/form_{form_id}_mappings.json'
+        form_mappings = load_mappings(form_mappings_path)
         
-        encounter_mappings = self.mappings[form_id]['observations']
+        encounter_mappings = form_mappings['observations']
         dhis2_data_elements = []
         for obs_uuid, dhis2_id in encounter_mappings.items():
             if obs_uuid in openmrs_encounter_data:
