@@ -92,9 +92,10 @@ def main():
         with open('patients_to_sync.json', 'w') as file:
             for patient_id, encounter_ids in patient_encounters.items():
                 logging.info(f"Processing encounters for patient ID: {patient_id}")
-                # Fetch patient data using the first encounter ID
+                # Fetch patient data and encounter data using the first encounter ID
                 patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_ids[0])
-                if patient_data:
+                encounter_data = sync_service.openmrs_connector.fetch_encounter_data(encounter_ids[0])
+                if patient_data and encounter_data:
                     # Transform OpenMRS patient data to DHIS2 format
                     transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, encounter_data)
                     # Initialize encounters list in the transformed patient data
