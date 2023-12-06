@@ -9,14 +9,16 @@ class OpenMRSConnector:
         self.database = database.strip()
         self.connection = None
 
-    def fetch_encounter_ids_by_location(self, location_id, form_id=197):
-        """Fetch encounter IDs for a given location ID and specific form ID (default is 197 for mUzima NCD Screening Form)."""
-        query = """
+    def fetch_encounter_ids_by_location(self, location_id, form_ids=None):
+        """Fetch encounter IDs for a given location ID and list of form IDs."""
+        form_ids = form_ids or [197]  # Default form ID is 197 for mUzima NCD Screening Form
+        form_ids_placeholder = ', '.join(['%s'] * len(form_ids))
+        query = f"""
         SELECT encounter_id
         FROM encounter
-        WHERE location_id = %s AND form_id = %s
+        WHERE location_id = %s AND form_id IN ({form_ids_placeholder})
         """
-        query_params = [location_id, form_id]
+        query_params = [location_id] + form_ids
         try:
             cursor = self.connection.cursor()
             cursor.execute(query, query_params)
