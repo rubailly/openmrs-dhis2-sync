@@ -43,23 +43,13 @@ class SyncService:
             "attributes": dhis2_attributes
         }
 
-    def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, form_id):
-        # Transform OpenMRS encounter data to DHIS2 format using the encounter mappings
-        # Load form mappings based on form ID
-        form_mappings_path = f'mappings/forms/form_{form_id}_mappings.json'
-        form_mappings = load_mappings(form_mappings_path)
-        
-        encounter_mappings = form_mappings['observations']
-        dhis2_data_elements = []
-        for obs_uuid, dhis2_id in encounter_mappings.items():
-            if obs_uuid in openmrs_encounter_data:
-                dhis2_data_elements.append({
-                    "dataElement": dhis2_id,
-                    "value": openmrs_encounter_data[obs_uuid]
-                })
-        
-        return {
-            "programStage": self.mappings[form_id]['dhis2_program_stage_id'],
-            "dataValues": dhis2_data_elements
-        }
+    def fetch_observations_for_encounter(self, encounter_id):
+        """Fetch all observations for a given encounter ID."""
+        # Implementation of fetching observations from OpenMRS will go here
+        pass
+
+    def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, observations):
+        """Transform OpenMRS encounter data and observations to DHIS2 format."""
+        # The implementation will be updated to use the observations parameter
+        pass
 
