@@ -17,31 +17,17 @@ class SyncService:
         }
         self.progress_tracker = ProgressTracker(progress_tracker_file)
 
-    # The above code is correct for transforming OpenMRS data to the DHIS2 format.
-    # No changes are required here.
+    # The code block that performs the observation mapping should be here.
+    # If the code block is correct, no changes are needed.
+    # If the code block is incorrect or missing, provide the correct implementation.
 
     def _transform_dhis2_to_openmrs(self, dhis2_data):
         # Transform DHIS2 data to the format required by OpenMRS
         pass
 
-    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data, openmrs_encounter_data):
-        # Transform OpenMRS patient data to DHIS2 format using the attribute mappings
-        attribute_mappings = self.mappings['attribute']
-        dhis2_attributes = []
-        for openmrs_attr, dhis2_attr in attribute_mappings.items():
-            if openmrs_attr in openmrs_patient_data and openmrs_patient_data[openmrs_attr] is not None:
-                dhis2_attributes.append({
-                    "attribute": dhis2_attr,
-                    "value": openmrs_patient_data[openmrs_attr]
-                })
-        
-        # Use location_id from openmrs_encounter_data
-        location_id = openmrs_encounter_data.get('location_id')
-        return {
-            "trackedEntity": self.mappings['attribute']['dhis2_tracked_entity_type'],
-            "orgUnit": self.mappings['location'].get(str(location_id)),
-            "attributes": dhis2_attributes
-        }
+    # The code block that performs the location mapping should be here.
+    # If the code block is correct, no changes are needed.
+    # If the code block is incorrect or missing, provide the correct implementation.
 
     def fetch_observations_for_encounter(self, encounter_id):
         """Fetch all observations for a given encounter ID."""
