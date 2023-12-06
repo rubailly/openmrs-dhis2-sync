@@ -24,22 +24,22 @@ class SyncService:
         # Transform DHIS2 data to the format required by OpenMRS
         pass
 
-        def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data):
-            # Transform OpenMRS patient data to DHIS2 format using the attribute mappings
-            attribute_mappings = self.mappings['attribute']
-            dhis2_attributes = []
-            for openmrs_attr, dhis2_attr in attribute_mappings.items():
-                if openmrs_attr in openmrs_patient_data and openmrs_patient_data[openmrs_attr] is not None:
-                    dhis2_attributes.append({
-                        "attribute": dhis2_attr,
-                        "value": openmrs_patient_data[openmrs_attr]
-                    })
-        
-            return {
-                "trackedEntity": self.mappings['dhis2_tracked_entity_type'],
-                "orgUnit": self.mappings['location'][openmrs_patient_data['location_uuid']],
-                "attributes": dhis2_attributes
-            }
+    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data):
+        # Transform OpenMRS patient data to DHIS2 format using the attribute mappings
+        attribute_mappings = self.mappings['attribute']
+        dhis2_attributes = []
+        for openmrs_attr, dhis2_attr in attribute_mappings.items():
+            if openmrs_attr in openmrs_patient_data and openmrs_patient_data[openmrs_attr] is not None:
+                dhis2_attributes.append({
+                    "attribute": dhis2_attr,
+                    "value": openmrs_patient_data[openmrs_attr]
+                })
+    
+        return {
+            "trackedEntity": self.mappings['dhis2_tracked_entity_type'],
+            "orgUnit": self.mappings['location'][openmrs_patient_data['location_uuid']],
+            "attributes": dhis2_attributes
+        }
 
     def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, form_id):
         # Transform OpenMRS encounter data to DHIS2 format using the encounter mappings
