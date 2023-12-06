@@ -96,7 +96,7 @@ def main():
                 patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_ids[0])
                 if patient_data:
                     # Transform OpenMRS patient data to DHIS2 format
-                    transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
+                    transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, encounter_data)
                     # Initialize encounters list in the transformed patient data
                     transformed_patient_data['encounters'] = []
                     for encounter_id in encounter_ids:
