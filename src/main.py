@@ -97,8 +97,8 @@ def main():
                 # Initialize a list to hold all transformed encounters
                 transformed_encounters = []
                 for encounter_id in encounter_ids:
-                    # Fetch encounter data
-                    encounter_data = sync_service.openmrs_connector.fetch_encounter_data(encounter_id)
+                    # Fetch observations for the encounter
+                    observations = sync_service.openmrs_connector.fetch_observations_for_encounter(encounter_id)
                     # Fetch all observations for the encounter
                     observations = sync_service.openmrs_connector.fetch_observations_for_encounter(encounter_id)
                     # Transform encounter data and observations to DHIS2 format
