@@ -36,7 +36,7 @@ class SyncService:
                 })
     
         return {
-            "trackedEntity": self.mappings['dhis2_tracked_entity_type'],
+            "trackedEntity": self.mappings['attribute']['dhis2_tracked_entity_type'],
             "orgUnit": self.mappings['location'][openmrs_patient_data['location_uuid']],
             "attributes": dhis2_attributes
         }
