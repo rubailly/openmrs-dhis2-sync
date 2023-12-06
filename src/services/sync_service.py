@@ -13,6 +13,7 @@ class SyncService:
         self.mappings = {
             "location": load_mappings(mapping_files["location"]),
             "attribute": load_mappings(mapping_files["attribute"]),
+            "encounter": load_mappings(mapping_files["encounter"]),
             # Load form mappings as needed based on form ID during processing
         }
         self.progress_tracker = ProgressTracker(progress_tracker_file)
@@ -25,4 +26,9 @@ class SyncService:
         pass
 
     # Additional methods as needed
+
+    def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data):
+        # Placeholder for transforming OpenMRS encounter data to DHIS2 format
+        # This method should use the encounter mappings loaded in self.mappings['encounter']
+        pass
 

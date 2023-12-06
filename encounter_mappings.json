@@ -1,0 +1,16 @@
+{
+  "encounter_type_uuid_1": {
+    "dhis2_program_stage_id": "demo_dhis2_program_stage_id_1",
+    "observations": {
+      "openmrs_concept_uuid_1": "dhis2_data_element_id_1",
+      "openmrs_concept_uuid_2": "dhis2_data_element_id_2"
+    }
+  },
+  "encounter_type_uuid_2": {
+    "dhis2_program_stage_id": "demo_dhis2_program_stage_id_2",
+    "observations": {
+      "openmrs_concept_uuid_3": "dhis2_data_element_id_3",
+      "openmrs_concept_uuid_4": "dhis2_data_element_id_4"
+    }
+  }
+}
