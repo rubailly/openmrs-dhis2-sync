@@ -98,3 +98,5 @@
 2023-12-04 12:05:05,149 - INFO - Logged patient data for encounter ID: 712644 to patients_to_sync.json
 2023-12-04 12:05:05,149 - INFO - Processing encounter ID: 712645
 2023-12-04 12:05:06,310 - ERROR - Failed to fetch encounters by location ID: local variable 'cursor' referenced before assignment
+2023-12-06 20:10:36,978 - INFO - Logging is set up.
+2023-12-06 20:13:29,838 - INFO - Logging is set up.
