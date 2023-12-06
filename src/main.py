@@ -88,19 +88,23 @@ def main():
         open('patients_to_sync.json', 'w').close()
         open('encounters_to_process.json', 'w').close()
 
-        # Process encounters and build JSON objects
-        patient_data_list = []
-        with open('patients_to_sync.json', 'a') as file:  # Change mode to 'a' to append to the file
-            for encounter_id in encounter_ids:
-                logging.info(f"Processing encounter ID: {encounter_id}")
-                patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_id)
+        # Process patient encounters and build JSON objects
+        with open('patients_to_sync.json', 'w') as file:
+            for patient_id, encounter_ids in patient_encounters.items():
+                logging.info(f"Processing encounters for patient ID: {patient_id}")
+                patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_ids[0])  # Fetch patient data using the first encounter ID
                 if patient_data:
-                    patient_data_list.append(patient_data)
-                    json.dump(patient_data_list, file, indent=4)
-                    logging.info(f"Finished processing encounter ID: {encounter_id}")
-                    logging.info(f"Logged patient data for encounter ID: {encounter_id} to patients_to_sync.json")
+                    # Apply patient mappings to patient_data here (not shown for brevity)
+                    patient_data['encounters'] = []
+                    for encounter_id in encounter_ids:
+                        encounter_data = sync_service.openmrs_connector.fetch_encounter_data(encounter_id)
+                        # Apply encounter mappings to encounter_data here (not shown for brevity)
+                        patient_data['encounters'].append(encounter_data)
+                    json.dump([patient_data], file, indent=4)  # Wrap patient_data in a list to maintain JSON array format
+                    logging.info(f"Finished processing patient ID: {patient_id}")
+                    logging.info(f"Logged patient data with encounters for patient ID: {patient_id} to patients_to_sync.json")
                 else:
-                    logging.warning(f"No patient data found for encounter ID {encounter_id}")
+                    logging.warning(f"No patient data found for patient ID {patient_id}")
 
         # Log the fetched encounter IDs to the progress.json file
         progress_tracker.update_progress(location_id, encounter_ids, reset=True)
