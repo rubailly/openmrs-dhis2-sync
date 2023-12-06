@@ -17,17 +17,43 @@ class SyncService:
         }
         self.progress_tracker = ProgressTracker(progress_tracker_file)
 
-    # The code block that performs the observation mapping should be here.
-    # If the code block is correct, no changes are needed.
-    # If the code block is incorrect or missing, provide the correct implementation.
+    def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, form_id):
+        """Transform OpenMRS encounter data to the format required by DHIS2."""
+        # Load the form mappings based on the form ID
+        form_mappings = load_mappings(self.mapping_files.get(form_id))
+        dhis2_program_stage_id = form_mappings.get('dhis2_program_stage_id')
+        dhis2_data_elements = []
+        for observation in openmrs_encounter_data.get('observations', []):
+            # Map the OpenMRS observation UUID to the DHIS2 data element ID
+            concept_uuid = observation.get('concept_uuid')
+            dhis2_data_element_id = form_mappings['observations'].get(concept_uuid)
+            if dhis2_data_element_id:
+                dhis2_data_elements.append({
+                    'dataElement': dhis2_data_element_id,
+                    'value': observation.get('value')
+                })
+        # Add other encounter transformations as needed
+        # ...
+        return {
+            'programStage': dhis2_program_stage_id,
+            'dataValues': dhis2_data_elements
+        }
 
     def _transform_dhis2_to_openmrs(self, dhis2_data):
         # Transform DHIS2 data to the format required by OpenMRS
         pass
 
-    # The code block that performs the location mapping should be here.
-    # If the code block is correct, no changes are needed.
-    # If the code block is incorrect or missing, provide the correct implementation.
+    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data):
+        """Transform OpenMRS patient data to the format required by DHIS2."""
+        # Map the OpenMRS location UUID to the DHIS2 organization unit ID
+        location_uuid = openmrs_patient_data.get('location_uuid')
+        dhis2_org_unit_id = self.mappings['location'].get(location_uuid)
+        # Add other patient transformations as needed
+        # ...
+        return {
+            'orgUnit': dhis2_org_unit_id,
+            # Include other DHIS2 patient attributes here
+        }
 
     def fetch_observations_for_encounter(self, encounter_id):
         """Fetch all observations for a given encounter ID."""
