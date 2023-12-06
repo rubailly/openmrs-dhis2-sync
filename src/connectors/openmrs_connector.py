@@ -17,6 +17,7 @@ class OpenMRSConnector:
         SELECT encounter_id
         FROM encounter
         WHERE location_id = %s AND form_id IN ({form_ids_placeholder})
+        LIMIT 5
         """
         query_params = [location_id] + form_ids
         try:
