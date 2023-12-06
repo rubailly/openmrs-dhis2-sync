@@ -24,7 +24,7 @@ class SyncService:
         # Transform DHIS2 data to the format required by OpenMRS
         pass
 
-    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data):
+    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data, openmrs_encounter_data):
         # Transform OpenMRS patient data to DHIS2 format using the attribute mappings
         attribute_mappings = self.mappings['attribute']
         dhis2_attributes = []
@@ -34,10 +34,12 @@ class SyncService:
                     "attribute": dhis2_attr,
                     "value": openmrs_patient_data[openmrs_attr]
                 })
-    
+        
+        # Use location_id from openmrs_encounter_data
+        location_id = openmrs_encounter_data.get('location_id')
         return {
             "trackedEntity": self.mappings['attribute']['dhis2_tracked_entity_type'],
-            "orgUnit": self.mappings['location'].get(str(openmrs_encounter_data.get('location_id'))),
+            "orgUnit": self.mappings['location'].get(str(location_id)),
             "attributes": dhis2_attributes
         }
 
