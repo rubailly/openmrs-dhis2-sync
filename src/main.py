@@ -111,7 +111,7 @@ def main():
                     except Exception as e:
                         logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
                 # Combine patient data with their encounters
-                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, transformed_encounters)
+                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
                 if patient_data and encounter_data:
                     # Transform OpenMRS patient data to DHIS2 format
                     transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, encounter_data)
