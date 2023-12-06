@@ -48,8 +48,7 @@ class SyncService:
         # Implementation of fetching observations from OpenMRS will go here
         pass
 
-    def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, observations):
-        """Transform OpenMRS encounter data and observations to DHIS2 format."""
-        # The implementation will be updated to use the observations parameter
-        pass
+    def fetch_observations_for_encounter(self, encounter_id):
+        """Fetch all observations for a given encounter ID."""
+        return self.openmrs_connector.fetch_observations_for_encounter(encounter_id)
 

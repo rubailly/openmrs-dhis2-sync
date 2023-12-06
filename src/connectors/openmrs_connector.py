@@ -55,21 +55,33 @@ class OpenMRSConnector:
             self.connection.close()
             logging.info("OpenMRS database connection closed.")
 
-    def fetch_encounter_data(self, encounter_id):
-        """Fetch encounter data for a given encounter ID, including the form ID."""
+    def fetch_observations_for_encounter(self, encounter_id):
+        """Fetch all observations for a given encounter ID."""
         query = """
-        SELECT e.encounter_id, e.encounter_type, e.form_id, e.encounter_datetime, e.location_id, e.patient_id
-        FROM encounter e
-        WHERE e.encounter_id = %s;
+        SELECT obs_id, concept_id, value_numeric, value_coded, value_text, value_datetime
+        FROM obs
+        WHERE encounter_id = %s AND voided = 0;
         """
         try:
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, (encounter_id,))
-            result = cursor.fetchone()
-            cursor.fetchall()  # Fetch the remaining results to avoid the "Unread result found" error
-            return result
+            results = cursor.fetchall()
+            observations = []
+            for result in results:
+                # Create an OpenMRSObservation object for each observation
+                observation = OpenMRSObservation(
+                    obs_id=result['obs_id'],
+                    value={
+                        'numeric': result['value_numeric'],
+                        'coded': result['value_coded'],
+                        'text': result['value_text'],
+                        'datetime': result['value_datetime'].isoformat() if result['value_datetime'] else None
+                    }
+                )
+                observations.append(observation)
+            return observations
         except mysql.connector.Error as err:
-            logging.error(f"Error fetching encounter data: {err}")
+            logging.error(f"Error fetching observations for encounter ID {encounter_id}: {err}")
             raise
         finally:
             if cursor:
