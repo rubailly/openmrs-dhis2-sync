@@ -10,11 +10,18 @@ class SyncService:
         self.openmrs_connector = OpenMRSConnector(**openmrs_config)
         self.dhis2_connector = DHIS2Connector(**dhis2_config)
         self.mapping_files = mapping_files
-        self.mappings = {
-            "location": load_mappings(mapping_files["location"]),
-            "attribute": load_mappings(mapping_files["attribute"]),
-            # Encounter mappings will be loaded dynamically based on form ID
-        }
+        self._validate_and_load_mappings()
+        
+    def _validate_and_load_mappings(self):
+        """Validate and load mappings from provided file paths."""
+        if not self.mapping_files:
+            raise ValueError("Mapping file paths are not provided.")
+        for key, file_path in self.mapping_files.items():
+            if not file_path:
+                raise ValueError(f"Mapping file path for '{key}' is not provided.")
+            if not os.path.exists(file_path):
+                raise FileNotFoundError(f"Mapping file not found: {file_path}")
+            self.mappings[key] = load_mappings(file_path)
         self.progress_tracker = ProgressTracker(progress_tracker_file)
 
     def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, form_id):
