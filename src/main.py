@@ -57,11 +57,7 @@ def main():
     }
 
     # Initialize the SyncService
-    sync_service = SyncService(openmrs_config, dhis2_config, {
-        "location": 'mappings/location_mappings.json',
-        "attribute": 'mappings/attribute_mappings.json',
-        "observation": 'mappings/observation_mappings.json'
-    }, 'logs/progress.json')
+    sync_service = SyncService(openmrs_config, dhis2_config, 'logs/progress.json')
 
     # Prompt user for encounter type IDs
     print("Please enter the encounter type IDs you are interested in (comma separated):")
