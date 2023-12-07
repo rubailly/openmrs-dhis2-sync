@@ -105,8 +105,7 @@ def main():
                             # Fetch all observations for the encounter
                             observations = sync_service.fetch_observations_for_encounter(encounter_id)
                             logging.info(f"Fetched {len(observations)} observations for encounter ID: {encounter_id}")
-                            # Fetch encounter data
-                            encounter_data = sync_service.openmrs_connector.fetch_encounter_data(encounter_id)
+                            # The call to fetch_encounter_data is removed as it does not exist in OpenMRSConnector
                             # Transform encounter data and observations to DHIS2 format
                             transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(encounter_data, observations)
                             logging.info(f"Transformed encounter data for encounter ID: {encounter_id}")
