@@ -20,32 +20,24 @@ class SyncService:
             raise FileNotFoundError(f"Mapping file not found: {mapping_file}")
         self.mappings[form_id] = load_mappings(mapping_file)
 
-    def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, encounter_id):
-        """Transform OpenMRS encounter data to the format required by DHIS2."""
-        # Get the form ID from the encounter data
-        form_id = openmrs_encounter_data.get('form_id')
-        if not form_id:
-            raise ValueError(f"Form ID is missing in the encounter data for encounter ID {encounter_id}")
+    def _transform_openmrs_to_dhis2_encounter(self, openmrs_observations, form_id):
+        """Transform OpenMRS observations to the format required by DHIS2."""
         # Ensure the form mappings are loaded
         if form_id not in self.mappings:
             self.load_form_mappings(form_id)
         form_mappings = self.mappings[form_id]
         dhis2_program_stage_id = form_mappings.get('dhis2_program_stage_id')
         dhis2_data_elements = []
-        # Assuming openmrs_encounter_data is a list of observation dictionaries
-        for observation in openmrs_encounter_data:
+        for observation in openmrs_observations:
             concept_uuid = observation['concept_uuid']
-            value = observation['value']
             # Determine the appropriate value based on the observation's data type
-            obs_value = value.get('numeric') or value.get('coded') or value.get('text') or value.get('datetime')
+            obs_value = observation['value'].get('numeric') or observation['value'].get('coded') or observation['value'].get('text') or observation['value'].get('datetime')
             dhis2_data_element_id = form_mappings['observations'].get(concept_uuid)
             if dhis2_data_element_id and obs_value is not None:
                 dhis2_data_elements.append({
                     'dataElement': dhis2_data_element_id,
                     'value': obs_value
                 })
-        # Add other encounter transformations as needed
-        # ...
         return {
             'programStage': dhis2_program_stage_id,
             'dataValues': dhis2_data_elements
