@@ -112,6 +112,8 @@ def main():
                 transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
                 # Initialize encounters list in the transformed patient data
                 transformed_patient_data['encounters'] = transformed_encounters
+                # Log the transformed patient data
+                logging.info(f"Transformed patient data: {json.dumps(transformed_patient_data, indent=4)}")
                 # Print the transformed patient data to the console
                 print(json.dumps([transformed_patient_data], indent=4))  # Wrap patient_data in a list to maintain JSON array format
                 # Ask the user whether to proceed to the next patient
