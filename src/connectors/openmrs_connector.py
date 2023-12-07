@@ -92,7 +92,7 @@ class OpenMRSConnector:
         query = """
         SELECT obs.obs_id, concept.uuid AS concept_uuid, obs.value_numeric, obs.value_coded, obs.value_text, obs.value_datetime
         FROM obs
-        JOIN concept ON obs.concept_id = concept.concept_id
+        INNER JOIN concept ON obs.concept_id = concept.concept_id
         WHERE obs.encounter_id = %s AND obs.voided = 0;
         """
         logging.info(f"Fetching observations for encounter ID: {encounter_id}")
