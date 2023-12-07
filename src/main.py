@@ -96,7 +96,9 @@ def main():
                         observations = sync_service.fetch_observations_for_encounter(encounter_id)
                         logging.info(f"Fetched {len(observations)} observations for encounter ID: {encounter_id}")
                         # Transform encounter data and observations to DHIS2 format
-                        transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(observations, encounter_id)
+                        # Fetch the form ID for the encounter
+                        form_id = sync_service.openmrs_connector.get_form_id_by_encounter_id(encounter_id)
+                        transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(observations, encounter_id, form_id)
                         logging.info(f"Transformed encounter data for encounter ID: {encounter_id}")
                         # Append transformed encounter data to the list
                         transformed_encounters.append(transformed_encounter)
