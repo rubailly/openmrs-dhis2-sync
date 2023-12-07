@@ -115,28 +115,27 @@ def main():
                             logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
                 # Combine patient data with their encounters
                 transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
-                if patient_data and encounter_data:
-                    # Transform OpenMRS patient data to DHIS2 format
-                    transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, encounter_data)
-                    # Initialize encounters list in the transformed patient data
-                    transformed_patient_data['encounters'] = []
-                    for encounter_id in encounter_ids:
-                        # Fetch encounter data
-                        encounter_data = sync_service.openmrs_connector.fetch_encounter_data(encounter_id)
-                        if encounter_data:
-                            # Get form ID from encounter data (assuming it's part of the data)
-                            form_id = encounter_data.get('form_id')
-                            # Transform OpenMRS encounter data to DHIS2 format
-                            transformed_encounter_data = sync_service._transform_openmrs_to_dhis2_encounter(encounter_data, form_id)
-                            # Append transformed encounter data to encounters list
-                            transformed_patient_data['encounters'].append(transformed_encounter_data)
-                    # Print the transformed patient data to the console
-                    print(json.dumps([transformed_patient_data], indent=4))  # Wrap patient_data in a list to maintain JSON array format
-                    # Ask the user whether to proceed to the next patient
-                    proceed = input("Proceed to the next patient? (y/n): ").strip().lower()
-                    if proceed != 'y':
-                        print("Process canceled by the user.")
-                        break
+                # Transform OpenMRS patient data to DHIS2 format
+                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
+                # Initialize encounters list in the transformed patient data
+                transformed_patient_data['encounters'] = []
+                for encounter_id in encounter_ids:
+                    logging.info(f"Fetching observations for encounter ID: {encounter_id}")
+                    try:
+                        # Fetch all observations for the encounter
+                        observations = sync_service.fetch_observations_for_encounter(encounter_id)
+                        logging.info(f"Fetched {len(observations)} observations for encounter ID: {encounter_id}")
+                        # Transform encounter data and observations to DHIS2 format
+                        transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(observations, form_id)
+                        logging.info(f"Transformed encounter data for encounter ID: {encounter_id}")
+                        # Append transformed encounter data to the list
+                        transformed_patient_data['encounters'].append(transformed_encounter)
+                    except Exception as e:
+                        logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
+                # Write the transformed patient data to the file
+                json.dump([transformed_patient_data], file, indent=4)
+                logging.info(f"Finished processing patient ID: {patient_id}")
+                logging.info(f"Logged patient data with encounters for patient ID: {patient_id} to patients_to_sync.json")
                     # Print the transformed patient data to the console
                     print(json.dumps([transformed_patient_data], indent=4))  # Wrap patient_data in a list to maintain JSON array format
                     # Ask the user whether to proceed to the next patient
