@@ -96,7 +96,7 @@ def main():
                     logging.info(f"Fetching observations for encounter ID: {encounter_id}")
                     try:
                         # Fetch all observations for the encounter
-                        observations = sync_service.fetch_observations_for_encounter(encounter_id)
+                        observations = sync_service.openmrs_connector.fetch_observations_for_encounter(encounter_id) 
                         logging.info(f"Fetched {len(observations)} observations for encounter ID: {encounter_id}")
                         # Transform encounter data and observations to DHIS2 format
                         # Fetch the form ID for the encounter
