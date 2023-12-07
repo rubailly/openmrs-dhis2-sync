@@ -3,16 +3,12 @@ import json
 import sys
 from dotenv import load_dotenv
 from services.sync_service import SyncService
-from models.openmrs_models import OpenMRSPatient, OpenMRSObservation
 from utils.logger import setup_logger
 from utils.progress_tracker import ProgressTracker
 
 # Load environment variables
 load_dotenv()
 from config.settings import OPENMRS_DB_HOST, OPENMRS_DB_USER, OPENMRS_DB_PASSWORD, OPENMRS_DB_NAME, DHIS2_BASE_URL, DHIS2_USERNAME, DHIS2_PASSWORD
-
-
-import sys
 
 def main():
     # Set up logging
@@ -93,32 +89,10 @@ def main():
         with open('patients_to_sync.json', 'w') as file:
             for patient_id, encounter_ids in patient_encounters.items():
                 logging.info(f"Processing encounters for patient ID: {patient_id}")
-                for patient_id, encounter_ids in patient_encounters.items():
-                    logging.info(f"Processing encounters for patient ID: {patient_id}")
-                    # Fetch patient data using the first encounter ID
-                    patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_ids[0])
-                    # Initialize a list to hold all transformed encounters
-                    transformed_encounters = []
-                    for encounter_id in encounter_ids:
-                        logging.info(f"Fetching observations for encounter ID: {encounter_id}")
-                        try:
-                            # Fetch all observations for the encounter
-                            observations = sync_service.fetch_observations_for_encounter(encounter_id)
-                            logging.info(f"Fetched {len(observations)} observations for encounter ID: {encounter_id}")
-                            # The call to fetch_encounter_data is removed as it does not exist in OpenMRSConnector
-                            # Transform encounter data and observations to DHIS2 format
-                            transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(encounter_data, observations)
-                            logging.info(f"Transformed encounter data for encounter ID: {encounter_id}")
-                            # Append transformed encounter data to the list
-                            transformed_encounters.append(transformed_encounter)
-                        except Exception as e:
-                            logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
-                # Combine patient data with their encounters
-                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
-                # Transform OpenMRS patient data to DHIS2 format
-                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
-                # Initialize encounters list in the transformed patient data
-                transformed_patient_data['encounters'] = []
+                # Fetch patient data using the first encounter ID
+                patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_ids[0])
+                # Initialize a list to hold all transformed encounters
+                transformed_encounters = []
                 for encounter_id in encounter_ids:
                     logging.info(f"Fetching observations for encounter ID: {encounter_id}")
                     try:
@@ -126,12 +100,16 @@ def main():
                         observations = sync_service.fetch_observations_for_encounter(encounter_id)
                         logging.info(f"Fetched {len(observations)} observations for encounter ID: {encounter_id}")
                         # Transform encounter data and observations to DHIS2 format
-                        transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(observations, form_id)
+                        transformed_encounter = sync_service._transform_openmrs_to_dhis2_encounter(observations, encounter_id)
                         logging.info(f"Transformed encounter data for encounter ID: {encounter_id}")
                         # Append transformed encounter data to the list
-                        transformed_patient_data['encounters'].append(transformed_encounter)
+                        transformed_encounters.append(transformed_encounter)
                     except Exception as e:
                         logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
+                # Combine patient data with their encounters
+                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
+                # Initialize encounters list in the transformed patient data
+                transformed_patient_data['encounters'] = transformed_encounters
                 # Print the transformed patient data to the console
                 print(json.dumps([transformed_patient_data], indent=4))  # Wrap patient_data in a list to maintain JSON array format
                 # Ask the user whether to proceed to the next patient
@@ -143,8 +121,8 @@ def main():
                 json.dump([transformed_patient_data], file, indent=4)
                 logging.info(f"Finished processing patient ID: {patient_id}")
                 logging.info(f"Logged patient data with encounters for patient ID: {patient_id} to patients_to_sync.json")
-                else:
-                    logging.warning(f"No patient data found for patient ID {patient_id}")
+            else:
+                logging.warning(f"No patient data found for patient ID {patient_id}")
 
         # Log the fetched encounter IDs to the progress.json file
         progress_tracker.update_progress(location_id, encounter_ids, reset=True)
@@ -155,9 +133,6 @@ def main():
     # Exclude already handled encounters if resuming
     if choice == 'resume':
         encounter_ids = [eid for eid in encounter_ids if eid not in handled_encounters]
-
-    # The above code is correct for fetching and logging patient data.
-    # No changes are required here.
 
 if __name__ == "__main__":
     main()
