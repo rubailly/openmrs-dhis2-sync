@@ -20,8 +20,12 @@ class SyncService:
             raise FileNotFoundError(f"Mapping file not found: {mapping_file}")
         self.mappings[form_id] = load_mappings(mapping_file)
 
-    def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, form_id):
+    def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, encounter_id):
         """Transform OpenMRS encounter data to the format required by DHIS2."""
+        # Get the form ID from the encounter data
+        form_id = openmrs_encounter_data.get('form_id')
+        if not form_id:
+            raise ValueError(f"Form ID is missing in the encounter data for encounter ID {encounter_id}")
         # Ensure the form mappings are loaded
         if form_id not in self.mappings:
             self.load_form_mappings(form_id)
