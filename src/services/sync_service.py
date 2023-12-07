@@ -25,9 +25,10 @@ class SyncService:
         # Ensure the form mappings are loaded
         if form_id not in self.mappings:
             self.load_form_mappings(form_id)
-        form_mappings = self.mappings.get(form_id)
+        form_mappings = self.mappings.get(form_id, {})
         if not form_mappings:
-            raise ValueError(f"No mappings found for form ID: {form_id}")
+            logging.error(f"No mappings found for form ID: {form_id}")
+            return {}
         dhis2_program_stage_id = form_mappings.get('dhis2_program_stage_id')
         dhis2_data_elements = []
         for observation in openmrs_observations:

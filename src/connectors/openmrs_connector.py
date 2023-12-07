@@ -48,18 +48,14 @@ class OpenMRSConnector:
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, (patient_id,))
             result = cursor.fetchone()
-            if result:
-                return {
-                    'patient_id': result['patient_id'],
-                    'given_name': result['given_name'],
-                    'middle_name': result['middle_name'],
-                    'family_name': result['family_name'],
-                    'gender': result['gender'],
-                    'birthdate': result['birthdate'].isoformat() if result['birthdate'] else None
-                }
-            else:
-                logging.error(f"No patient data found for patient ID {patient_id}")
-                return None
+            return {
+                'patient_id': result['patient_id'],
+                'given_name': result.get('given_name', ''),
+                'middle_name': result.get('middle_name', ''),
+                'family_name': result.get('family_name', ''),
+                'gender': result.get('gender', ''),
+                'birthdate': result['birthdate'].isoformat() if result and result['birthdate'] else None
+            } if result else {}
         except mysql.connector.Error as err:
             logging.error(f"Error fetching patient data for patient ID {patient_id}: {err}")
             raise
