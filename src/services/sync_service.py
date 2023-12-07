@@ -11,6 +11,7 @@ class SyncService:
         self.openmrs_connector = OpenMRSConnector(**openmrs_config)
         self.dhis2_connector = DHIS2Connector(**dhis2_config)
         self.mapping_files = mapping_files
+        self.mappings = {}  # Initialize the mappings attribute
         self._validate_and_load_mappings()
         
     def _validate_and_load_mappings(self):
