@@ -89,23 +89,24 @@ class OpenMRSConnector:
             raise
         # The second finally block is redundant and should be removed.
 
-    def fetch_patient_data(self, encounter_id):
-        """Fetch patient data for a given encounter ID."""
+    def get_form_id_by_encounter_id(self, encounter_id):
+        """Fetch the form ID for a given encounter ID."""
         query = """
-        SELECT p.patient_id, pn.given_name AS First_Name, pn.middle_name AS Middle_Name, pn.family_name AS Family_Name, nat.identifier AS National_ID,
-        (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '8b908adf-c964-4959-ad43-e2c7aeaa9c67')) AS Phone_Number, -- UUID for Phone Number
-        (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '678b3499-81cd-4a26-9577-4dc1efcf0510')) AS Citizenship, -- UUID for Citizenship
-        (SELECT pa.value FROM person_attribute pa WHERE pa.person_id = per.person_id AND pa.person_attribute_type_id = (SELECT person_attribute_type_id FROM person_attribute_type WHERE uuid = '8d87236c-c2cc-11de-8d13-0010c6dffd0f')) AS Health_Facility, -- UUID for Health Facility
-        addr.country, addr.state_province AS Province, addr.county_district AS District, addr.city_village AS Sector, addr.address3 AS Cell, addr.address1 AS Village,
-        per.gender AS Sex, per.birthdate AS Birth_Date, per.birthdate_estimated AS Birthdate_Estimate, FLOOR(DATEDIFF(CURRENT_DATE, per.birthdate) / 365) AS Age_in_Years
-        FROM encounter e
-        INNER JOIN patient p ON e.patient_id = p.patient_id
-        INNER JOIN person per ON p.patient_id = per.person_id
-        LEFT JOIN person_name pn ON per.person_id = pn.person_id
-        LEFT JOIN patient_identifier nat ON p.patient_id = nat.patient_id AND nat.identifier_type = '85c63542-587f-476c-9e69-c733bd285a57' -- UUID for National ID
-        LEFT JOIN person_address addr ON per.person_id = addr.person_id
-        WHERE e.encounter_id = %s;
+        SELECT form_id
+        FROM encounter
+        WHERE encounter_id = %s
         """
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(query, (encounter_id,))
+            result = cursor.fetchone()
+            return result[0] if result else None
+        except mysql.connector.Error as err:
+            logging.error(f"Error fetching form ID for encounter ID {encounter_id}: {err}")
+            raise
+        finally:
+            if cursor:
+                cursor.close()
         try:
             cursor = self.connection.cursor(dictionary=True)
             logging.info(f"Executing query for encounter ID: {encounter_id}")
