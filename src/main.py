@@ -70,6 +70,9 @@ def main():
     logging.info("Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...")
     try:
         patient_encounters = sync_service.openmrs_connector.fetch_patient_encounters_by_location(location_id, encounter_type_ids)
+        if patient_encounters is None:
+            logging.error(f"Failed to fetch encounters for location ID {location_id}.")
+            sys.exit(1)
         logging.info(f"Fetched encounters for {len(patient_encounters)} patients from the OpenMRS database for location ID {location_id}.")
     
         # Log the fetched patient encounters to the encounters_to_process.json file and process each patient's encounters
