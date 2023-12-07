@@ -35,6 +35,34 @@ class OpenMRSConnector:
             if cursor:
                 cursor.close()
 
+    def fetch_patient_data(self, patient_id):
+        """Fetch patient data for a given patient ID."""
+        query = """
+        SELECT patient_id, given_name, middle_name, family_name, gender, birthdate
+        FROM patient
+        JOIN person_name ON patient.patient_id = person_name.person_id
+        JOIN person ON patient.patient_id = person.person_id
+        WHERE patient.patient_id = %s AND person.voided = 0 AND person_name.voided = 0;
+        """
+        try:
+            cursor = self.connection.cursor(dictionary=True)
+            cursor.execute(query, (patient_id,))
+            result = cursor.fetchone()
+            return {
+                'patient_id': result['patient_id'],
+                'given_name': result['given_name'],
+                'middle_name': result['middle_name'],
+                'family_name': result['family_name'],
+                'gender': result['gender'],
+                'birthdate': result['birthdate'].isoformat() if result['birthdate'] else None
+            } if result else None
+        except mysql.connector.Error as err:
+            logging.error(f"Error fetching patient data for patient ID {patient_id}: {err}")
+            raise
+        finally:
+            if cursor:
+                cursor.close()
+
     def connect(self):
         """Establish a connection to the OpenMRS database."""
         try:
