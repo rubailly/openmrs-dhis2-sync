@@ -7,29 +7,25 @@ from config.mappings import load_mappings
 from utils.progress_tracker import ProgressTracker
 
 class SyncService:
-    def __init__(self, openmrs_config, dhis2_config, mapping_files, progress_tracker_file):
+    def __init__(self, openmrs_config, dhis2_config, progress_tracker_file):
         self.openmrs_connector = OpenMRSConnector(**openmrs_config)
         self.dhis2_connector = DHIS2Connector(**dhis2_config)
-        self.mapping_files = mapping_files
         self.mappings = {}  # Initialize the mappings attribute
-        self._validate_and_load_mappings()
-        
-    def _validate_and_load_mappings(self):
-        """Validate and load mappings from provided file paths."""
-        if not self.mapping_files:
-            raise ValueError("Mapping file paths are not provided.")
-        for key, file_path in self.mapping_files.items():
-            if not file_path:
-                raise ValueError(f"Mapping file path for '{key}' is not provided.")
-            if not os.path.exists(file_path):
-                raise FileNotFoundError(f"Mapping file not found: {file_path}")
-            self.mappings[key] = load_mappings(file_path)
         self.progress_tracker = ProgressTracker(progress_tracker_file)
+        
+    def load_form_mappings(self, form_id):
+        """Load mappings for a specific form."""
+        mapping_file = f'mappings/forms/form_{form_id}_mappings.json'
+        if not os.path.exists(mapping_file):
+            raise FileNotFoundError(f"Mapping file not found: {mapping_file}")
+        self.mappings[form_id] = load_mappings(mapping_file)
 
     def _transform_openmrs_to_dhis2_encounter(self, openmrs_encounter_data, form_id):
         """Transform OpenMRS encounter data to the format required by DHIS2."""
-        # Load the form mappings based on the form ID
-        form_mappings = load_mappings(self.mapping_files.get(form_id))
+        # Ensure the form mappings are loaded
+        if form_id not in self.mappings:
+            self.load_form_mappings(form_id)
+        form_mappings = self.mappings[form_id]
         dhis2_program_stage_id = form_mappings.get('dhis2_program_stage_id')
         dhis2_data_elements = []
         # Assuming openmrs_encounter_data is a list of observation dictionaries
