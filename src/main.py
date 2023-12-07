@@ -89,7 +89,7 @@ def main():
             for patient_id, encounter_ids in patient_encounters.items():
                 logging.info(f"Processing encounters for patient ID: {patient_id}")
                 # Fetch patient data using the first encounter ID
-                patient_data = sync_service.openmrs_connector.fetch_patient_data(encounter_ids[0])
+                patient_data = sync_service.openmrs_connector.fetch_patient_data(patient_id)
                 # Initialize a list to hold all transformed encounters
                 transformed_encounters = []
                 for encounter_id in encounter_ids:
