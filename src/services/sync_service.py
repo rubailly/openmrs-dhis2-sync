@@ -1,3 +1,4 @@
+import os
 from connectors.openmrs_connector import OpenMRSConnector
 from connectors.dhis2_connector import DHIS2Connector
 from models.dhis2_models import DHIS2TrackedEntity, DHIS2DataElement
