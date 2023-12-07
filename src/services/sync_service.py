@@ -52,15 +52,25 @@ class SyncService:
 
     def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data):
         """Transform OpenMRS patient data to the format required by DHIS2."""
-        # Map the OpenMRS location ID to the DHIS2 organization unit ID
-        location_id = openmrs_patient_data.get('location_id')
-        dhis2_org_unit_id = self.mappings['location'].get(location_id)
-        # Add other patient transformations as needed
-        # ...
-        return {
-            'orgUnit': dhis2_org_unit_id,
-            # Include other DHIS2 patient attributes here
-        }
+        logging.info(f"Starting transformation of OpenMRS patient data: {openmrs_patient_data}")
+        try:
+            # Map the OpenMRS location ID to the DHIS2 organization unit ID
+            location_id = openmrs_patient_data.get('location_id')
+            dhis2_org_unit_id = self.mappings['location'].get(location_id)
+            if dhis2_org_unit_id is None:
+                logging.error(f"No DHIS2 organization unit ID found for OpenMRS location ID: {location_id}")
+                return {}
+            # Add other patient transformations as needed
+            # ...
+            transformed_patient = {
+                'orgUnit': dhis2_org_unit_id,
+                # Include other DHIS2 patient attributes here
+            }
+            logging.info(f"Transformed OpenMRS patient data to DHIS2 format: {transformed_patient}")
+            return transformed_patient
+        except Exception as e:
+            logging.exception(f"Error during transformation of OpenMRS patient data: {e}")
+            return {}
 
     def fetch_observations_for_encounter(self, encounter_id):
         """Fetch all observations for a given encounter ID."""
