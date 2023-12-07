@@ -73,17 +73,16 @@ class OpenMRSConnector:
             for result in results:
                 logging.debug(f"Processing observation: {result}")
                 # Create an OpenMRSObservation object for each observation
-                observation = OpenMRSObservation(
-                    obs_id=result['obs_id'],
-                    concept_uuid=result['concept_id'],
-                    value={
+                observations.append({
+                    'obs_id': result['obs_id'],
+                    'concept_uuid': result['concept_uuid'],
+                    'value': {
                         'numeric': result['value_numeric'],
                         'coded': result['value_coded'],
                         'text': result['value_text'],
                         'datetime': result['value_datetime'].isoformat() if result['value_datetime'] else None
                     }
-                )
-                observations.append(observation)
+                })
             return observations
         except mysql.connector.Error as err:
             logging.exception(f"Error fetching observations for encounter ID {encounter_id}: {err}")

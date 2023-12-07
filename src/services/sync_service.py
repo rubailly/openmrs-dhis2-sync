@@ -23,14 +23,17 @@ class SyncService:
         form_mappings = load_mappings(self.mapping_files.get(form_id))
         dhis2_program_stage_id = form_mappings.get('dhis2_program_stage_id')
         dhis2_data_elements = []
-        for observation in openmrs_encounter_data.get('observations', []):
-            # Map the OpenMRS observation UUID to the DHIS2 data element ID
-            concept_uuid = observation.get('concept_uuid')
+        # Assuming openmrs_encounter_data is a list of observation dictionaries
+        for observation in openmrs_encounter_data:
+            concept_uuid = observation['concept_uuid']
+            value = observation['value']
+            # Determine the appropriate value based on the observation's data type
+            obs_value = value.get('numeric') or value.get('coded') or value.get('text') or value.get('datetime')
             dhis2_data_element_id = form_mappings['observations'].get(concept_uuid)
-            if dhis2_data_element_id:
+            if dhis2_data_element_id and obs_value is not None:
                 dhis2_data_elements.append({
                     'dataElement': dhis2_data_element_id,
-                    'value': observation.get('value')
+                    'value': obs_value
                 })
         # Add other encounter transformations as needed
         # ...
