@@ -104,7 +104,8 @@ class SyncService:
 
     def _combine_patient_and_encounters(self, transformed_patient_data, transformed_encounters):
         """Combine patient data and encounters into a single DHIS2-compliant JSON object."""
-        logging.info("_combine_patient_and_encounters method called.")
+        try:
+            logging.info("_combine_patient_and_encounters method called.")
         # Log the values retrieved from transformed_patient_data
         logging.info(f"Retrieved 'trackedEntityInstance': {transformed_patient_data.get('trackedEntityInstance')}")
         logging.info(f"Retrieved 'program': {transformed_patient_data.get('program')}")
