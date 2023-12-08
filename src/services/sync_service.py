@@ -104,16 +104,22 @@ class SyncService:
 
     def _combine_patient_and_encounters(self, transformed_patient_data, transformed_encounters):
         """Combine patient data and encounters into a single DHIS2-compliant JSON object."""
+        # Log the values retrieved from transformed_patient_data
+        logging.info(f"Retrieved 'trackedEntityInstance': {transformed_patient_data.get('trackedEntityInstance')}")
+        logging.info(f"Retrieved 'program': {transformed_patient_data.get('program')}")
+        logging.info(f"Retrieved 'enrollmentDate': {transformed_patient_data.get('enrollmentDate')}")
+        logging.info(f"Retrieved 'incidentDate': {transformed_patient_data.get('incidentDate')}")
+
         # Use the orgUnit from the transformed patient data
         org_unit = transformed_patient_data.get('orgUnit')
-        # Use the patient's attributes for DHIS2
-        attributes = self._map_patient_attributes_to_dhis2(transformed_patient_data)
-        # Log the transformed patient data before combining
-        logging.info(f"Transformed patient data before combining: {json.dumps(transformed_patient_data, indent=4)}")
-        
+        # Log the orgUnit value
+        logging.info(f"Retrieved 'orgUnit': {org_unit}")
+
         # Map patient attributes to DHIS2 format
         attributes = self._map_patient_attributes_to_dhis2(transformed_patient_data)
-        
+        # Log the attributes
+        logging.info(f"Patient attributes for DHIS2: {attributes}")
+
         # Combine patient attributes and encounters into a single data structure
         combined_data = {
             "trackedEntityInstance": transformed_patient_data.get('trackedEntityInstance'),
@@ -122,13 +128,15 @@ class SyncService:
             "enrollments": [
                 {
                     "orgUnit": org_unit,
-                    "program": transformed_patient_data.get('program'),  # Assuming 'program' is part of transformed_patient_data
-                    "enrollmentDate": transformed_patient_data.get('enrollmentDate'),  # Assuming 'enrollmentDate' is part of transformed_patient_data
-                    "incidentDate": transformed_patient_data.get('incidentDate'),  # Assuming 'incidentDate' is part of transformed_patient_data
+                    "program": transformed_patient_data.get('program'),
+                    "enrollmentDate": transformed_patient_data.get('enrollmentDate'),
+                    "incidentDate": transformed_patient_data.get('incidentDate'),
                     "events": transformed_encounters
                 }
             ]
         }
+        # Log the combined patient and encounter data
+        logging.info(f"Combined patient and encounter data into a single DHIS2-compliant JSON object: {json.dumps(combined_data, indent=4)}")
         # Log the combined patient and encounter data
         logging.info(f"Combined patient and encounter data into a single DHIS2-compliant JSON object: {json.dumps(combined_data, indent=4)}")
         return combined_data
