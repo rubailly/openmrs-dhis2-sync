@@ -59,7 +59,7 @@ class SyncService:
         # Transform DHIS2 data to the format required by OpenMRS
         pass
 
-    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data):
+    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data, openmrs_encounter_data):
         """Transform OpenMRS patient data to the format required by DHIS2."""
         logging.info(f"Starting transformation of OpenMRS patient data: {openmrs_patient_data}")
         try:
@@ -67,9 +67,9 @@ class SyncService:
             if 'location' not in self.mappings:
                 self.mappings['location'] = load_mappings('mappings/location_mappings.json')
             # Retrieve the location ID from the encounter data
-            location_id = openmrs_patient_data.get('encounter_location_id')
+            location_id = openmrs_encounter_data.get('location_id')
             if location_id is None:
-                logging.error("No location ID found in the encounter data.")
+                logging.error("No location ID found in the encounter data for patient ID: " + str(openmrs_patient_data.get('patient_id')))
                 return {}
             # Map the OpenMRS location ID to the DHIS2 organization unit ID
             dhis2_org_unit_id = self.mappings['location'].get(str(location_id))  # Convert location_id to string to match JSON keys
