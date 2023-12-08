@@ -109,6 +109,7 @@ def main():
                         transformed_encounters.append(transformed_encounter)
                     except Exception as e:
                         logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
+                logging.info("Calling _combine_patient_and_encounters method.")
                 # Combine patient data with their encounters
                 # Log patient_data before transformation
                 logging.info(f"Patient data: {json.dumps(patient_data, indent=4)}")
