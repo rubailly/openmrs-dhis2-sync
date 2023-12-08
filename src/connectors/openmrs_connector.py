@@ -89,9 +89,10 @@ class OpenMRSConnector:
         try:
             # The actual query should be defined here
             query = """
-            SELECT obs_id, concept_uuid, value_numeric, value_coded, value_text, value_datetime
+            SELECT obs.obs_id, concept.uuid AS concept_uuid, obs.value_numeric, obs.value_coded, obs.value_text, obs.value_datetime
             FROM obs
-            WHERE encounter_id = %s
+            JOIN concept ON obs.concept_id = concept.concept_id
+            WHERE obs.encounter_id = %s
             """
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, (encounter_id,))
