@@ -109,7 +109,10 @@ def main():
                     except Exception as e:
                         logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
                 # Combine patient data with their encounters
-                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data)
+                # Assuming that encounter_data is available and contains the required location_id
+                # This is a placeholder and should be replaced with actual encounter data retrieval logic
+                encounter_data = {'location_id': location_id}
+                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, encounter_data)
                 # Initialize encounters list in the transformed patient data
                 transformed_patient_data['encounters'] = transformed_encounters
                 # Log the transformed patient data
