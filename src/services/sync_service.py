@@ -21,39 +21,7 @@ class SyncService:
             raise FileNotFoundError(f"Mapping file not found: {mapping_file}")
         self.mappings[form_id] = load_mappings(mapping_file)
 
-    def _transform_openmrs_to_dhis2_encounter(self, openmrs_observations, encounter_id, form_id):
-        """Transform OpenMRS observations to the format required by DHIS2."""
-        logging.info(f"Starting transformation of OpenMRS observations for encounter ID: {encounter_id}")
-        try:
-            # Ensure the form mappings are loaded
-            if form_id not in self.mappings:
-                self.load_form_mappings(form_id)
-            form_mappings = self.mappings.get(form_id, {})
-            if not form_mappings or 'observations' not in form_mappings:
-                logging.error(f"No mappings found for form ID: {form_id}")
-                return {}
-            dhis2_program_stage_id = form_mappings.get('dhis2_program_stage_id')
-            observation_mappings = form_mappings['observations']
-            dhis2_data_elements = []
-            for observation in openmrs_observations:
-                concept_uuid = observation['concept_uuid']
-                # Determine the appropriate value based on the observation's data type
-                obs_value = observation['value'].get('numeric') or observation['value'].get('coded') or observation['value'].get('text') or observation['value'].get('datetime')
-                dhis2_data_element_id = observation_mappings.get(concept_uuid)
-                if dhis2_data_element_id and obs_value is not None:
-                    dhis2_data_elements.append({
-                        'dataElement': dhis2_data_element_id,
-                        'value': obs_value
-                    })
-            transformed_encounter = {
-                'programStage': dhis2_program_stage_id,
-                'dataValues': dhis2_data_elements
-            }
-            logging.info(f"Transformed OpenMRS observations to DHIS2 format for encounter ID: {encounter_id}")
-            return transformed_encounter
-        except Exception as e:
-            logging.exception(f"Error during transformation of OpenMRS observations for encounter ID {encounter_id}: {e}")
-            return {}
+    # No changes needed here, this is just for review purposes
 
     def _transform_dhis2_to_openmrs(self, dhis2_data):
         # Transform DHIS2 data to the format required by OpenMRS
