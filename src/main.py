@@ -13,6 +13,7 @@ from config.settings import OPENMRS_DB_HOST, OPENMRS_DB_USER, OPENMRS_DB_PASSWOR
 def main():
     # Set up logging
     setup_logger('logs/sync.log')
+    logging.info("Application started.")
 
     # Welcome message
     print("Welcome to the OpenMRS to DHIS2 Synchronization Tool.")
