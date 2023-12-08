@@ -139,7 +139,10 @@ class SyncService:
         }
         # Log the combined patient and encounter data
         logging.info(f"Combined patient and encounter data into a single DHIS2-compliant JSON object: {json.dumps(combined_data, indent=4)}")
+        # Log the type and content of transformed_patient_data
+        logging.info("Type of transformed_patient_data: %s", type(transformed_patient_data))
+        logging.info("Content of transformed_patient_data: %s", transformed_patient_data)
         # Log the combined patient and encounter data
-        logging.info(f"Combined patient and encounter data into a single DHIS2-compliant JSON object: {json.dumps(combined_data, indent=4)}")
+        logging.info("Combined patient and encounter data into a single DHIS2-compliant JSON object: %s", json.dumps(combined_data, indent=4))
         return combined_data
 
