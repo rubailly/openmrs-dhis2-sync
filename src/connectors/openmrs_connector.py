@@ -14,7 +14,7 @@ class OpenMRSConnector:
         form_ids = form_ids or [197]  # Default form ID is 197 for mUzima NCD Screening Form
         form_ids_placeholder = ', '.join(['%s'] * len(form_ids))
         query = f"""
-        SELECT patient_id, GROUP_CONCAT(encounter_id) as encounter_ids
+        SELECT patient_id, GROUP_CONCAT(encounter_id) as encounter_ids, date_created
         FROM encounter
         WHERE location_id = %s AND form_id IN ({form_ids_placeholder})
         GROUP BY patient_id
