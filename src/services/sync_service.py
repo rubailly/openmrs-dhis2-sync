@@ -57,7 +57,7 @@ class SyncService:
                 'incidentDate': encounter_date,  # Use the encounter date for incident
                 # Include other DHIS2 patient attributes here
             }
-            logging.info(f"Transformed OpenMRS patient data to DHIS2 format: {transformed_patient}")
+            logging.info(f"Finished transforming OpenMRS patient data to DHIS2 format: {transformed_patient}")
             return transformed_patient
         except Exception as e:
             logging.exception(f"Error during transformation of OpenMRS patient data: {e}")
@@ -96,7 +96,7 @@ class SyncService:
                 'programStage': dhis2_program_stage_id,
                 'dataValues': data_elements
             }
-            logging.info(f"Transformed OpenMRS encounter data to DHIS2 event: {dhis2_event}")
+            logging.info(f"Finished transforming OpenMRS encounter data to DHIS2 event: {dhis2_event}")
             return dhis2_event
         except Exception as e:
             logging.exception(f"Error during transformation of OpenMRS encounter data: {e}")
@@ -130,6 +130,6 @@ class SyncService:
             ]
         }
         # Log the combined patient and encounter data
-        logging.info(f"Combined patient and encounter data: {json.dumps(combined_data, indent=4)}")
+        logging.info(f"Finished combining patient and encounter data into a single DHIS2-compliant JSON object: {json.dumps(combined_data, indent=4)}")
         return combined_data
 
