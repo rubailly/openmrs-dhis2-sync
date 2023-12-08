@@ -96,7 +96,29 @@ class SyncService:
             logging.exception(f"Error during transformation of OpenMRS encounter data: {e}")
             return {}
 
-    def fetch_observations_for_encounter(self, encounter_id):
-        """Fetch all observations for a given encounter ID."""
-        return self.openmrs_connector.fetch_observations_for_encounter(encounter_id)
+    def _combine_patient_and_encounters(self, patient_data, encounters):
+        """Combine patient data and encounters into a single DHIS2-compliant JSON object."""
+        # Placeholder values for DHIS2 mappings that are not yet defined
+        placeholder_tracked_entity_instance = "DHIS2_Tracked_Entity_Instance_ID_for_the_patient"
+        placeholder_org_unit = "DHIS2_Organization_Unit_ID"
+        placeholder_program = "DHIS2_Program_ID"
+        placeholder_enrollment_date = "YYYY-MM-DD"
+        placeholder_incident_date = "YYYY-MM-DD"
+
+        # Combine patient data and encounters
+        combined_data = {
+            "trackedEntityInstance": placeholder_tracked_entity_instance,
+            "orgUnit": placeholder_org_unit,
+            "attributes": patient_data,  # Assuming patient_data is already in the correct format
+            "enrollments": [
+                {
+                    "orgUnit": placeholder_org_unit,
+                    "program": placeholder_program,
+                    "enrollmentDate": placeholder_enrollment_date,
+                    "incidentDate": placeholder_incident_date,
+                    "events": encounters  # Assuming encounters is a list of DHIS2 event objects
+                }
+            ]
+        }
+        return combined_data
 
