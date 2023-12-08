@@ -15,17 +15,12 @@ class SyncService:
         self.progress_tracker = ProgressTracker(progress_tracker_file)
         
     def load_form_mappings(self, form_id):
-        """Load mappings for a specific form."""
-        # Adjust the mapping file path to include the encounter type UUID
+        """Load mappings for a specific form and return them."""
         mapping_file = f'mappings/forms/form_{form_id}_mappings.json'
-        if not os.path.exists(mapping_file):
-            # Try loading the mapping using the encounter type UUID
-            encounter_type_uuid = self.openmrs_connector.get_encounter_type_uuid_by_form_id(form_id)
-            mapping_file = f'mappings/forms/form_{encounter_type_uuid}_mappings.json'
-            if not os.path.exists(mapping_file):
-                logging.error(f"Mapping file not found for form ID {form_id} and encounter type UUID {encounter_type_uuid}")
-                return None
-        self.mappings[form_id] = load_mappings(mapping_file)
+        if os.path.exists(mapping_file):
+            return load_mappings(mapping_file)
+        logging.error(f"Mapping file not found for form ID {form_id}")
+        return None
 
     # No changes needed here, this is just for review purposes
 
@@ -71,11 +66,12 @@ class SyncService:
         """Transform OpenMRS encounter data to the format required by DHIS2."""
         logging.info(f"Starting transformation of OpenMRS encounter data for encounter ID: {encounter_id}")
         try:
-            # Ensure the form mappings are loaded
-            if form_id not in self.mappings:
-                self.load_form_mappings(form_id)
-            form_mappings = self.mappings.get(form_id, {})
-            dhis2_program_stage_id = form_mappings.get('dhis2_program_stage_id')
+            # Load the form mappings
+            form_mappings = self.load_form_mappings(form_id)
+            if not form_mappings:
+                logging.error(f"No mappings found for form ID: {form_id}")
+                return {}
+            dhis2_program_stage_id = form_mappings['dhis2_program_stage_id']
             if not dhis2_program_stage_id:
                 logging.error(f"No DHIS2 program stage ID found for form ID: {form_id}")
                 return {}
