@@ -83,14 +83,7 @@ class OpenMRSConnector:
             self.connection.close()
             logging.info("OpenMRS database connection closed.")
 
-    def fetch_observations_for_encounter(self, encounter_id):
-        """Fetch all observations for a given encounter ID."""
-        query = """
-        SELECT obs.obs_id, concept.uuid AS concept_uuid, obs.value_numeric, obs.value_coded, obs.value_text, obs.value_datetime
-        FROM obs
-        INNER JOIN concept ON obs.concept_id = concept.concept_id
-        WHERE obs.encounter_id = %s AND obs.voided = 0;
-        """
+    # No changes needed here, as the existing code already performs the necessary join with the concept table.
         logging.info(f"Fetching observations for encounter ID: {encounter_id}")
         try:
             cursor = self.connection.cursor(dictionary=True)
