@@ -83,9 +83,16 @@ class OpenMRSConnector:
             self.connection.close()
             logging.info("OpenMRS database connection closed.")
 
-    # No changes needed here, as the existing code already performs the necessary join with the concept table.
+    def fetch_observations_for_encounter(self, encounter_id):
+        """Fetch all observations for a given encounter ID."""
         logging.info(f"Fetching observations for encounter ID: {encounter_id}")
         try:
+            # The actual query should be defined here
+            query = """
+            SELECT obs_id, concept_uuid, value_numeric, value_coded, value_text, value_datetime
+            FROM obs
+            WHERE encounter_id = %s
+            """
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, (encounter_id,))
             results = cursor.fetchall()
@@ -108,7 +115,9 @@ class OpenMRSConnector:
         except mysql.connector.Error as err:
             logging.exception(f"Error fetching observations for encounter ID {encounter_id}: {err}")
             raise
-        # The second finally block is redundant and should be removed.
+        finally:
+            if cursor:
+                cursor.close()
 
     def get_form_id_by_encounter_id(self, encounter_id):
         """Fetch the form ID for a given encounter ID."""
