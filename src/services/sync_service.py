@@ -102,7 +102,7 @@ class SyncService:
         org_unit = transformed_patient_data.get('orgUnit')
         # Use the patient's attributes for DHIS2
         attributes = self._map_patient_attributes_to_dhis2(transformed_patient_data)
-        # Combine patient attributes and encounters
+        # Combine patient attributes and encounters into a single data structure
         combined_data = {
             "trackedEntityInstance": transformed_patient_data.get('trackedEntityInstance', 'PLACEHOLDER_TEI'),
             "orgUnit": org_unit,
@@ -117,5 +117,7 @@ class SyncService:
                 }
             ]
         }
+        # Log the combined patient and encounter data
+        logging.info(f"Combined patient and encounter data: {json.dumps(combined_data, indent=4)}")
         return combined_data
 
