@@ -16,9 +16,14 @@ class SyncService:
         
     def load_form_mappings(self, form_id):
         """Load mappings for a specific form."""
+        # Adjust the mapping file path to include the encounter type UUID
         mapping_file = f'mappings/forms/form_{form_id}_mappings.json'
         if not os.path.exists(mapping_file):
-            raise FileNotFoundError(f"Mapping file not found: {mapping_file}")
+            # Try loading the mapping using the encounter type UUID
+            encounter_type_uuid = self.openmrs_connector.get_encounter_type_uuid_by_form_id(form_id)
+            mapping_file = f'mappings/forms/form_{encounter_type_uuid}_mappings.json'
+            if not os.path.exists(mapping_file):
+                raise FileNotFoundError(f"Mapping file not found for form ID {form_id} and encounter type UUID {encounter_type_uuid}")
         self.mappings[form_id] = load_mappings(mapping_file)
 
     # No changes needed here, this is just for review purposes
