@@ -102,17 +102,23 @@ class SyncService:
         org_unit = transformed_patient_data.get('orgUnit')
         # Use the patient's attributes for DHIS2
         attributes = self._map_patient_attributes_to_dhis2(transformed_patient_data)
+        # Log the transformed patient data before combining
+        logging.info(f"Transformed patient data before combining: {json.dumps(transformed_patient_data, indent=4)}")
+        
+        # Map patient attributes to DHIS2 format
+        attributes = self._map_patient_attributes_to_dhis2(transformed_patient_data)
+        
         # Combine patient attributes and encounters into a single data structure
         combined_data = {
-            "trackedEntityInstance": transformed_patient_data.get('trackedEntityInstance', 'PLACEHOLDER_TEI'),
+            "trackedEntityInstance": transformed_patient_data.get('trackedEntityInstance'),
             "orgUnit": org_unit,
             "attributes": attributes,
             "enrollments": [
                 {
                     "orgUnit": org_unit,
-                    "program": 'PLACEHOLDER_PROGRAM',  # Replace with actual program ID
-                    "enrollmentDate": 'PLACEHOLDER_ENROLLMENT_DATE',  # Replace with actual enrollment date
-                    "incidentDate": 'PLACEHOLDER_INCIDENT_DATE',  # Replace with actual incident date
+                    "program": transformed_patient_data.get('program'),  # Assuming 'program' is part of transformed_patient_data
+                    "enrollmentDate": transformed_patient_data.get('enrollmentDate'),  # Assuming 'enrollmentDate' is part of transformed_patient_data
+                    "incidentDate": transformed_patient_data.get('incidentDate'),  # Assuming 'incidentDate' is part of transformed_patient_data
                     "events": transformed_encounters
                 }
             ]
