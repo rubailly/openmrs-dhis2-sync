@@ -45,8 +45,9 @@ class SyncService:
             if dhis2_org_unit_id is None:
                 logging.error(f"No DHIS2 organization unit ID found for OpenMRS location ID: {location_id}")
                 return {}
-            # Retrieve the encounter date from the encounter data
-            encounter_date = openmrs_encounter_data.get('date_created').strftime('%Y-%m-%d')
+            # Retrieve the encounter date from the encounter data and check for None
+            date_created = openmrs_encounter_data.get('date_created')
+            encounter_date = date_created.strftime('%Y-%m-%d') if date_created else None
             # Add other patient transformations as needed
             # ...
             transformed_patient = {
