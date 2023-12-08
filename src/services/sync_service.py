@@ -67,6 +67,39 @@ class SyncService:
         # Implementation of fetching observations from OpenMRS will go here
         pass
 
+    def _transform_openmrs_to_dhis2_encounter(self, observations, encounter_id, form_id):
+        """Transform OpenMRS encounter data to the format required by DHIS2."""
+        logging.info(f"Starting transformation of OpenMRS encounter data for encounter ID: {encounter_id}")
+        try:
+            # Ensure the form mappings are loaded
+            if form_id not in self.mappings:
+                self.load_form_mappings(form_id)
+            form_mappings = self.mappings.get(form_id, {})
+            dhis2_program_stage_id = form_mappings.get('dhis2_program_stage_id')
+            if not dhis2_program_stage_id:
+                logging.error(f"No DHIS2 program stage ID found for form ID: {form_id}")
+                return {}
+            # Initialize the list of DHIS2 data elements
+            data_elements = []
+            for obs in observations:
+                concept_uuid = obs.get('concept_uuid')
+                dhis2_data_element_id = form_mappings.get('observations', {}).get(concept_uuid)
+                if dhis2_data_element_id:
+                    data_elements.append({
+                        'dataElement': dhis2_data_element_id,
+                        'value': obs.get('value')
+                    })
+            # Construct the DHIS2 event
+            dhis2_event = {
+                'programStage': dhis2_program_stage_id,
+                'dataValues': data_elements
+            }
+            logging.info(f"Transformed OpenMRS encounter data to DHIS2 event: {dhis2_event}")
+            return dhis2_event
+        except Exception as e:
+            logging.exception(f"Error during transformation of OpenMRS encounter data: {e}")
+            return {}
+
     def fetch_observations_for_encounter(self, encounter_id):
         """Fetch all observations for a given encounter ID."""
         return self.openmrs_connector.fetch_observations_for_encounter(encounter_id)
