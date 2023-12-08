@@ -96,27 +96,24 @@ class SyncService:
             logging.exception(f"Error during transformation of OpenMRS encounter data: {e}")
             return {}
 
-    def _combine_patient_and_encounters(self, patient_data, encounters):
+    def _combine_patient_and_encounters(self, transformed_patient_data, transformed_encounters):
         """Combine patient data and encounters into a single DHIS2-compliant JSON object."""
-        # Placeholder values for DHIS2 mappings that are not yet defined
-        placeholder_tracked_entity_instance = "DHIS2_Tracked_Entity_Instance_ID_for_the_patient"
-        placeholder_org_unit = "DHIS2_Organization_Unit_ID"
-        placeholder_program = "DHIS2_Program_ID"
-        placeholder_enrollment_date = "YYYY-MM-DD"
-        placeholder_incident_date = "YYYY-MM-DD"
-
-        # Combine patient data and encounters
+        # Use the orgUnit from the transformed patient data
+        org_unit = transformed_patient_data.get('orgUnit')
+        # Use the patient's attributes for DHIS2
+        attributes = self._map_patient_attributes_to_dhis2(transformed_patient_data)
+        # Combine patient attributes and encounters
         combined_data = {
-            "trackedEntityInstance": placeholder_tracked_entity_instance,
-            "orgUnit": placeholder_org_unit,
-            "attributes": patient_data,  # Assuming patient_data is already in the correct format
+            "trackedEntityInstance": transformed_patient_data.get('trackedEntityInstance', 'PLACEHOLDER_TEI'),
+            "orgUnit": org_unit,
+            "attributes": attributes,
             "enrollments": [
                 {
-                    "orgUnit": placeholder_org_unit,
-                    "program": placeholder_program,
-                    "enrollmentDate": placeholder_enrollment_date,
-                    "incidentDate": placeholder_incident_date,
-                    "events": encounters  # Assuming encounters is a list of DHIS2 event objects
+                    "orgUnit": org_unit,
+                    "program": 'PLACEHOLDER_PROGRAM',  # Replace with actual program ID
+                    "enrollmentDate": 'PLACEHOLDER_ENROLLMENT_DATE',  # Replace with actual enrollment date
+                    "incidentDate": 'PLACEHOLDER_INCIDENT_DATE',  # Replace with actual incident date
+                    "events": transformed_encounters
                 }
             ]
         }
