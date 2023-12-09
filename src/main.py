@@ -110,30 +110,23 @@ def main():
                     except Exception as e:
                         logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
                 logging.info("Calling _combine_patient_and_encounters method.")
-                # Combine patient data with their encounters
-                # Log patient_data before transformation
-                logging.info(f"Patient data: {json.dumps(patient_data, indent=4)}")
-                # Assuming that encounter_data is available and contains the required location_id
-                # This is a placeholder and should be replaced with actual encounter data retrieval logic
-                encounter_data = {'location_id': location_id}
-                # Log encounter_data before transformation
-                logging.info(f"Encounter data: {json.dumps(encounter_data, indent=4)}")
+                # Transform patient data and encounters to DHIS2 format
                 transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, encounter_data)
-                # Initialize encounters list in the transformed patient data
-                transformed_patient_data['encounters'] = transformed_encounters
-                # Log the transformed patient data
-                logging.info(f"Transformed patient data: {json.dumps(transformed_patient_data, indent=4)}")
-                # Print the transformed patient data to the console
-                print(json.dumps([transformed_patient_data], indent=4))  # Wrap patient_data in a list to maintain JSON array format
+                # Combine patient data with their encounters into a DHIS2-compliant JSON object
+                dhis2_compliant_json = sync_service._combine_patient_and_encounters(transformed_patient_data, transformed_encounters)
+                # Log the combined patient and encounter data
+                logging.info(f"Combined patient and encounter data: {json.dumps(dhis2_compliant_json, indent=4)}")
+                # Print the combined patient and encounter data to the console
+                print(json.dumps(dhis2_compliant_json, indent=4))
                 # Ask the user whether to proceed to the next patient
                 proceed = input("Proceed to the next patient? (y/n): ").strip().lower()
                 if proceed != 'y':
                     print("Process canceled by the user.")
                     break
-                # Write the transformed patient data to the file
-                json.dump([transformed_patient_data], file, indent=4)
+                # Write the combined patient and encounter data to the file
+                json.dump(dhis2_compliant_json, file, indent=4)
                 logging.info(f"Finished processing patient ID: {patient_id}")
-                logging.info(f"Logged patient data with encounters for patient ID: {patient_id} to patients_to_sync.json")
+                logging.info(f"Logged combined patient and encounter data for patient ID: {patient_id} to patients_to_sync.json")
             else:
                 logging.warning(f"No patient data found for patient ID {patient_id}")
 
