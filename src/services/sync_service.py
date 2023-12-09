@@ -63,10 +63,6 @@ class SyncService:
             logging.exception(f"Error during transformation of OpenMRS patient data: {e}")
             return {}
 
-    def fetch_observations_for_encounter(self, encounter_id):
-        """Fetch all observations for a given encounter ID."""
-        # Implementation of fetching observations from OpenMRS will go here
-        pass
 
     def _transform_openmrs_to_dhis2_encounter(self, observations, encounter_id, form_id):
         """Transform OpenMRS encounter data to the format required by DHIS2."""
