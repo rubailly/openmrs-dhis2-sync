@@ -89,8 +89,9 @@ def main():
         with open('patients_to_sync.json', 'w') as file:
             for patient_id, encounter_ids in patient_encounters.items():
                 logging.info(f"Processing encounters for patient ID: {patient_id}")
-                # Fetch patient data using the first encounter ID
+                # Fetch patient data and the first encounter data
                 patient_data = sync_service.openmrs_connector.fetch_patient_data(patient_id)
+                first_encounter_data = sync_service.openmrs_connector.fetch_observations_for_encounter(encounter_ids[0]) if encounter_ids else {}
                 # Initialize a list to hold all transformed encounters
                 transformed_encounters = []
                 for encounter_id in encounter_ids:
@@ -111,7 +112,7 @@ def main():
                         logging.error(f"Failed to fetch or transform observations for encounter ID {encounter_id}: {e}")
                 logging.info("Calling _combine_patient_and_encounters method.")
                 # Transform patient data and encounters to DHIS2 format
-                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, encounter_data)
+                transformed_patient_data = sync_service._transform_openmrs_to_dhis2_patient(patient_data, first_encounter_data)
                 # Combine patient data with their encounters into a DHIS2-compliant JSON object
                 dhis2_compliant_json = sync_service._combine_patient_and_encounters(transformed_patient_data, transformed_encounters)
                 # Log the combined patient and encounter data
