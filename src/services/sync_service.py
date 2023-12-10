@@ -28,15 +28,15 @@ class SyncService:
         # Transform DHIS2 data to the format required by OpenMRS
         pass
 
-    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data, openmrs_encounter_data):
-        """Transform OpenMRS patient data to the format required by DHIS2."""
+    def _transform_openmrs_to_dhis2_patient(self, openmrs_patient_data, openmrs_encounter_data_list):
+        """Transform OpenMRS patient data to the format required by DHIS2, expecting a list of encounter data."""
         logging.info(f"Starting transformation of OpenMRS patient data: {openmrs_patient_data}")
         try:
             # Ensure the location mappings are loaded
             if 'location' not in self.mappings:
                 self.mappings['location'] = load_mappings('mappings/location_mappings.json')
-            # Retrieve the location ID from the encounter data
-            location_id = openmrs_encounter_data.get('location_id')
+            # Retrieve the location ID from the first encounter data if available
+            location_id = openmrs_encounter_data_list[0].get('location_id') if openmrs_encounter_data_list else None
             if location_id is None:
                 logging.error("No location ID found in the encounter data for patient ID: " + str(openmrs_patient_data.get('patient_id')))
                 return {}
@@ -114,7 +114,8 @@ class SyncService:
             logging.info(f"Retrieved 'orgUnit': {org_unit}")
 
             # Map patient attributes to DHIS2 format
-            attributes = self._map_patient_attributes_to_dhis2(transformed_patient_data)
+            # Assuming that the transformed_patient_data already contains the attributes in the correct format
+            attributes = transformed_patient_data.get('attributes', [])
             # Log the attributes
             logging.info(f"Patient attributes for DHIS2: {attributes}")
 
