@@ -93,16 +93,16 @@ def main():
         # Loop through each patient and process their encounters
         for patient_id, encounter_ids in encounters_to_process.items():
             # Process patient and their encounters
-            sync_service.process_patient_and_encounters(patient_id)
+            sync_service.process_patient_and_encounters(patient_id, encounter_ids)
 
             # Ask the user if they want to continue to the next patient or cancel
-            user_choice = input("Processed patient ID {}. Do you want to continue to the next patient? (yes/no): ".format(patient_id)).strip().lower()
+            user_choice = input(f"Processed patient ID {patient_id}. Do you want to continue to the next patient? (yes/no): ").strip().lower()
             if user_choice != 'yes':
                 print("Operation cancelled by the user.")
                 break
 
-        # Log the fetched encounter IDs to the progress.json file
-        progress_tracker.update_progress(location_id, list(encounters_to_process.keys()), reset=True)
+            # Log the processed patient ID to the progress.json file
+            progress_tracker.update_progress(location_id, patient_id)
     except Exception as e:
         logging.error(f"Failed to fetch encounters by location ID: {e}")
         sys.exit(1)
