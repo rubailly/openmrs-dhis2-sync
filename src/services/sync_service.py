@@ -26,69 +26,63 @@ class SyncService:
     def process_patient_and_encounters(self, patient_id, encounter_ids):
         """Process a patient and their encounters, transforming them into a DHIS2-compliant JSON object ready for submission to DHIS2."""
         logging.info(f"Processing patient ID: {patient_id}")
+        # Load attribute mappings
+        attribute_mappings = load_mappings('mappings/attribute_mappings.json')
+        # Load location mappings
+        location_mappings = load_mappings('mappings/location_mappings.json')
+        # Initialize the DHIS2-compliant JSON object
+        dhis2_compliant_json = {
+            "trackedEntityInstance": patient_id,  # Assuming patient_id is used as trackedEntityInstance
+            "attributes": [],
+            "enrollments": []
+        }
         try:
             # Fetch patient data
             patient_data = self.openmrs_connector.fetch_patient_data(patient_id)
-            # Initialize a list to hold all transformed encounters
-            transformed_encounters = []
-            # Fetch encounter IDs for the patient
-            encounter_ids = self.progress_tracker.get_patient_encounters(patient_id)
+            # Transform patient data to DHIS2 attributes format
+            for attribute_name, attribute_value in patient_data.items():
+                attribute_id = attribute_mappings.get(attribute_name)
+                if attribute_id:
+                    dhis2_compliant_json["attributes"].append({
+                        "attribute": attribute_id,
+                        "value": attribute_value
+                    })
+            # Process each encounter
             for encounter_id in encounter_ids:
                 # Fetch observations for the encounter
                 observations = self.openmrs_connector.fetch_observations_for_encounter(encounter_id)
-                # Transform encounter data and observations to DHIS2 format
-                transformed_encounter = self.transform_encounter_to_dhis2_format(observations, encounter_id)
-                # Append transformed encounter data to the list
-                transformed_encounters.append(transformed_encounter)
-            # Combine patient data with their encounters into a DHIS2-compliant JSON object
-            dhis2_compliant_json = self.combine_patient_and_encounters_to_dhis2_format(patient_data, transformed_encounters)
-            # Log the combined patient and encounter data to sync file
+                # Load form mappings based on the form ID associated with the encounter
+                form_id = self.openmrs_connector.get_form_id_by_encounter_id(encounter_id)
+                form_mappings = self.load_form_mappings(form_id)
+                # Transform encounter data and observations to DHIS2 event format
+                event_data_values = []
+                for observation in observations:
+                    # Use form_mappings to map OpenMRS observation to DHIS2 data element
+                    data_element_id = form_mappings['observations'].get(observation['concept_uuid'])
+                    if data_element_id:
+                        event_data_values.append({
+                            "dataElement": data_element_id,
+                            "value": observation['value']
+                        })
+                # Append transformed encounter data to the enrollments list
+                dhis2_compliant_json["enrollments"].append({
+                    "orgUnit": location_mappings.get(str(patient_data['location_id'])),  # Map location ID to DHIS2 orgUnit ID
+                    "program": form_mappings['dhis2_program_stage_id'],  # Use the program stage ID from form mappings
+                    "enrollmentDate": "YYYY-MM-DD",  # Placeholder for actual enrollment date
+                    "incidentDate": "YYYY-MM-DD",  # Placeholder for actual incident date
+                    "events": [{
+                        "programStage": form_mappings['dhis2_program_stage_id'],  # Use the program stage ID from form mappings
+                        "eventDate": "YYYY-MM-DD",  # Placeholder for actual event date
+                        "dataValues": event_data_values
+                    }]
+                })
+            # Log the DHIS2-compliant JSON object to a file for synchronization
             self.log_patient_data_to_sync_file(dhis2_compliant_json)
             return dhis2_compliant_json
         except Exception as e:
             logging.error(f"Error processing patient ID {patient_id}: {e}")
             return {}
 
-    def transform_encounter_to_dhis2_format(self, observations, encounter_id, form_mappings):
-        # Implement transformation logic using form_mappings
-        # This will convert OpenMRS observations to DHIS2 data values
-        transformed_data_values = []
-        for observation in observations:
-            # Use form_mappings to map OpenMRS observation to DHIS2 data element
-            data_element_id = form_mappings['observations'].get(observation.concept_uuid)
-            if data_element_id:
-                transformed_data_values.append({
-                    "dataElement": data_element_id,
-                    "value": observation.value
-                })
-        return transformed_data_values
-
-    def combine_patient_and_encounters_to_dhis2_format(self, patient_data, transformed_encounters, attribute_mappings):
-        # Implement combination logic using attribute_mappings
-        # This will combine patient data and encounters into a DHIS2 Tracked Entity Instance payload
-        attributes = []
-        for attribute_name, attribute_value in patient_data.items():
-            attribute_id = attribute_mappings.get(attribute_name)
-            if attribute_id:
-                attributes.append({
-                    "attribute": attribute_id,
-                    "value": attribute_value
-                })
-        return {
-            "trackedEntityInstance": patient_data['patient_id'],  # Assuming patient_id is used as trackedEntityInstance
-            "attributes": attributes,
-            "enrollments": [{
-                "orgUnit": "OrgUnitID",  # Placeholder for actual orgUnit ID
-                "program": "ProgramID",  # Placeholder for actual program ID
-                "enrollmentDate": "YYYY-MM-DD",  # Placeholder for actual enrollment date
-                "incidentDate": "YYYY-MM-DD",  # Placeholder for actual incident date
-                "events": [{
-                    "programStage": "ProgramStageID",  # Placeholder for actual program stage ID
-                    "eventDate": "YYYY-MM-DD",  # Placeholder for actual event date
-                    "dataValues": transformed_encounter
-                } for transformed_encounter in transformed_encounters]
-            }]
-        }
 
     def log_patient_data_to_sync_file(self, dhis2_compliant_json):
         # Implement logging logic
