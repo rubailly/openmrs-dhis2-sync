@@ -41,10 +41,11 @@ class SyncService:
             patient_data = self.openmrs_connector.fetch_patient_data(patient_id)
             # Transform patient data to DHIS2 attributes format
             for attribute_name, attribute_value in patient_data.items():
-                attribute_id = attribute_mappings.get(attribute_name)
-                if attribute_id:
+                # Map the OpenMRS attribute names to the corresponding DHIS2 attribute IDs
+                dhis2_attribute_id = attribute_mappings.get(attribute_name)
+                if dhis2_attribute_id and attribute_value is not None:
                     dhis2_compliant_json["attributes"].append({
-                        "attribute": attribute_id,
+                        "attribute": dhis2_attribute_id,
                         "value": attribute_value
                     })
             # Process each encounter
