@@ -65,7 +65,7 @@ class SyncService:
                             "value": observation['value']
                         })
                 # Log the event data values before appending to the enrollments list
-                logging.info(f"Event data values for encounter ID {encounter_id}: {event_data_values}")
+                logging.info(f"Event data values for encounter ID {encounter_id}: {patient_data}")
                 # Append transformed encounter data to the enrollments list
                 dhis2_compliant_json["enrollments"].append({
                     "orgUnit": location_mappings.get(str(patient_data['location_id'])),  # Map location ID to DHIS2 orgUnit ID
