@@ -23,8 +23,8 @@ class SyncService:
         logging.error(f"Mapping file not found for form ID {form_id}")
         return None
 
-    def process_patient_and_encounters(self, patient_id):
-        """Process a patient and their encounters, transforming them into a DHIS2-compliant JSON object."""
+    def process_patient_and_encounters(self, patient_id, encounter_ids):
+        """Process a patient and their encounters, transforming them into a DHIS2-compliant JSON object ready for submission to DHIS2."""
         logging.info(f"Processing patient ID: {patient_id}")
         try:
             # Fetch patient data
@@ -49,17 +49,51 @@ class SyncService:
             logging.error(f"Error processing patient ID {patient_id}: {e}")
             return {}
 
-    # Placeholder for the actual implementation of the following methods
-    def transform_encounter_to_dhis2_format(self, observations, encounter_id):
-        # Implement transformation logic
-        pass
+    def transform_encounter_to_dhis2_format(self, observations, encounter_id, form_mappings):
+        # Implement transformation logic using form_mappings
+        # This will convert OpenMRS observations to DHIS2 data values
+        transformed_data_values = []
+        for observation in observations:
+            # Use form_mappings to map OpenMRS observation to DHIS2 data element
+            data_element_id = form_mappings['observations'].get(observation.concept_uuid)
+            if data_element_id:
+                transformed_data_values.append({
+                    "dataElement": data_element_id,
+                    "value": observation.value
+                })
+        return transformed_data_values
 
-    def combine_patient_and_encounters_to_dhis2_format(self, patient_data, transformed_encounters):
-        # Implement combination logic
-        pass
+    def combine_patient_and_encounters_to_dhis2_format(self, patient_data, transformed_encounters, attribute_mappings):
+        # Implement combination logic using attribute_mappings
+        # This will combine patient data and encounters into a DHIS2 Tracked Entity Instance payload
+        attributes = []
+        for attribute_name, attribute_value in patient_data.items():
+            attribute_id = attribute_mappings.get(attribute_name)
+            if attribute_id:
+                attributes.append({
+                    "attribute": attribute_id,
+                    "value": attribute_value
+                })
+        return {
+            "trackedEntityInstance": patient_data['patient_id'],  # Assuming patient_id is used as trackedEntityInstance
+            "attributes": attributes,
+            "enrollments": [{
+                "orgUnit": "OrgUnitID",  # Placeholder for actual orgUnit ID
+                "program": "ProgramID",  # Placeholder for actual program ID
+                "enrollmentDate": "YYYY-MM-DD",  # Placeholder for actual enrollment date
+                "incidentDate": "YYYY-MM-DD",  # Placeholder for actual incident date
+                "events": [{
+                    "programStage": "ProgramStageID",  # Placeholder for actual program stage ID
+                    "eventDate": "YYYY-MM-DD",  # Placeholder for actual event date
+                    "dataValues": transformed_encounter
+                } for transformed_encounter in transformed_encounters]
+            }]
+        }
 
     def log_patient_data_to_sync_file(self, dhis2_compliant_json):
         # Implement logging logic
-        pass
+        # This will log the DHIS2-compliant JSON object to a file for synchronization
+        with open('patients_to_sync.json', 'w') as file:
+            json.dump(dhis2_compliant_json, file, indent=4)
 
     # Other methods and logic as needed for the SyncService class
