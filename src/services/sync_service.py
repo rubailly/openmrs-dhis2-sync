@@ -43,7 +43,7 @@ class SyncService:
             for openmrs_attr, dhis2_attr in attribute_mappings.items():
                 # Get the patient attribute value from patient_data using the OpenMRS attribute name
                 patient_attribute_value = patient_data.get(openmrs_attr)
-                # Ensure that the attribute value is not None before appending
+                # Map OpenMRS attributes to DHIS2 attributes and append them to the attributes list
                 if patient_attribute_value is not None:
                     dhis2_compliant_json["attributes"].append({
                         "attribute": dhis2_attr,
