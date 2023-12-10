@@ -75,15 +75,15 @@ def main():
             logging.error(f"Failed to fetch encounters for location ID {location_id}.")
             sys.exit(1)
         logging.info(f"Fetched encounters for {len(patient_encounters)} patients from the OpenMRS database for location ID {location_id}.")
+        
+                # Clear patients_to_sync.json and encounters_to_process.json files
+        open('patients_to_sync.json', 'w').close()
+        open('encounters_to_process.json', 'w').close()
     
         # Log the fetched patient encounters to the encounters_to_process.json file and process each patient's encounters
         with open('encounters_to_process.json', 'w') as file:
             json.dump(patient_encounters, file, indent=4)
         logging.info(f"Logged encounters for {len(patient_encounters)} patients to encounters_to_process.json.")
-
-        # Clear patients_to_sync.json and encounters_to_process.json files
-        open('patients_to_sync.json', 'w').close()
-        open('encounters_to_process.json', 'w').close()
 
         # Process patient encounters and build JSON objects
         with open('patients_to_sync.json', 'w') as file:
