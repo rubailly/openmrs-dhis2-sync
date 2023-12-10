@@ -69,7 +69,7 @@ class SyncService:
                 # Append transformed encounter data to the enrollments list
                 dhis2_compliant_json["enrollments"].append({
                     # Fetch the location ID from the encounter data instead of patient_data
-                    "orgUnit": location_mappings.get(str(self.openmrs_connector.get_location_id_by_encounter_id(encounter_id))),
+                    "orgUnit": location_mappings.get(str(location_id)),
                     "program": form_mappings['dhis2_program_stage_id'],  # Use the program stage ID from form mappings
                     "enrollmentDate": "YYYY-MM-DD",  # Placeholder for actual enrollment date
                     "incidentDate": "YYYY-MM-DD",  # Placeholder for actual incident date
