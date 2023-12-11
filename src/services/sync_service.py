@@ -86,7 +86,7 @@ class SyncService:
                     "incidentDate": patient_data['date_created'],  # Use the date_created from patient data
                     "events": [{
                         "programStage": form_mappings['dhis2_program_stage_id'],  # Use the program stage ID from form mappings
-                        "eventDate": patient_data['date_created'],  # Use the date_created from patient data
+                        "eventDate": self.openmrs_connector.get_encounter_date_created_by_id(encounter_id),  # Use the date_created from encounter data
                         "dataValues": event_data_values
                     }]
                 })

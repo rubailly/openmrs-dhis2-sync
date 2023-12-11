@@ -121,20 +121,20 @@ class OpenMRSConnector:
             if cursor:
                 cursor.close()
 
-    def get_form_id_by_encounter_id(self, encounter_id):
-        """Fetch the form ID for a given encounter ID."""
+    def get_encounter_date_created_by_id(self, encounter_id):
+        """Fetch the date_created for a given encounter ID."""
         query = """
-        SELECT form_id
+        SELECT date_created
         FROM encounter
         WHERE encounter_id = %s
         """
         try:
-            cursor = self.connection.cursor()
+            cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, (encounter_id,))
             result = cursor.fetchone()
-            return result[0] if result else None
+            return result['date_created'].isoformat() if result and result['date_created'] else None
         except mysql.connector.Error as err:
-            logging.error(f"Error fetching form ID for encounter ID {encounter_id}: {err}")
+            logging.error(f"Error fetching date_created for encounter ID {encounter_id}: {err}")
             raise
         finally:
             if cursor:
