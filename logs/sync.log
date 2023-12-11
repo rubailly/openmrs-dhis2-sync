@@ -333,3 +333,25 @@ mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'r
 2023-12-11 11:58:19,586 - INFO - Fetching observations for encounter ID: 714593
 2023-12-11 11:58:19,995 - INFO - Fetched 9 observations for encounter ID: 714593
 2023-12-11 11:58:20,118 - INFO - Event data values for encounter ID 714593: {'dhis2_tracked_entity_type': 247616, 'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'Sex': 'M', 'Birthdate_Estimate': '1975-01-01', 'date_created': '2023-06-21T07:30:32'}
+2023-12-11 12:06:07,539 - INFO - Logging is set up.
+2023-12-11 12:06:07,539 - INFO - Application started.
+2023-12-11 12:06:10,854 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-11 12:06:13,446 - INFO - package: mysql.connector.plugins
+2023-12-11 12:06:13,446 - INFO - plugin_name: mysql_native_password
+2023-12-11 12:06:13,447 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-11 12:06:14,567 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-11 12:06:14,568 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-11 12:06:19,977 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-11 12:06:19,980 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-11 12:06:19,980 - INFO - Processing patient ID: 247616
+2023-12-11 12:06:23,992 - INFO - Fetching observations for encounter ID: 714593
+2023-12-11 12:06:25,446 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-11 12:06:27,298 - INFO - Event data values for encounter ID 714593: {'dhis2_tracked_entity_type': 247616, 'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'Sex': 'M', 'Birthdate_Estimate': '1975-01-01', 'date_created': '2023-06-21T07:30:32'}
+2023-12-11 12:24:06,912 - INFO - Processing patient ID: 247617
+2023-12-11 12:24:07,275 - INFO - Fetching observations for encounter ID: 714595
+2023-12-11 12:24:07,341 - INFO - Fetched 9 observations for encounter ID: 714595
+2023-12-11 12:24:07,424 - INFO - Event data values for encounter ID 714595: {'dhis2_tracked_entity_type': 247617, 'First_Name': 'Justin', 'Middle_Name': None, 'Family_Name': 'MUNYARUGERERO', 'Sex': 'M', 'Birthdate_Estimate': '1980-01-01', 'date_created': '2023-06-21T07:30:33'}
+2023-12-11 12:26:02,994 - INFO - Processing patient ID: 247618
+2023-12-11 12:26:03,097 - INFO - Fetching observations for encounter ID: 714594
+2023-12-11 12:26:03,178 - INFO - Fetched 9 observations for encounter ID: 714594
+2023-12-11 12:26:03,265 - INFO - Event data values for encounter ID 714594: {'dhis2_tracked_entity_type': 247618, 'First_Name': 'Jean Bosco', 'Middle_Name': None, 'Family_Name': 'RIBAKARE', 'Sex': 'M', 'Birthdate_Estimate': '1991-01-01', 'date_created': '2023-06-21T07:30:33'}
