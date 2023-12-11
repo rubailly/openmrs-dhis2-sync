@@ -49,12 +49,12 @@ class OpenMRSConnector:
             cursor.execute(query, (patient_id,))
             result = cursor.fetchone()
             return {
-                'patient_id': result['patient_id'],
-                'given_name': result.get('given_name', ''),
-                'middle_name': result.get('middle_name', ''),
-                'family_name': result.get('family_name', ''),
-                'gender': result.get('gender', ''),
-                'birthdate': result['birthdate'].isoformat() if result and result['birthdate'] else None
+                'dhis2_tracked_entity_type': result['patient_id'],
+                'First_Name': result.get('given_name', ''),
+                'Middle_Name': result.get('middle_name', ''),
+                'Family_Name': result.get('family_name', ''),
+                'Sex': result.get('gender', ''),
+                'Birthdate_Estimate': result['birthdate'].isoformat() if result and result['birthdate'] else None
             } if result else {}
         except mysql.connector.Error as err:
             logging.error(f"Error fetching patient data for patient ID {patient_id}: {err}")
