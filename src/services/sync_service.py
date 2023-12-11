@@ -31,8 +31,13 @@ class SyncService:
         # Load location mappings
         location_mappings = load_mappings('mappings/location_mappings.json')
         # Initialize the DHIS2-compliant JSON object
+        # Assuming the location ID is provided by the user and stored in a variable named `location_id`
+        # The location_id variable should be defined earlier in the code where the user input is handled
+        org_unit_id = location_mappings.get(location_id, "default_org_unit_id")  # Replace 'default_org_unit_id' with a default value if needed
         dhis2_compliant_json = {
-            "trackedEntityInstance": patient_id,  # Assuming patient_id is used as trackedEntityInstance
+            "trackedEntityType": "j9TllKXZ3jb",
+            "orgUnit": org_unit_id,
+            "trackedEntityInstance": patient_id,
             "attributes": [],
             "enrollments": []
         }
