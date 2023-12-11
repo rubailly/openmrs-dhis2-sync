@@ -49,6 +49,9 @@ class SyncService:
             for openmrs_attr, dhis2_attr in attribute_mappings.items():
                 # Get the patient attribute value from patient_data using the OpenMRS attribute name
                 patient_attribute_value = patient_data.get(openmrs_attr)
+                # Special handling for gender to convert 'F' to 'Female' and 'M' to 'Male'
+                if openmrs_attr == 'Sex':
+                    patient_attribute_value = 'Female' if patient_attribute_value == 'F' else 'Male' if patient_attribute_value == 'M' else patient_attribute_value
                 # Map OpenMRS attributes to DHIS2 attributes and append them to the attributes list
                 if patient_attribute_value is not None:
                     dhis2_compliant_json["attributes"].append({
