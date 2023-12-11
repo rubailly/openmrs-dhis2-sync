@@ -37,7 +37,6 @@ class SyncService:
         dhis2_compliant_json = {
             "trackedEntityType": "j9TllKXZ3jb",
             "orgUnit": org_unit_id,
-            "trackedEntityInstance": patient_id,
             "attributes": [],
             "enrollments": []
         }
