@@ -33,6 +33,9 @@ class SyncService:
         # Initialize the DHIS2-compliant JSON object
         # Use the location ID provided by the user to get the org unit ID
         org_unit_id = location_mappings.get(location_id)
+        if not org_unit_id:
+            logging.error(f"Location ID {location_id} not found in the mappings. Please provide a valid location ID.")
+            raise ValueError(f"Location ID {location_id} not found in the mappings.")
         dhis2_compliant_json = {
             "trackedEntityType": "j9TllKXZ3jb",
             "orgUnit": org_unit_id,
