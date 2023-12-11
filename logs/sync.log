@@ -319,3 +319,17 @@ mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'r
 2023-12-11 11:53:07,234 - INFO - Fetching observations for encounter ID: 714593
 2023-12-11 11:53:07,522 - INFO - Fetched 9 observations for encounter ID: 714593
 2023-12-11 11:53:07,522 - ERROR - Error processing patient ID 247616: 'OpenMRSConnector' object has no attribute 'get_form_id_by_encounter_id'
+2023-12-11 11:58:11,534 - INFO - Logging is set up.
+2023-12-11 11:58:11,534 - INFO - Application started.
+2023-12-11 11:58:14,093 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-11 11:58:17,117 - INFO - package: mysql.connector.plugins
+2023-12-11 11:58:17,117 - INFO - plugin_name: mysql_native_password
+2023-12-11 11:58:17,118 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-11 11:58:17,436 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-11 11:58:17,436 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-11 11:58:18,255 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-11 11:58:18,258 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-11 11:58:18,259 - INFO - Processing patient ID: 247616
+2023-12-11 11:58:19,586 - INFO - Fetching observations for encounter ID: 714593
+2023-12-11 11:58:19,995 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-11 11:58:20,118 - INFO - Event data values for encounter ID 714593: {'dhis2_tracked_entity_type': 247616, 'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'Sex': 'M', 'Birthdate_Estimate': '1975-01-01', 'date_created': '2023-06-21T07:30:32'}

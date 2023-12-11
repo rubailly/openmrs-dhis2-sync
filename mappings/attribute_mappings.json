@@ -1,7 +1,7 @@
 {
   "dhis2_tracked_entity_type": "j9TllKXZ3jb",
   "First_Name": "U52G0TY1Idf",
-  "Middle_Name": "openmrs_attribute_for_middle_name_if_exists",
+  "Middle_Name": "KutT9WuFAbg",
   "Family_Name": "TxbYMcqsQYQ",
   "National_ID": "bVXK3FxmU1L",
   "Phone_Number": "CW3Ai3BrfVy",
@@ -15,6 +15,6 @@
   "Village": "zmeNpGxK2ca",
   "Sex": "oCAIvI4WqJK",
   "Birth_Date": "Kb3an6eYPBb",
-  "Birthdate_Estimate": "openmrs_attribute_for_birthdate_estimate_if_exists",
+  "Birthdate_Estimate": "Kb3an6eYPBb",
   "Age_in_Years": "L4EqOsk6Xk8"
 }
