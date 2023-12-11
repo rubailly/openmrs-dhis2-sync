@@ -38,7 +38,7 @@ class OpenMRSConnector:
     def fetch_patient_data(self, patient_id):
         """Fetch patient data for a given patient ID."""
         query = """
-        SELECT patient_id, given_name, middle_name, family_name, gender, birthdate, date_created
+        SELECT patient_id, given_name, middle_name, family_name, gender, birthdate, patient.date_created
         FROM patient
         JOIN person_name ON patient.patient_id = person_name.person_id
         JOIN person ON patient.patient_id = person.person_id
@@ -54,7 +54,7 @@ class OpenMRSConnector:
                 'Middle_Name': result.get('middle_name', ''),
                 'Family_Name': result.get('family_name', ''),
                 'Sex': result.get('gender', ''),
-                'Birthdate_Estimate': result['birthdate'].isoformat() if result and result['birthdate'] else None
+                'Birthdate_Estimate': result['birthdate'].isoformat() if result and result['birthdate'] else None,
             'date_created': result['date_created'].isoformat() if result and result['date_created'] else None
             } if result else {}
         except mysql.connector.Error as err:

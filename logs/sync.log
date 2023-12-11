@@ -188,3 +188,134 @@ mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'r
 2023-12-10 14:28:58,654 - INFO - Fetching observations for encounter ID: 714595
 2023-12-10 14:28:58,715 - INFO - Fetched 9 observations for encounter ID: 714595
 2023-12-10 14:28:58,766 - INFO - Event data values for encounter ID 714595: {'patient_id': 247617, 'given_name': 'Justin', 'middle_name': None, 'family_name': 'MUNYARUGERERO', 'gender': 'M', 'birthdate': '1980-01-01'}
+2023-12-10 15:34:25,198 - INFO - Logging is set up.
+2023-12-10 15:34:25,198 - INFO - Application started.
+2023-12-10 15:34:34,167 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-10 15:34:34,548 - INFO - package: mysql.connector.plugins
+2023-12-10 15:34:34,548 - INFO - plugin_name: mysql_native_password
+2023-12-10 15:34:34,549 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-10 15:34:34,636 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-10 15:34:34,637 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-10 15:34:35,224 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-10 15:34:35,227 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-10 15:34:35,227 - INFO - Processing patient ID: 247616
+2023-12-10 15:34:35,284 - INFO - Fetching observations for encounter ID: 714593
+2023-12-10 15:34:35,344 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-10 15:34:35,392 - INFO - Event data values for encounter ID 714593: {'patient_id': 247616, 'given_name': 'Edouard', 'middle_name': None, 'family_name': 'RUTAYISIRE', 'gender': 'M', 'birthdate': '1975-01-01'}
+2023-12-10 15:36:32,428 - INFO - Logging is set up.
+2023-12-10 15:36:32,428 - INFO - Application started.
+2023-12-10 15:36:34,884 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-10 15:36:35,008 - INFO - package: mysql.connector.plugins
+2023-12-10 15:36:35,009 - INFO - plugin_name: mysql_native_password
+2023-12-10 15:36:35,009 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-10 15:36:35,067 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-10 15:36:35,067 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-10 15:36:35,391 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-10 15:36:35,394 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-10 15:36:35,395 - INFO - Processing patient ID: 247616
+2023-12-10 15:36:35,469 - INFO - Fetching observations for encounter ID: 714593
+2023-12-10 15:36:35,540 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-10 15:36:35,606 - INFO - Event data values for encounter ID 714593: {'dhis2_tracked_entity_type': 247616, 'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'Sex': 'M', 'Birthdate_Estimate': '1975-01-01'}
+2023-12-10 15:38:57,667 - INFO - Processing patient ID: 247617
+2023-12-10 15:38:57,759 - INFO - Fetching observations for encounter ID: 714595
+2023-12-10 15:38:57,844 - INFO - Fetched 9 observations for encounter ID: 714595
+2023-12-10 15:38:57,944 - INFO - Event data values for encounter ID 714595: {'dhis2_tracked_entity_type': 247617, 'First_Name': 'Justin', 'Middle_Name': None, 'Family_Name': 'MUNYARUGERERO', 'Sex': 'M', 'Birthdate_Estimate': '1980-01-01'}
+2023-12-10 15:39:01,458 - INFO - Processing patient ID: 247618
+2023-12-10 15:39:01,576 - INFO - Fetching observations for encounter ID: 714594
+2023-12-10 15:39:01,657 - INFO - Fetched 9 observations for encounter ID: 714594
+2023-12-10 15:39:01,723 - INFO - Event data values for encounter ID 714594: {'dhis2_tracked_entity_type': 247618, 'First_Name': 'Jean Bosco', 'Middle_Name': None, 'Family_Name': 'RIBAKARE', 'Sex': 'M', 'Birthdate_Estimate': '1991-01-01'}
+2023-12-10 15:39:03,052 - INFO - Processing patient ID: 247619
+2023-12-10 15:39:03,179 - INFO - Fetching observations for encounter ID: 714597
+2023-12-10 15:39:03,248 - INFO - Fetched 9 observations for encounter ID: 714597
+2023-12-10 15:39:03,344 - INFO - Event data values for encounter ID 714597: {'dhis2_tracked_entity_type': 247619, 'First_Name': 'Claver', 'Middle_Name': None, 'Family_Name': 'GATAMBIYE', 'Sex': 'M', 'Birthdate_Estimate': '1971-01-01'}
+2023-12-10 15:39:05,569 - INFO - Processing patient ID: 247620
+2023-12-10 15:39:05,698 - INFO - Fetching observations for encounter ID: 714596
+2023-12-10 15:39:05,749 - INFO - Fetched 9 observations for encounter ID: 714596
+2023-12-10 15:39:05,803 - INFO - Event data values for encounter ID 714596: {'dhis2_tracked_entity_type': 247620, 'First_Name': 'Speciose', 'Middle_Name': None, 'Family_Name': 'NYIRANSENGIMANA', 'Sex': 'F', 'Birthdate_Estimate': '1974-01-01'}
+2023-12-10 15:39:05,803 - INFO - Fetching observations for encounter ID: 714617
+2023-12-10 15:39:05,887 - INFO - Fetched 8 observations for encounter ID: 714617
+2023-12-10 15:39:05,966 - INFO - Event data values for encounter ID 714617: {'dhis2_tracked_entity_type': 247620, 'First_Name': 'Speciose', 'Middle_Name': None, 'Family_Name': 'NYIRANSENGIMANA', 'Sex': 'F', 'Birthdate_Estimate': '1974-01-01'}
+2023-12-11 10:56:15,605 - INFO - Logging is set up.
+2023-12-11 10:56:15,605 - INFO - Application started.
+2023-12-11 10:56:27,163 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-11 10:56:27,544 - INFO - package: mysql.connector.plugins
+2023-12-11 10:56:27,544 - INFO - plugin_name: mysql_native_password
+2023-12-11 10:56:27,545 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-11 10:56:27,576 - ERROR - Failed to connect to the OpenMRS database.
+Traceback (most recent call last):
+  File "/home/rbailly/eclipse-workspace/medtronic/openmrsdhis2sync/openmrs-dhis2-sync/src/connectors/openmrs_connector.py", line 69, in connect
+    self.connection = mysql.connector.connect(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/pooling.py", line 294, in connect
+    return MySQLConnection(*args, **kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 169, in __init__
+    self.connect(**kwargs)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 355, in _open_connection
+    self._do_auth(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 288, in _do_auth
+    ok_pkt = self._authenticator.authenticate(
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 378, in authenticate
+    ok_pkt = self._handle_server_response(sock, pkt)
+  File "/home/rbailly/.local/lib/python3.8/site-packages/mysql/connector/authentication.py", line 292, in _handle_server_response
+    raise get_exception(pkt)
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'root'@'105.178.32.161' (using password: YES)
+2023-12-11 10:59:11,662 - INFO - Logging is set up.
+2023-12-11 10:59:11,662 - INFO - Application started.
+2023-12-11 10:59:17,390 - INFO - Logging is set up.
+2023-12-11 10:59:17,390 - INFO - Application started.
+2023-12-11 10:59:20,490 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-11 10:59:20,913 - INFO - package: mysql.connector.plugins
+2023-12-11 10:59:20,913 - INFO - plugin_name: mysql_native_password
+2023-12-11 10:59:20,914 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-11 10:59:20,984 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-11 10:59:20,985 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-11 10:59:21,401 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-11 10:59:21,403 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-11 10:59:21,404 - INFO - Processing patient ID: 247616
+2023-12-11 10:59:21,492 - INFO - Fetching observations for encounter ID: 714593
+2023-12-11 10:59:21,673 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-11 10:59:21,751 - INFO - Event data values for encounter ID 714593: {'dhis2_tracked_entity_type': 247616, 'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'Sex': 'M', 'Birthdate_Estimate': '1975-01-01'}
+2023-12-11 11:20:15,976 - INFO - Logging is set up.
+2023-12-11 11:20:15,976 - INFO - Application started.
+2023-12-11 11:20:19,685 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-11 11:20:20,004 - INFO - package: mysql.connector.plugins
+2023-12-11 11:20:20,005 - INFO - plugin_name: mysql_native_password
+2023-12-11 11:20:20,005 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-11 11:20:20,118 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-11 11:20:20,118 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-11 11:20:20,565 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-11 11:20:20,567 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-11 11:20:20,568 - INFO - Processing patient ID: 247616
+2023-12-11 11:20:20,658 - ERROR - Error fetching patient data for patient ID 247616: 1052 (23000): Column 'date_created' in field list is ambiguous
+2023-12-11 11:20:20,659 - ERROR - Error processing patient ID 247616: 1052 (23000): Column 'date_created' in field list is ambiguous
+2023-12-11 11:20:34,175 - INFO - Processing patient ID: 247617
+2023-12-11 11:20:34,279 - ERROR - Error fetching patient data for patient ID 247617: 1052 (23000): Column 'date_created' in field list is ambiguous
+2023-12-11 11:20:34,280 - ERROR - Error processing patient ID 247617: 1052 (23000): Column 'date_created' in field list is ambiguous
+2023-12-11 11:50:15,731 - INFO - Logging is set up.
+2023-12-11 11:50:15,732 - INFO - Application started.
+2023-12-11 11:50:22,507 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-11 11:50:24,629 - INFO - package: mysql.connector.plugins
+2023-12-11 11:50:24,630 - INFO - plugin_name: mysql_native_password
+2023-12-11 11:50:24,631 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-11 11:50:24,740 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-11 11:50:24,740 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-11 11:50:25,011 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-11 11:50:25,014 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-11 11:50:25,014 - INFO - Processing patient ID: 247616
+2023-12-11 11:50:25,099 - ERROR - Error fetching patient data for patient ID 247616: 1052 (23000): Column 'date_created' in field list is ambiguous
+2023-12-11 11:50:25,099 - ERROR - Error processing patient ID 247616: 1052 (23000): Column 'date_created' in field list is ambiguous
+2023-12-11 11:53:03,540 - INFO - Logging is set up.
+2023-12-11 11:53:03,540 - INFO - Application started.
+2023-12-11 11:53:06,464 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-11 11:53:06,617 - INFO - package: mysql.connector.plugins
+2023-12-11 11:53:06,617 - INFO - plugin_name: mysql_native_password
+2023-12-11 11:53:06,618 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-11 11:53:06,690 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-11 11:53:06,690 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-11 11:53:07,108 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-11 11:53:07,110 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-11 11:53:07,111 - INFO - Processing patient ID: 247616
+2023-12-11 11:53:07,234 - INFO - Fetching observations for encounter ID: 714593
+2023-12-11 11:53:07,522 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-11 11:53:07,522 - ERROR - Error processing patient ID 247616: 'OpenMRSConnector' object has no attribute 'get_form_id_by_encounter_id'
