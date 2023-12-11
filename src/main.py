@@ -92,8 +92,8 @@ def main():
 
         # Loop through each patient and process their encounters
         for patient_id, encounter_ids in encounters_to_process.items():
-            # Process patient and their encounters
-            sync_service.process_patient_and_encounters(patient_id, encounter_ids)
+            # Process patient and their encounters, passing the location_id
+            sync_service.process_patient_and_encounters(patient_id, encounter_ids, location_id)
 
             # Ask the user if they want to continue to the next patient or cancel
             user_choice = input(f"Processed patient ID {patient_id}. Do you want to continue to the next patient? (yes/no): ").strip().lower()

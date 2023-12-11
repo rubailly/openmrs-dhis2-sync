@@ -23,7 +23,7 @@ class SyncService:
         logging.error(f"Mapping file not found for form ID {form_id}")
         return None
 
-    def process_patient_and_encounters(self, patient_id, encounter_ids):
+    def process_patient_and_encounters(self, patient_id, encounter_ids, location_id):
         """Process a patient and their encounters, transforming them into a DHIS2-compliant JSON object ready for submission to DHIS2."""
         logging.info(f"Processing patient ID: {patient_id}")
         # Load attribute mappings
@@ -31,9 +31,8 @@ class SyncService:
         # Load location mappings
         location_mappings = load_mappings('mappings/location_mappings.json')
         # Initialize the DHIS2-compliant JSON object
-        # Assuming the location ID is provided by the user and stored in a variable named `location_id`
-        # The location_id variable should be defined earlier in the code where the user input is handled
-        org_unit_id = location_mappings.get(location_id, "default_org_unit_id")  # Replace 'default_org_unit_id' with a default value if needed
+        # Use the location ID provided by the user to get the org unit ID
+        org_unit_id = location_mappings.get(location_id)
         dhis2_compliant_json = {
             "trackedEntityType": "j9TllKXZ3jb",
             "orgUnit": org_unit_id,
