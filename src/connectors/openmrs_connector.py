@@ -41,18 +41,16 @@ class OpenMRSConnector:
         SELECT pn.given_name, pn.middle_name, pn.family_name, pa.value AS national_id,
         pp.value AS phone_number,
         pc.value AS citizenship,
-        loc.name AS health_facility,
         adr.country, adr.state_province AS province, adr.county_district AS district, adr.city_village AS sector,
         adr.address3 AS cell,
         adr.address4 AS village,
-        p.gender, p.birthdate, p.birthdate_estimated, TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE()) AS age
+        per.gender, per.birthdate, per.date_created, per.birthdate_estimated, TIMESTAMPDIFF(YEAR, per.birthdate, CURDATE()) AS age
         FROM patient p
         JOIN person per ON p.patient_id = per.person_id
         JOIN person_name pn ON per.person_id = pn.person_id
-        LEFT JOIN person_attribute pa ON p.patient_id = pa.person_id AND pa.attribute_type_id = 19
-        LEFT JOIN person_attribute pp ON p.patient_id = pp.person_id AND pp.attribute_type_id = 11
-        LEFT JOIN person_attribute pc ON p.patient_id = pc.person_id AND pc.attribute_type_id = 3
-        LEFT JOIN location loc ON p.location_id = loc.location_id
+        LEFT JOIN person_attribute pa ON p.patient_id = pa.person_id AND pa.person_attribute_type_id = 19
+        LEFT JOIN person_attribute pp ON p.patient_id = pp.person_id AND pp.person_attribute_type_id = 11
+        LEFT JOIN person_attribute pc ON p.patient_id = pc.person_id AND pc.person_attribute_type_id = 3
         LEFT JOIN person_address adr ON p.patient_id = adr.person_id
         WHERE p.patient_id = %s AND pn.voided = 0 AND pa.voided = 0 AND pp.voided = 0 AND pc.voided = 0
         """
@@ -67,7 +65,6 @@ class OpenMRSConnector:
                 'National_ID': result.get('national_id', ''),
                 'Phone_Number': result.get('phone_number', ''),
                 'Citizenship': result.get('citizenship', ''),
-                'Health_Facility': result.get('health_facility', ''),
                 'country': result.get('country', ''),
                 'Province': result.get('province', ''),
                 'District': result.get('district', ''),
@@ -76,6 +73,7 @@ class OpenMRSConnector:
                 'Village': result.get('village', ''),
                 'Sex': result.get('gender', ''),
                 'Birth_Date': result['birthdate'].isoformat() if result and result['birthdate'] else None,
+                'date_created': result['date_created'].isoformat() if result and result['date_created'] else None,
                 'Birthdate_Estimate': result.get('birthdate_estimated', ''),
                 'Age_in_Years': result.get('age', '')
             } if result else {}
