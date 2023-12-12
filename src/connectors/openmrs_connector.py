@@ -47,8 +47,8 @@ class OpenMRSConnector:
         adr.address4 AS village,
         p.gender, p.birthdate, p.birthdate_estimated, TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE()) AS age
         FROM patient p
-        JOIN person pn ON p.patient_id = pn.person_id
-        JOIN person_name pn ON p.patient_id = pn.person_id
+        JOIN person per ON p.patient_id = per.person_id
+        JOIN person_name pn ON per.person_id = pn.person_id
         LEFT JOIN person_attribute pa ON p.patient_id = pa.person_id AND pa.attribute_type_id = 19
         LEFT JOIN person_attribute pp ON p.patient_id = pp.person_id AND pp.attribute_type_id = 11
         LEFT JOIN person_attribute pc ON p.patient_id = pc.person_id AND pc.attribute_type_id = 3
