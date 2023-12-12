@@ -38,20 +38,20 @@ class OpenMRSConnector:
     def fetch_patient_data(self, patient_id):
         """Fetch patient data for a given patient ID."""
         query = """
-        SELECT pn.given_name, pn.middle_name, pn.family_name, pa.value AS national_id, -- Replace with actual attribute type ID for National ID
-        pp.value AS phone_number, -- Replace with actual attribute type ID for Phone Number
-        pc.value AS citizenship, -- Replace with actual attribute type ID for Citizenship
-        loc.name AS health_facility, -- Assuming health facility is linked to patient's location
-        adr.country, adr.state_province AS province, adr.county_district AS district, adr.city_village AS sector, -- This might be different in your database
-        adr.address3 AS cell, -- This might be different in your database
-        adr.address4 AS village, -- This might be different in your database
+        SELECT pn.given_name, pn.middle_name, pn.family_name, pa.value AS national_id,
+        pp.value AS phone_number,
+        pc.value AS citizenship,
+        loc.name AS health_facility,
+        adr.country, adr.state_province AS province, adr.county_district AS district, adr.city_village AS sector,
+        adr.address3 AS cell,
+        adr.address4 AS village,
         p.gender, p.birthdate, p.birthdate_estimated, TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE()) AS age
         FROM patient p
         JOIN person pn ON p.patient_id = pn.person_id
         JOIN person_name pn ON p.patient_id = pn.person_id
-        LEFT JOIN person_attribute pa ON p.patient_id = pa.person_id AND pa.attribute_type_id = [National ID Attribute Type ID]
-        LEFT JOIN person_attribute pp ON p.patient_id = pp.person_id AND pp.attribute_type_id = [Phone Number Attribute Type ID]
-        LEFT JOIN person_attribute pc ON p.patient_id = pc.person_id AND pc.attribute_type_id = [Citizenship Attribute Type ID]
+        LEFT JOIN person_attribute pa ON p.patient_id = pa.person_id AND pa.attribute_type_id = 19
+        LEFT JOIN person_attribute pp ON p.patient_id = pp.person_id AND pp.attribute_type_id = 11
+        LEFT JOIN person_attribute pc ON p.patient_id = pc.person_id AND pc.attribute_type_id = 3
         LEFT JOIN location loc ON p.location_id = loc.location_id
         LEFT JOIN person_address adr ON p.patient_id = adr.person_id
         WHERE p.patient_id = %s AND pn.voided = 0 AND pa.voided = 0 AND pp.voided = 0 AND pc.voided = 0
