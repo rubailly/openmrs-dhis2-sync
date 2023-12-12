@@ -38,24 +38,46 @@ class OpenMRSConnector:
     def fetch_patient_data(self, patient_id):
         """Fetch patient data for a given patient ID."""
         query = """
-        SELECT patient_id, given_name, middle_name, family_name, gender, birthdate, patient.date_created
-        FROM patient
-        JOIN person_name ON patient.patient_id = person_name.person_id
-        JOIN person ON patient.patient_id = person.person_id
-        WHERE patient.patient_id = %s AND person.voided = 0 AND person_name.voided = 0;
+        SELECT pn.given_name, pn.middle_name, pn.family_name, pa.value AS national_id, -- Replace with actual attribute type ID for National ID
+        pp.value AS phone_number, -- Replace with actual attribute type ID for Phone Number
+        pc.value AS citizenship, -- Replace with actual attribute type ID for Citizenship
+        loc.name AS health_facility, -- Assuming health facility is linked to patient's location
+        adr.country, adr.state_province AS province, adr.county_district AS district, adr.city_village AS sector, -- This might be different in your database
+        adr.address3 AS cell, -- This might be different in your database
+        adr.address4 AS village, -- This might be different in your database
+        p.gender, p.birthdate, p.birthdate_estimated, TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE()) AS age
+        FROM patient p
+        JOIN person pn ON p.patient_id = pn.person_id
+        JOIN person_name pn ON p.patient_id = pn.person_id
+        LEFT JOIN person_attribute pa ON p.patient_id = pa.person_id AND pa.attribute_type_id = [National ID Attribute Type ID]
+        LEFT JOIN person_attribute pp ON p.patient_id = pp.person_id AND pp.attribute_type_id = [Phone Number Attribute Type ID]
+        LEFT JOIN person_attribute pc ON p.patient_id = pc.person_id AND pc.attribute_type_id = [Citizenship Attribute Type ID]
+        LEFT JOIN location loc ON p.location_id = loc.location_id
+        LEFT JOIN person_address adr ON p.patient_id = adr.person_id
+        WHERE p.patient_id = %s AND pn.voided = 0 AND pa.voided = 0 AND pp.voided = 0 AND pc.voided = 0
         """
         try:
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, (patient_id,))
             result = cursor.fetchone()
             return {
-                'dhis2_tracked_entity_type': result['patient_id'],
                 'First_Name': result.get('given_name', ''),
                 'Middle_Name': result.get('middle_name', ''),
                 'Family_Name': result.get('family_name', ''),
+                'National_ID': result.get('national_id', ''),
+                'Phone_Number': result.get('phone_number', ''),
+                'Citizenship': result.get('citizenship', ''),
+                'Health_Facility': result.get('health_facility', ''),
+                'country': result.get('country', ''),
+                'Province': result.get('province', ''),
+                'District': result.get('district', ''),
+                'Sector': result.get('sector', ''),
+                'Cell': result.get('cell', ''),
+                'Village': result.get('village', ''),
                 'Sex': result.get('gender', ''),
-                'Birthdate_Estimate': result['birthdate'].isoformat() if result and result['birthdate'] else None,
-            'date_created': result['date_created'].isoformat() if result and result['date_created'] else None
+                'Birth_Date': result['birthdate'].isoformat() if result and result['birthdate'] else None,
+                'Birthdate_Estimate': result.get('birthdate_estimated', ''),
+                'Age_in_Years': result.get('age', '')
             } if result else {}
         except mysql.connector.Error as err:
             logging.error(f"Error fetching patient data for patient ID {patient_id}: {err}")
