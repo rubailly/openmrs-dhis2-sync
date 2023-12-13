@@ -84,7 +84,7 @@ class SyncService:
                 dhis2_compliant_json["enrollments"].append({
                     # Fetch the location ID from the encounter data instead of patient_data
                     "orgUnit": location_mappings.get(str(366)),
-                    "program": form_mappings['dhis2_program_stage_id'],  # Use the program stage ID from form mappings
+                    "program": form_mappings['dhis2_program_id'],  # Use the program stage ID from form mappings
                     "enrollmentDate": patient_data['date_created'],  # Use the date_created from patient data
                     "incidentDate": patient_data['date_created'],  # Use the date_created from patient data
                     "events": [{

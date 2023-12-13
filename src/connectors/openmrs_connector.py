@@ -43,8 +43,8 @@ class OpenMRSConnector:
         pc.value AS citizenship,
         adr.country, adr.state_province AS province, adr.county_district AS district, adr.city_village AS sector,
         adr.address3 AS cell,
-        adr.address4 AS village,
-        per.gender, per.birthdate, p.date_created, per.birthdate_estimated, TIMESTAMPDIFF(YEAR, per.birthdate, CURDATE()) AS age
+        adr.address1 AS village,
+        per.gender, per.birthdate, p.date_created, TIMESTAMPDIFF(YEAR, per.birthdate, CURDATE()) AS age
         FROM patient p
         JOIN person per ON p.patient_id = per.person_id
         JOIN person_name pn ON per.person_id = pn.person_id
@@ -74,7 +74,6 @@ class OpenMRSConnector:
                 'Sex': result.get('gender', ''),
                 'Birth_Date': result['birthdate'].isoformat() if result and result['birthdate'] else None,
                 'date_created': result['date_created'].isoformat() if result and result['date_created'] else None,
-                'Birthdate_Estimate': result.get('birthdate_estimated', ''),
                 'Age_in_Years': result.get('age', '')
             } if result else {}
         except mysql.connector.Error as err:
