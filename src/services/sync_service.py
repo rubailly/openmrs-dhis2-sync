@@ -54,7 +54,7 @@ class SyncService:
                 if openmrs_attr == 'Sex':
                     patient_attribute_value = 'Female' if patient_attribute_value == 'F' else 'Male' if patient_attribute_value == 'M' else patient_attribute_value
                 elif openmrs_attr in ['Citizenship', 'country']:
-                    patient_attribute_value = 'D6Us3GQryHU'
+                    patient_attribute_value = '646'
                 # Map OpenMRS attributes to DHIS2 attributes and append them to the attributes list
                 if patient_attribute_value is not None:
                     dhis2_compliant_json["attributes"].append({
