@@ -121,7 +121,8 @@ class OpenMRSConnector:
             logging.info(f"Fetched {len(results)} observations for encounter ID: {encounter_id}")
             def get_observation_value(obs):
                 if obs['value_numeric'] is not None:
-                    return obs['value_numeric']
+                    # Cast to int if the numeric value is an integer, otherwise return as is
+                    return int(obs['value_numeric']) if obs['value_numeric'].is_integer() else obs['value_numeric']
                 elif obs['value_coded'] is not None:
                     return obs['value_coded']
                 elif obs['value_text'] is not None:
