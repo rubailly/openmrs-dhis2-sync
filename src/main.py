@@ -27,6 +27,22 @@ def main():
         print("No location ID provided. Exiting.")
         sys.exit(1)
 
+    # Configuration for OpenMRS and DHIS2 connectors
+    openmrs_config = {
+        "host": OPENMRS_DB_HOST,
+        "user": OPENMRS_DB_USER,
+        "password": OPENMRS_DB_PASSWORD,
+        "database": OPENMRS_DB_NAME
+    }
+    dhis2_config = {
+        "base_url": DHIS2_BASE_URL,
+        "username": DHIS2_USERNAME,
+        "password": DHIS2_PASSWORD
+    }
+
+    # Initialize the SyncService
+    sync_service = SyncService(openmrs_config, dhis2_config, 'logs/progress.json')
+
     # Check if the patients_to_sync directory has files and ask the user if they want to process them
     patients_to_sync_dir = 'patients_to_sync'
     existing_files = [f for f in os.listdir(patients_to_sync_dir) if os.path.isfile(os.path.join(patients_to_sync_dir, f))]
