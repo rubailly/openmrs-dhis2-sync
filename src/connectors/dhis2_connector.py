@@ -23,20 +23,20 @@ class DHIS2Connector:
             # the full JSON object if necessary. For this example, let's assume the full data is under the key
             # 'trackedEntityInstance'.
             logging.info(f"Posting tracked entity instance data: {json.dumps(patient_data, indent=4)}")
-            # Extract program, orgUnit, enrollmentDate, and incidentDate from patient_data
-            program = patient_data.get('program')
             org_unit = patient_data.get('orgUnit')
-            enrollment_date = patient_data.get('enrollmentDate')
-            incident_date = patient_data.get('incidentDate')
             
             response = self.make_api_call('trackedEntityInstances', method='POST', data=patient_data)
             if response and 'response' in response and 'importSummaries' in response['response']:
                 entity_id = response['response']['importSummaries'][0]['reference']
                 for enrollment in patient_data.get('enrollments', []):
+                    # Extract program, enrollmentDate, and incidentDate from each enrollment
+                    program = enrollment.get('program')
+                    enrollment_date = enrollment.get('enrollmentDate')
+                    incident_date = enrollment.get('incidentDate')
                     for event in enrollment.get('events', []):
                         # Include program, orgUnit, enrollmentDate, and incidentDate in each event
                         event['program'] = program
-                        event['orgUnit'] = org_unit
+                        event['orgUnit'] = org_unit  # orgUnit is still taken from the root level
                         event['enrollmentDate'] = enrollment_date
                         event['incidentDate'] = incident_date
                         event['trackedEntityInstance'] = entity_id
