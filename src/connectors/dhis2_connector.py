@@ -18,9 +18,9 @@ class DHIS2Connector:
             file_path = os.path.join(directory, filename)
             with open(file_path, 'r') as file:
                 patient_data = json.load(file)
-            tracked_entity_data = patient_data.pop('trackedEntityType', None)
+            tracked_entity_data = patient_data.get('trackedEntityType')
             if tracked_entity_data:
-                logging.info(f"Posting tracked entity data: {tracked_entity_data}")
+                logging.info(f"Posting tracked entity data: {json.dumps(tracked_entity_data, indent=4)}")
                 response = self.make_api_call('trackedEntityInstances', method='POST', data=tracked_entity_data)
                 if response and 'response' in response and 'importSummaries' in response['response']:
                     entity_id = response['response']['importSummaries'][0]['reference']
