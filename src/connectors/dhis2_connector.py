@@ -1,6 +1,6 @@
 import requests
-import logging
 import base64
+import logging
 import os
 import json
 
@@ -20,12 +20,14 @@ class DHIS2Connector:
                 patient_data = json.load(file)
             tracked_entity_data = patient_data.pop('trackedEntityType', None)
             if tracked_entity_data:
+                logging.info(f"Posting tracked entity data: {tracked_entity_data}")
                 response = self.make_api_call('trackedEntityInstances', method='POST', data=tracked_entity_data)
                 if response and 'response' in response and 'importSummaries' in response['response']:
                     entity_id = response['response']['importSummaries'][0]['reference']
                     for enrollment in patient_data.get('enrollments', []):
                         for event in enrollment.get('events', []):
                             event['trackedEntityInstance'] = entity_id
+                            logging.info(f"Posting event data: {event}")
                             self.make_api_call('events', method='POST', data=event)
                     new_filename = f"{entity_id}_{filename}"
                     os.rename(file_path, os.path.join(directory, new_filename))
