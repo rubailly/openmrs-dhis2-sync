@@ -27,15 +27,26 @@ def main():
         print("No location ID provided. Exiting.")
         sys.exit(1)
 
-    # Clear the patients_to_sync directory
+    # Check if the patients_to_sync directory has files and ask the user if they want to process them
     patients_to_sync_dir = 'patients_to_sync'
-    for filename in os.listdir(patients_to_sync_dir):
+    existing_files = [f for f in os.listdir(patients_to_sync_dir) if os.path.isfile(os.path.join(patients_to_sync_dir, f))]
+    if existing_files:
+        print(f"Found {len(existing_files)} files in the patients_to_sync directory.")
+        process_files = input("Do you want to process the existing files? (yes/no): ").strip().lower()
+        if process_files == 'yes':
+            sync_service.dhis2_connector.process_patient_files()
+            sys.exit(0)
+        elif process_files == 'no':
+            print("Clearing the patients_to_sync directory and proceeding with the normal flow.")
+        else:
+            print("Invalid input. Exiting.")
+            sys.exit(1)
+
+    # Clear the patients_to_sync directory if the user chose not to process existing files
+    for filename in existing_files:
         file_path = os.path.join(patients_to_sync_dir, filename)
         try:
-            if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
-            elif os.path.isdir(file_path):
-                shutil.rmtree(file_path)
+            os.unlink(file_path)
         except Exception as e:
             print(f'Failed to delete {file_path}. Reason: {e}')
             sys.exit(1)
