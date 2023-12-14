@@ -97,18 +97,20 @@ class SyncService:
                         "dataValues": event_data_values
                     }]
                 })
-            # Log the DHIS2-compliant JSON object to a file for synchronization
-            self.log_patient_data_to_sync_file(dhis2_compliant_json)
+            # Log the DHIS2-compliant JSON object to a new file named as the patient_id.json
+            self.log_patient_data_to_sync_file(patient_id, dhis2_compliant_json)
             return dhis2_compliant_json
         except Exception as e:
             logging.error(f"Error processing patient ID {patient_id}: {e}")
             return {}
 
 
-    def log_patient_data_to_sync_file(self, dhis2_compliant_json):
-        # Implement logging logic
-        # This will log the DHIS2-compliant JSON object to a file for synchronization
-        with open('patients_to_sync.json', 'w') as file:
+    def log_patient_data_to_sync_file(self, patient_id, dhis2_compliant_json):
+        # Ensure the patients_to_sync directory exists
+        os.makedirs('patients_to_sync', exist_ok=True)
+        # Create a new JSON file for each patient using the patient ID as the filename
+        file_path = os.path.join('patients_to_sync', f"{patient_id}.json")
+        with open(file_path, 'w') as file:
             json.dump(dhis2_compliant_json, file, indent=4)
 
     # Other methods and logic as needed for the SyncService class
