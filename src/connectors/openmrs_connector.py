@@ -54,10 +54,13 @@ class OpenMRSConnector:
         LEFT JOIN person_address adr ON p.patient_id = adr.person_id
         WHERE p.patient_id = %s
         """
+        cursor = None
         try:
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query, (patient_id,))
             result = cursor.fetchone()
+            # Make sure to fetch all results to avoid "Unread result found" error
+            cursor.fetchall()
             return {
                 'UUID': result.get('uuid', ''),
                 'First_Name': result.get('given_name', ''),
@@ -81,7 +84,7 @@ class OpenMRSConnector:
             logging.error(f"Error fetching patient data for patient ID {patient_id}: {err}")
             raise
         finally:
-            if cursor:
+            if cursor is not None:
                 cursor.close()
 
     def connect(self):
