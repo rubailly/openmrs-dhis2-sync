@@ -46,9 +46,6 @@ class DHIS2Connector:
                             self.make_api_call('events', method='POST', data=event)
                     new_filename = f"{entity_id}_{filename}"
                     os.rename(file_path, os.path.join(directory, new_filename))
-                user_input = input("Continue processing the next file? (yes/no): ").strip().lower()
-                if user_input != 'yes':
-                    break
             except Exception as e:
                 logging.error(f"Error processing file {filename}: {e}")
                 continue
