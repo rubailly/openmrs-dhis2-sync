@@ -1,6 +1,8 @@
 import logging
 import json
 import sys
+import os
+import shutil
 from dotenv import load_dotenv
 from services.sync_service import SyncService
 from utils.logger import setup_logger
