@@ -61,7 +61,7 @@ class SyncService:
                 # Replace province and district attribute values with the corresponding values from the province and district mappings
                 if openmrs_attr == 'Province' and patient_attribute_value in province_mappings:
                     patient_attribute_value = province_mappings[patient_attribute_value]
-                elif openmrs_attr == 'Kv01wmCxVH6':
+                elif openmrs_attr == 'District':
                     # Handle cases where the attribute value is in the format "Rusizi / Western Province/Uburengerazuba"
                     if '/' in patient_attribute_value:
                         patient_attribute_value = patient_attribute_value.split('/')[0].strip()
