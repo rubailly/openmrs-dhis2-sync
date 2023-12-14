@@ -119,20 +119,25 @@ class OpenMRSConnector:
             cursor.execute(query, (encounter_id,))
             results = cursor.fetchall()
             logging.info(f"Fetched {len(results)} observations for encounter ID: {encounter_id}")
-            observations = []
-            for result in results:
-                logging.debug(f"Processing observation: {result}")
-                # Create an OpenMRSObservation object for each observation
-                observations.append({
+            def get_observation_value(obs):
+                if obs['value_numeric'] is not None:
+                    return obs['value_numeric']
+                elif obs['value_coded'] is not None:
+                    return obs['value_coded']
+                elif obs['value_text'] is not None:
+                    return obs['value_text']
+                elif obs['value_datetime'] is not None:
+                    return obs['value_datetime'].isoformat()
+                return None
+
+            observations = [
+                {
                     'obs_id': result['obs_id'],
                     'concept_uuid': result['concept_uuid'],
-                    'value': {
-                        'numeric': result['value_numeric'],
-                        'coded': result['value_coded'],
-                        'text': result['value_text'],
-                        'datetime': result['value_datetime'].isoformat() if result['value_datetime'] else None
-                    }
-                })
+                    'value': get_observation_value(result)
+                }
+                for result in results
+            ]
             return observations
         except mysql.connector.Error as err:
             logging.exception(f"Error fetching observations for encounter ID {encounter_id}: {err}")
