@@ -38,7 +38,7 @@ class OpenMRSConnector:
     def fetch_patient_data(self, patient_id):
         """Fetch patient data for a given patient ID."""
         query = """
-        SELECT pn.given_name, pn.middle_name, pn.family_name, pa.value AS national_id,
+        SELECT per.uuid, pn.given_name, pn.middle_name, pn.family_name, pa.value AS national_id,
         pp.value AS phone_number,
         pc.value AS citizenship,
         adr.country, adr.state_province AS province, adr.county_district AS district, adr.city_village AS sector,
@@ -59,6 +59,7 @@ class OpenMRSConnector:
             cursor.execute(query, (patient_id,))
             result = cursor.fetchone()
             return {
+                'UUID': result.get('uuid', ''),
                 'First_Name': result.get('given_name', ''),
                 'Middle_Name': result.get('middle_name', ''),
                 'Family_Name': result.get('family_name', ''),

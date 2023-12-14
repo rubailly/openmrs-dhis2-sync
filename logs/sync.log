@@ -415,3 +415,72 @@ mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'r
 2023-12-13 22:44:44,575 - INFO - Fetching observations for encounter ID: 714593
 2023-12-13 22:44:44,755 - INFO - Fetched 9 observations for encounter ID: 714593
 2023-12-13 22:44:44,927 - INFO - Event data values for encounter ID 714593: {'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'National_ID': None, 'Phone_Number': '0786987060', 'Citizenship': 'RW', 'country': 'Rwanda', 'Province': 'Amajyepfo', 'District': 'Kamonyi', 'Sector': 'Ngamba', 'Cell': 'Kabuga', 'Village': 'Nyagasozi', 'Sex': 'M', 'Birth_Date': '1975-01-01', 'date_created': '2023-06-21T07:30:32', 'Age_in_Years': 48}
+2023-12-13 22:51:25,569 - INFO - Logging is set up.
+2023-12-13 22:51:25,569 - INFO - Application started.
+2023-12-13 22:51:32,983 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-13 22:51:33,114 - INFO - package: mysql.connector.plugins
+2023-12-13 22:51:33,114 - INFO - plugin_name: mysql_native_password
+2023-12-13 22:51:33,115 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-13 22:51:33,187 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-13 22:51:33,188 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-13 22:51:33,483 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-13 22:51:33,486 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-13 22:51:33,486 - INFO - Processing patient ID: 247616
+2023-12-13 22:51:33,575 - INFO - Fetching observations for encounter ID: 714593
+2023-12-13 22:51:33,840 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-13 22:51:33,946 - INFO - Event data values for encounter ID 714593: {'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'National_ID': None, 'Phone_Number': '0786987060', 'Citizenship': 'RW', 'country': 'Rwanda', 'Province': 'Amajyepfo', 'District': 'Kamonyi', 'Sector': 'Ngamba', 'Cell': 'Kabuga', 'Village': 'Nyagasozi', 'Sex': 'M', 'Birth_Date': '1975-01-01', 'date_created': '2023-06-21T07:30:32', 'Age_in_Years': 48}
+2023-12-13 23:00:39,893 - INFO - Logging is set up.
+2023-12-13 23:00:39,894 - INFO - Application started.
+2023-12-13 23:00:42,329 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-13 23:00:42,517 - INFO - package: mysql.connector.plugins
+2023-12-13 23:00:42,518 - INFO - plugin_name: mysql_native_password
+2023-12-13 23:00:42,519 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-13 23:00:42,597 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-13 23:00:42,597 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-13 23:00:42,927 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-13 23:00:42,929 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-13 23:00:42,930 - INFO - Processing patient ID: 247616
+2023-12-13 23:00:43,018 - INFO - Fetching observations for encounter ID: 714593
+2023-12-13 23:00:43,099 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-13 23:00:43,172 - INFO - Event data values for encounter ID 714593: {'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'National_ID': None, 'Phone_Number': '0786987060', 'Citizenship': 'RW', 'country': 'Rwanda', 'Province': 'Amajyepfo', 'District': 'Kamonyi', 'Sector': 'Ngamba', 'Cell': 'Kabuga', 'Village': 'Nyagasozi', 'Sex': 'M', 'Birth_Date': '1975-01-01', 'date_created': '2023-06-21T07:30:32', 'Age_in_Years': 48}
+2023-12-13 23:27:16,497 - INFO - Logging is set up.
+2023-12-13 23:27:16,497 - INFO - Application started.
+2023-12-13 23:27:19,092 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-13 23:27:19,279 - INFO - package: mysql.connector.plugins
+2023-12-13 23:27:19,279 - INFO - plugin_name: mysql_native_password
+2023-12-13 23:27:19,280 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-13 23:27:19,387 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-13 23:27:19,387 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-13 23:27:19,985 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-13 23:27:19,988 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-13 23:27:19,988 - INFO - Processing patient ID: 247616
+2023-12-13 23:27:20,072 - ERROR - Error fetching patient data for patient ID 247616: 1054 (42S22): Unknown column 'p.uuid' in 'field list'
+2023-12-13 23:27:20,072 - ERROR - Error processing patient ID 247616: 1054 (42S22): Unknown column 'p.uuid' in 'field list'
+2023-12-13 23:29:38,135 - INFO - Logging is set up.
+2023-12-13 23:29:38,136 - INFO - Application started.
+2023-12-13 23:29:41,596 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-13 23:29:41,725 - INFO - package: mysql.connector.plugins
+2023-12-13 23:29:41,725 - INFO - plugin_name: mysql_native_password
+2023-12-13 23:29:41,726 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-13 23:29:41,797 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-13 23:29:41,797 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-13 23:29:42,204 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-13 23:29:42,207 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-13 23:29:42,208 - INFO - Processing patient ID: 247616
+2023-12-13 23:29:42,334 - INFO - Fetching observations for encounter ID: 714593
+2023-12-13 23:29:42,420 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-13 23:29:42,521 - INFO - Event data values for encounter ID 714593: {'UUID': '3e441d13-35c8-48f5-9601-8867ed83d846', 'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'National_ID': None, 'Phone_Number': '0786987060', 'Citizenship': 'RW', 'country': 'Rwanda', 'Province': 'Amajyepfo', 'District': 'Kamonyi', 'Sector': 'Ngamba', 'Cell': 'Kabuga', 'Village': 'Nyagasozi', 'Sex': 'M', 'Birth_Date': '1975-01-01', 'date_created': '2023-06-21T07:30:32', 'Age_in_Years': 48}
+2023-12-14 00:57:16,942 - INFO - Logging is set up.
+2023-12-14 00:57:16,943 - INFO - Application started.
+2023-12-14 00:57:20,102 - INFO - Attempting to connect to the OpenMRS database...
+2023-12-14 00:57:20,301 - INFO - package: mysql.connector.plugins
+2023-12-14 00:57:20,301 - INFO - plugin_name: mysql_native_password
+2023-12-14 00:57:20,302 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2023-12-14 00:57:20,392 - INFO - Connected to the OpenMRS database at 41.74.172.73 successfully.
+2023-12-14 00:57:20,392 - INFO - Connection to OpenMRS database successful. Fetching encounters by location ID and encounter type IDs...
+2023-12-14 00:57:21,051 - INFO - Fetched encounters for 1278 patients from the OpenMRS database for location ID 366.
+2023-12-14 00:57:21,054 - INFO - Logged encounters for 1278 patients to encounters_to_process.json.
+2023-12-14 00:57:21,054 - INFO - Processing patient ID: 247616
+2023-12-14 00:57:21,149 - INFO - Fetching observations for encounter ID: 714593
+2023-12-14 00:57:21,248 - INFO - Fetched 9 observations for encounter ID: 714593
+2023-12-14 00:57:21,324 - INFO - Event data values for encounter ID 714593: {'UUID': '3e441d13-35c8-48f5-9601-8867ed83d846', 'First_Name': 'Edouard', 'Middle_Name': None, 'Family_Name': 'RUTAYISIRE', 'National_ID': None, 'Phone_Number': '0786987060', 'Citizenship': 'RW', 'country': 'Rwanda', 'Province': 'Amajyepfo', 'District': 'Kamonyi', 'Sector': 'Ngamba', 'Cell': 'Kabuga', 'Village': 'Nyagasozi', 'Sex': 'M', 'Birth_Date': '1975-01-01', 'date_created': '2023-06-21T07:30:32', 'Age_in_Years': 48}
