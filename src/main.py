@@ -110,21 +110,20 @@ def main():
             # Process patient and their encounters, passing the location_id
             sync_service.process_patient_and_encounters(patient_id, encounter_ids, location_id)
 
-            # Ask the user if they want to continue to the next patient or cancel
-            user_choice = input(f"Processed patient ID {patient_id}. Do you want to continue to the next patient? (yes/no): ").strip().lower()
-            if user_choice != 'yes':
-                print("Operation cancelled by the user.")
-                break
-
             # Log the processed patient ID to the progress.json file
             progress_tracker.update_progress(location_id, patient_id)
     except Exception as e:
         logging.error(f"Failed to fetch encounters by location ID: {e}")
         sys.exit(1)
 
-    # Exclude already handled encounters if resuming
-    if choice == 'resume':
-        encounter_ids = [eid for eid in encounter_ids if eid not in handled_encounters]
+    # Prompt the user to start the synchronization process
+    print("All patient files have been created in the patients_to_sync directory.")
+    user_choice = input("Do you want to start the synchronization process to DHIS2? (yes/no): ").strip().lower()
+    if user_choice == 'yes':
+        sync_service.dhis2_connector.process_patient_files()
+    else:
+        print("Synchronization process not started. Exiting application.")
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
