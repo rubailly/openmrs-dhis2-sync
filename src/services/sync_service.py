@@ -85,9 +85,19 @@ class SyncService:
                     # Use form_mappings to map OpenMRS observation to DHIS2 data element
                     data_element_id = form_mappings['observations'].get(observation['concept_uuid'])
                     if data_element_id:
+                        # Check if the dataElement is BCTuQ3xPYet and modify the value accordingly
+                        if data_element_id == 'BCTuQ3xPYet':
+                            if observation['value'] == 13467:
+                                observation_value = 'random'
+                            elif observation['value'] == 6689:
+                                observation_value = 'fasting'
+                            else:
+                                observation_value = observation['value']
+                        else:
+                            observation_value = observation['value']
                         event_data_values.append({
                             "dataElement": data_element_id,
-                            "value": observation['value']
+                            "value": observation_value
                         })
                 # Log the event data values before appending to the enrollments list
                 logging.info(f"Event data values for encounter ID {encounter_id}: {patient_data}")
