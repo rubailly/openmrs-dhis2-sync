@@ -18,10 +18,14 @@ class DHIS2Connector:
             file_path = os.path.join(directory, filename)
             with open(file_path, 'r') as file:
                 patient_data = json.load(file)
-            tracked_entity_data = patient_data.get('trackedEntityType')
-            if tracked_entity_data:
-                logging.info(f"Posting tracked entity data: {json.dumps(tracked_entity_data, indent=4)}")
-                response = self.make_api_call('trackedEntityInstances', method='POST', data=tracked_entity_data)
+            # Assuming that patient_data is a dictionary that contains the full tracked entity instance data
+            # under a key that is not just 'trackedEntityType'. We need to find the correct key or construct
+            # the full JSON object if necessary. For this example, let's assume the full data is under the key
+            # 'trackedEntityInstance'.
+            tracked_entity_instance_data = patient_data.get('trackedEntityInstance')
+            if tracked_entity_instance_data:
+                logging.info(f"Posting tracked entity instance data: {json.dumps(tracked_entity_instance_data, indent=4)}")
+                response = self.make_api_call('trackedEntityInstances', method='POST', data=tracked_entity_instance_data)
                 if response and 'response' in response and 'importSummaries' in response['response']:
                     entity_id = response['response']['importSummaries'][0]['reference']
                     for enrollment in patient_data.get('enrollments', []):
