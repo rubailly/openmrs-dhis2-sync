@@ -28,9 +28,10 @@ class SyncService:
         logging.info(f"Processing patient ID: {patient_id}")
         # Load attribute mappings
         attribute_mappings = load_mappings('mappings/attribute_mappings.json')
-        # Load location and province mappings
+        # Load location, province and district mappings
         location_mappings = load_mappings('mappings/location_mappings.json')
         province_mappings = load_mappings('mappings/province_mappings.json')
+        district_mappings = load_mappings('mappings/district_mappings.json')
         # Initialize the DHIS2-compliant JSON object
         # Use the location ID provided by the user to get the org unit ID
         org_unit_id = location_mappings.get(location_id)
@@ -57,9 +58,15 @@ class SyncService:
                 elif openmrs_attr in ['Citizenship', 'country']:
                     patient_attribute_value = '646'
                 # Map OpenMRS attributes to DHIS2 attributes and append them to the attributes list
-                # Replace province attribute value with the corresponding value from the province mappings
+                # Replace province and district attribute values with the corresponding values from the province and district mappings
                 if openmrs_attr == 'Province' and patient_attribute_value in province_mappings:
                     patient_attribute_value = province_mappings[patient_attribute_value]
+                elif openmrs_attr == 'Kv01wmCxVH6':
+                    # Handle cases where the attribute value is in the format "Rusizi / Western Province/Uburengerazuba"
+                    if '/' in patient_attribute_value:
+                        patient_attribute_value = patient_attribute_value.split('/')[0].strip()
+                    if patient_attribute_value in district_mappings:
+                        patient_attribute_value = district_mappings[patient_attribute_value]
                 if patient_attribute_value is not None:
                     dhis2_compliant_json["attributes"].append({
                         "attribute": dhis2_attr,
